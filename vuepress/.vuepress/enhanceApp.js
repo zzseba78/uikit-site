@@ -1,10 +1,7 @@
-// import ExampleRunner from '../../../ui/app/ExampleRunner.vue';
-// import runtime from '../../runtime/index';
-// import vuerunner from '../../../src/runnner/VueRunner';
-// import uikitrunner from '../../../src/runnner/UIkitRunner';
-// import UIkit from 'uikit';
 
-// window.UIkit = UIkit;
+import {ExampleRunner, UIkitRunner} from 'yootheme-doctools';
+import examples from '../examples/examples.json';
+import Code from '../../node_modules/vue-highlight-component';
 
 export default ({
     Vue, // the version of Vue being used in the VuePress app
@@ -13,13 +10,13 @@ export default ({
     siteData // site metadata
   }) => {
 
-    // ...apply enhancements to the app
+    ExampleRunner.examples = examples;
+    ExampleRunner.runners['uikit'] = new UIkitRunner;
+    ExampleRunner.components = {
+        ...ExampleRunner.components,
+        Code
+    }
 
-    // ExampleRunner.runtime = runtime;
-    // ExampleRunner.runners['vue'] = new vuerunner;
-    // ExampleRunner.runners['uikit'] = new uikitrunner;
-
-    // Vue.component('ExampleRunner', ExampleRunner);
-
+    Vue.component('ExampleRunner',ExampleRunner);
 
   }

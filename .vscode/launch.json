@@ -13,6 +13,16 @@
             "args": [
                 "dev"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "VuePress build",
+            "program": "/usr/local/bin/vuepress",
+            "cwd": "${workspaceFolder}/vuepress",
+            "args": [
+                "build"
+            ]
         }
     ]
 }

@@ -61,6 +61,7 @@
 
 <script>
 
+    import UIkit from './uikit-node';
 
     export default {
 

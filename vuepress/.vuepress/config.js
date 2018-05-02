@@ -10,10 +10,21 @@ module.exports = {
         });
 
     },
+
+    dest: '/Applications/MAMP/htdocs/dist',
+
     title: 'UIkit',
     description: 'UIkit site',
     editLinks: false,
-
+    pages: [
+      {
+        path: '/Pro'
+      },
+      {
+        path: '/',
+        title: 'index'
+      }
+    ],
     themeConfig: {
       repo: 'uikit/uikit',
       nav: [

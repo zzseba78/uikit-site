@@ -6,9 +6,9 @@
 
             <template v-if="$page">
 
-                <Navbar/>
 
                 <template v-if="sidebar">
+                    <Navbar />
                     <div  v-if="sidebar" class="tm-sidebar-left uk-visible@m">
                         <h3>Documentation</h3>
                         <ul class="uk-nav uk-nav-default tm-nav" :class="{ 'uk-margin-top': index }" v-for="(group, index) in sidebar">
@@ -64,6 +64,11 @@ import Download from './Download.vue';
 
 import Pro from './Pro.vue';
 import Index from './Index.vue';
+
+import UIkit from './uikit-node';
+
+import '../../../assets/uikit/dist/js/uikit-icons.min.js';
+
 // import Changelog from './Changelog.vue';
 
 export default {
@@ -75,7 +80,7 @@ export default {
         Download
     },
 
-    data:() => ({ready:false}),
+    data:() => ({ready: false}),
 
     computed: {
         navigation() {
@@ -97,12 +102,13 @@ export default {
 
     created() {
         // debugger
-        window.$layout = this;
-        import('../../../assets/uikit/dist/js/uikit.min.js').then(module => {
-            window.UIkit = module.default;
-            import('../../../assets/uikit/dist/js/uikit-icons.min.js').then(module => {
-                this.ready = true;
-            })
+        if (typeof window !== 'undefined') {
+
+            window.$layout = this;
+            window.UIkit = UIkit;
+        }
+        import('../../../assets/uikit/dist/js/uikit-icons.min.js').then(module => {
+            this.ready = true;
         })
     }
 
