@@ -10,12 +10,18 @@
   "devDependencies": {
     "buble-loader": "^0.4.1",
     "less": "^2.7.2",
+    "marked": "^0.3.19",
     "mkdirp": "^0.5.1",
+    "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
     "uikit": "^3.0.0-beta.42",
     "unique-id": "0.0.1",
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.16",
+    "vuepress": "^0.8.4",
     "webpack": "^3.6.1"
+  },
+  "dependencies": {
+    "markdown-it-highlightjs": "^3.0.0"
   }
 }
