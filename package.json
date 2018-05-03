@@ -4,7 +4,7 @@
     "setup": "npm install && npm run compile",
     "compile": "npm run compile-js && npm run compile-less && npm run compile-uikit",
     "compile-uikit": "cd ./assets/uikit && npm run compile && npm run compile-rtl",
-    "compile-js": "./node_modules/.bin/webpack -p",
+    "compile-js": "webpack -p",
     "compile-less": "mkdirp css && lessc less/theme.less > css/theme.css --relative-urls --rootpath=../less/ -x"
   },
   "devDependencies": {
@@ -23,5 +23,8 @@
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^3.6.1"
+  },
+  "dependencies": {
+    "less-loader": "^4.1.0"
   }
 }
