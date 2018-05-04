@@ -9,3 +9,5 @@ js/*.min.js
 .idea
 vuepress/.vuepress/dist
 vuepress/.vuepress/theme_
+.nuxt
+dist

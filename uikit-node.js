@@ -23,24 +23,24 @@ const shims = {
             store[name] = global[name];
         });
 
-        window = {...global, addEventListener: () => {}};
+        global.window = {...global, addEventListener: () => {}};
 
-        Element = () => {};
-        Element.prototype = {};
+        global.Element = () => {};
+        global.Element.prototype = {};
 
-        Node = () => {};
-        Node.prototype = {};
+        global.Node = () => {};
+        global.Node.prototype = {};
 
-        NodeList = () => {};
-        NodeList.prototype = {};
+        global.NodeList = () => {};
+        global.NodeList.prototype = {};
 
-        HTMLCollection = () => {};
-        HTMLCollection.prototype = {};
+        global.HTMLCollection = () => {};
+        global.HTMLCollection.prototype = {};
 
-        navigator = () => {};
+        global.navigator = () => {};
 
 
-        document = {
+        global.document = {
             documentElement: {
                 doScroll() {}
             },
@@ -63,12 +63,13 @@ const shims = {
 
 if (typeof window === 'undefined') {
     shims.install();
-    module.exports = window.UIkit = global.UIkit = require('uikit/dist/js/uikit.js');
+    global.UIkit = require('uikit/dist/js/uikit.js');
+
     require('uikit/dist/js/uikit-icons.js')
 
     shims.clear();
 } else {
-    module.exports = window.UIkit = require('uikit/dist/js/uikit.js');
+    window.UIkit = require('uikit/dist/js/uikit.js');
     require('uikit/dist/js/uikit-icons.js');
 
 

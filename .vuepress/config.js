@@ -24,19 +24,10 @@ const sidebar = [
         return [`/doc/${value}.md`, name];
     })
   },
-  ...require('../examples/sidebar.json')
+  ...require('../api/sidebar.json')
 ];
 
-module.exports = {
-
-    configureWebpack(config, isServer) {
-
-        config.module.rules.push({
-            test: /\.raw$/,
-            use: 'raw-loader'
-        });
-
-    },
+export default {
 
     dest: '/Applications/MAMP/htdocs/dist',
 
@@ -46,22 +37,17 @@ module.exports = {
     themeConfig: {
       repo: 'uikit/uikit',
       routes: {
-        download: '/download.html'
+        download: '/download'
       },
       nav: [
-        { text: 'pro', link: '/pro.html', comp: true},
+        { text: 'pro', link: '/pro', comp: true},
         { text: 'documentation', link: '/doc/' },
-        { text: 'changelog', link: '/changelog.html' },
+        { text: 'changelog', link: '/changelog' },
       ],
       sidebar: {
         '/api/': sidebar,
         '/doc/': sidebar
       },
 
-    },
-    markdown: {
-        config: md => {
-          md.use(require('markdown-it-highlightjs'))
-        }
-      }
+    }
   }

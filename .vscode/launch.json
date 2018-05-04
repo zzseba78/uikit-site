@@ -23,6 +23,13 @@
             "args": [
                 "build"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "nuxt dev",
+            "program": "${workspaceFolder}/node_modules/.bin/nuxt",
+            "cwd": "${workspaceFolder}",
         }
     ]
 }

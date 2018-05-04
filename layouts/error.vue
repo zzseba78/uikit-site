@@ -2,7 +2,7 @@
 
     <div class="uk-section-primary tm-section-texture">
 
-        <navbar class="uk-navbar-transparent"></navbar>
+        <Navbar class="uk-navbar-transparent"></Navbar>
 
         <div class="uk-section uk-section-small uk-text-center" uk-height-viewport>
             <div class="uk-width-1-1">

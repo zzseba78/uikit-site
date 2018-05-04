@@ -16,13 +16,13 @@
 
                     <ul class="uk-navbar-nav uk-visible@m">
 
-                        <router-link v-for="entry in $site.themeConfig.nav" :key="entry.link" :to="entry.link" tag="li">
+                        <router-link v-for="entry in $app.config.themeConfig.nav" :key="entry.link" :to="entry.link" tag="li">
                             <a>{{entry.text}}</a>
                         </router-link>
                     </ul>
 
                     <div class="uk-navbar-item uk-visible@m">
-                        <router-link class="uk-button uk-button-default tm-button-default uk-icon" :to="$site.themeConfig.routes.download" activeClass="page-active">Download <img uk-icon="icon: download" width="20" height="20"></img>
+                        <router-link class="uk-button uk-button-default tm-button-default uk-icon" :to="$app.config.themeConfig.routes.download" activeClass="page-active">Download <img uk-icon="icon: download" width="20" height="20"></img>
                         </router-link>
                     </div>
 
@@ -35,3 +35,15 @@
     </div>
 
 </template>
+
+<script>
+export default {
+
+    inject: ['$app']
+
+}
+</script>
+
+<style>
+
+</style>

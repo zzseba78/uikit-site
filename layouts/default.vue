@@ -4,7 +4,6 @@
 
         <template >
 
-            <template v-if="$page">
 
 
                 <template v-if="sidebar">
@@ -18,16 +17,15 @@
                     </div>
                     <div class="tm-main uk-section uk-section-default">
                         <div class="uk-container uk-container-small uk-position-relative">
-                        <Content v-if="$page"/>
+                        <nuxt />
                         </div>
                     </div>
                 </template>
 
-                <Content v-else/>
+                <nuxt v-else/>
 
-            </template>
 
-            <component v-else :is="$route.params.component"/>
+            <!-- <component :is="$route.params.component"/> -->
 
 
         </template>
@@ -40,13 +38,13 @@
                     <ul class="uk-nav uk-nav-default tm-nav">
                         <li class="uk-nav-header">General</li>
                         <li><a href="/">Home</a></li>
-                        <li v-for="entry in $site.themeConfig.nav"><a :href="entry.link">{{entry.text}}</a></li>
+                        <li v-for="entry in $app.config.themeConfig.nav"><a :href="entry.link">{{entry.text}}</a></li>
                     </ul>
 
-                    <ul class="uk-nav uk-nav-default tm-nav uk-margin-top" v-for="(pages, category, index) in navigation">
+                    <!-- <ul class="uk-nav uk-nav-default tm-nav uk-margin-top" v-for="(pages, category, index) in navigation">
                         <li class="uk-nav-header">{{category}}</li>
                         <li v-for="(p, label) in pages" exact><a :href="'./docs/'+p">{{label}}</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
@@ -57,24 +55,35 @@
 
 <script>
 
-// import navigation from '../../../docs/app/navigation.json';
-import UIkit from '../uikit-node';
+import config from '../.vuepress/config.js';
+
+import Navbar from '../components/Navbar.vue';
+import Vue from 'vue';
+Vue.component('Navbar', Navbar);
+
+
 
 export default {
 
-    data:() => ({ready: false}),
+    data() {
+        return {ready: false, config}
+    },
+
+    provide() {
+        return {$app: this};
+    },
 
     computed: {
-        navigation() {
-            return {};
+        $app() {
+            return this;
         },
-
         sidebar() {
 
-            for (const path in this.$site.themeConfig.sidebar) {
+            return ;
+            for (const path in this.$app.config.themeConfig.sidebar) {
 
-                if (this.$page.path.indexOf(path) === 0) {
-                    return this.$site.themeConfig.sidebar[path];
+                if (this.$route.path.indexOf(path) === 0) {
+                    return this.$app.config.themeConfig.sidebar[path];
                 }
             }
 

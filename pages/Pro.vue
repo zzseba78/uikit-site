@@ -3,7 +3,7 @@
 
         <div class="uk-section-primary tm-section-intro">
 
-            <navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"></navbar>
+            <Navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"></Navbar>
 
             <div class="uk-section uk-padding-remove-bottom">
                 <div class="uk-container">
@@ -384,10 +384,10 @@
                         <div class="uk-margin-auto">
 
                             <ul class="uk-subnav uk-flex-center" uk-margin>
-                                <li v-for="entry in $site.themeConfig.nav">
+                                <li v-for="entry in $app.config.themeConfig.nav">
                                     <a :href="entry.link">{{entry.text}}</a>
                                 </li>
-                                <li><a :href="$site.themeConfig.routes.download">Download</a></li>
+                                <li><a :href="$app.config.themeConfig.routes.download">Download</a></li>
                             </ul>
 
                         </div>
@@ -445,8 +445,12 @@
 
 <script>
 
+    import '../uikit-node';
+
 
     export default {
+
+        inject: ['$app'],
 
         data: () => ({
             imgLoaded: false
