@@ -40,8 +40,8 @@ export default {
         download: '/download'
       },
       nav: [
-        { text: 'pro', link: '/pro', comp: true},
-        { text: 'documentation', link: '/doc/' },
+        { text: 'pro', link: '/pro'},
+        { text: 'documentation', link: '/documentation' },
         { text: 'changelog', link: '/changelog' },
       ],
       sidebar: {

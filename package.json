@@ -16,9 +16,7 @@
   "devDependencies": {
     "buble-loader": "^0.4.1",
     "highlight.js": "^9.12.0",
-    "jsdom-global": "^3.0.2",
     "less": "^2.7.2",
-    "markdown-it-highlightjs": "^3.0.0",
     "marked": "^0.3.19",
     "mkdirp": "^0.5.1",
     "raw-loader": "^0.5.1",
@@ -28,10 +26,10 @@
     "vue-highlight-component": "^1.0.0",
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.6.1"
+    "webpack": "^3.6.1",
+    "nuxt": "^1.4.0",
+    "less-loader": "^4.1.0"
   },
   "dependencies": {
-    "less-loader": "^4.1.0",
-    "nuxt": "^1.4.0"
   }
 }

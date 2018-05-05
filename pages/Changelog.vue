@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="uuk-section-primary tm-section-texture uk-preserve-color">
+    <div class="uk-section-primary tm-section-texture uk-preserve-color">
         <Navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"></Navbar>
 
         <div class="uk-section" uk-height-viewport="expand: true">

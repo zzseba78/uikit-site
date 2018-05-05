@@ -77,7 +77,6 @@
 
             });
 
-            // ajax(`assets/uikit/package.json`, {responseType: 'json'}).then(({response}) => $('[uikit-version]').innerText = response.version);
 
         }
     }

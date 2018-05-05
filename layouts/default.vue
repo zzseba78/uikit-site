@@ -5,7 +5,6 @@
         <template >
 
 
-
                 <template v-if="sidebar">
                     <Navbar />
                     <div  v-if="sidebar" class="tm-sidebar-left uk-visible@m">

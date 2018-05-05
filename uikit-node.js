@@ -63,13 +63,14 @@ const shims = {
 
 if (typeof window === 'undefined') {
     shims.install();
-    global.UIkit = require('uikit/dist/js/uikit.js');
-
+    global.UIkit = require('uikit');
+    global.window = global.window || {};
+    global.window.UIkit = global.UIkit;
     require('uikit/dist/js/uikit-icons.js')
 
     shims.clear();
 } else {
-    window.UIkit = require('uikit/dist/js/uikit.js');
+    require('uikit');
     require('uikit/dist/js/uikit-icons.js');
 
 

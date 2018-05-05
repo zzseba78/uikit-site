@@ -8,6 +8,10 @@ module.exports = {
     ]
   },
   plugins: [
-    { src: 'uikit', ssr: false }
+    '~/plugins/Doctools.js'
+  ],
+
+  modules: [
+      '~/modules/Doctools.js'
   ]
 }
