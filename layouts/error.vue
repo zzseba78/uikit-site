@@ -8,9 +8,9 @@
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
-                    <h1 class="uk-margin-medium uk-text-center">404</h1>
+                    <h1 class="uk-margin-medium uk-text-center">{{error.statusCode}}</h1>
 
-                    <p class="uk-text-large">Page not found</p>
+                    <p class="uk-text-large">{{error.message}}</p>
 
                 </div>
             </div>
@@ -19,3 +19,16 @@
     </div>
 
 </template>
+
+<script>
+
+
+export default {
+    props: ['error'],
+
+    created() {
+        debugger;
+    }
+}
+
+</script>

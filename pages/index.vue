@@ -67,12 +67,10 @@
 
         mounted() {
 
-            const {$, ajax} = UIkit.util;
-
-            ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
+            UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
 
                 if (response && response.stargazers_count) {
-                    $('[uikit-stargazers]').innerText = response.stargazers_count;
+                    UIkit.util.$('[uikit-stargazers]').innerText = response.stargazers_count;
                 }
 
             });

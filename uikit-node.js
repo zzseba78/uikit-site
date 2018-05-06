@@ -70,8 +70,10 @@ if (typeof window === 'undefined') {
 
     shims.clear();
 } else {
-    require('uikit');
+    const UIkit = require('uikit');
+    if (UIkit) {
+        window.UIkit = UIkit;
+    }
     require('uikit/dist/js/uikit-icons.js');
-
 
 }

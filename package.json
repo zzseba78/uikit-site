@@ -11,7 +11,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils"
   },
   "devDependencies": {
     "buble-loader": "^0.4.1",
@@ -26,10 +27,9 @@
     "vue-highlight-component": "^1.0.0",
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.6.1",
     "nuxt": "^1.4.0",
-    "less-loader": "^4.1.0"
-  },
-  "dependencies": {
+    "less-loader": "^4.1.0",
+    "webpack": "^3.6.1",
+    "uikit-utils": "github:uikit/uikit-utils"
   }
 }

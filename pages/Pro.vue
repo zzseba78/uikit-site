@@ -3,7 +3,7 @@
 
         <div class="uk-section-primary tm-section-intro">
 
-            <Navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"></Navbar>
+            <Navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"/>
 
             <div class="uk-section uk-padding-remove-bottom">
                 <div class="uk-container">
@@ -375,7 +375,7 @@
 
                             <div class="uk-text-left@m uk-text-center">
                                 <a class="uk-logo" href="/">
-                                    <canvas class="uk-margin-small-right" width="28" height="34" uk-svg src="../images/uikit-logo.svg"></canvas>
+                                    <img class="uk-margin-small-right" width="28" height="34" uk-svg src="../images/uikit-logo.svg"></img>
                                     UIkit
                                 </a>
                             </div>
