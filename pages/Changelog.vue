@@ -89,6 +89,10 @@
         asyncData() {
 
             return getChangelog();
+        },
+
+        mounted() {
+            console.log('changelog');
         }
     }
 

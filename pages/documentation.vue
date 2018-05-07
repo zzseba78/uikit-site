@@ -3,7 +3,7 @@
 
         <div class="uk-section-primary tm-section-texture uk-preserve-color">
 
-            <Navbar class="uk-light" show-on-up="true" animation="uk-animation-slide-top" cls-inactive="uk-navbar-transparent" top="400"></Navbar>
+            <Navbar class="uk-light" show-on-up="true" animation="uk-animation-slide-top" cls-inactive="uk-navbar-transparent" top="400"/>
 
             <div class="tm-sidebar-left uk-visible@m">
                 <h3>Documentation</h3>
@@ -24,24 +24,23 @@
 </template>
 <script>
 
-import DocBase from '!babel-loader!yootheme-doctools/ui/app/DocBase';
 
-import Vue from 'vue';
-import docData from '../docs.json'
+function getSideBar() {
+    return import('../docs.json').then(docData => {
+        return {sidebar: docData.menu};
+    });
+}
 
 export default {
 
+    asyncData: getSideBar,
+
     provide() {
-        const app = new Vue(DocBase);
-        app.data = docData;
-        return {$doc: app}
+        return {$doc: {}}
     },
 
-    computed: {
-        sidebar() {
-            const menu = docData.menu;
-            return menu;
-        }
+    mounted() {
+        console.log('documentation');
     }
 
 }

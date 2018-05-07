@@ -1,5 +1,6 @@
 const {DoctoolsWebpack} = require('yootheme-doctools');
-
+const routes = Object.keys(require('./docs.json').resources).map(res => `/${res}`);
+// debugger;
 module.exports = {
 
   build: {
@@ -15,7 +16,8 @@ module.exports = {
   ],
 
   generate: {
-    dir: '/Applications/MAMP/htdocs/dist'
+    routes
+    // dir: '/Applications/MAMP/htdocs/dist'
   }
 
 }

@@ -11,23 +11,25 @@ Vue.mixin({
             return _;
         }
     },
+
     mounted() {
 
-        _.forEach(this.$refs, (el, name) => {
-            if(name.indexOf('uk-') === 0) {
-                const fun = UIkit.util.camelize(name.substr(3));
+        this.$nextTick(el => {
 
-                if(!UIkit[fun]) debugger;
+            const uks = UIkit.util.$$('[uk]', this.$el);
 
-                // debugger;
-                UIkit.util.attr(el, name, '');
-                console.log('added', name);
+            uks.forEach(el => {
+                const name = UIkit.util.attr(el,'uk');
 
+                UIkit.util.attr(el, `uk-${name}`, '');
 
+                const func = UIkit.util.camelize(name);
                 // debugger
-                UIkit[fun](el);
-            }
+                UIkit[func](el);
+
+            })
         })
+
     }
 });
 

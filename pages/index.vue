@@ -4,12 +4,12 @@
 
         <Navbar class="uk-navbar-transparent"/>
 
-        <div class="uk-section uk-section-small uk-flex uk-flex-middle uk-text-center" ref="uk-height-viewport" offset-top="true" offset-bottom="true">
+        <div class="uk-section uk-section-small uk-flex uk-flex-middle uk-text-center" uk="height-viewport" offset-top="true" offset-bottom="true">
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
                     <p>
-                        <img style="color: #fff" width="168" height="155" ref="uk-svg" src="../images/uikit-logo-large.svg"></img>
+                        <img style="color: #fff" width="168" height="155" uk="svg" src="../images/uikit-logo-large.svg"></img>
                     </p>
 
                     <p class="uk-margin-medium uk-text-lead">
@@ -17,7 +17,7 @@
                         for developing fast and powerful web interfaces.
                     </p>
 
-                    <div class="uk-child-width-auto uk-grid-medium uk-flex-inline uk-flex-center" ref="uk-grid">
+                    <div class="uk-child-width-auto uk-grid-medium uk-flex-inline uk-flex-center" uk="grid">
                         <div>
                             <a class="uk-button uk-button-primary tm-button-primary uk-button-large tm-button-large uk-visible@s" href="./docs">Get Started</a>
                             <a class="uk-button uk-button-primary tm-button-primary uk-hidden@s" href="./docs">Get Started</a>
@@ -35,22 +35,22 @@
         <div class="uk-section-small">
             <div class="uk-container uk-container-expand uk-text-center uk-position-relative">
 
-                <ul class="uk-subnav tm-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom" ref="uk-margin">
+                <ul class="uk-subnav tm-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom" uk="margin">
                     <li>
-                        <span>Version <span uikit-version></span></span>
+                        <span>Version <span>{{version}}</span></span>
                     </li>
                     <li>
-                        <a href="https://github.com/uikit/uikit/stargazers"><span class="uk-margin-small-right" ref="uk-icon" icon="star"></span><span uikit-stargazers>{{stargazers}}</span> Stargazers</a>
+                        <a href="https://github.com/uikit/uikit/stargazers"><span class="uk-margin-small-right" uk="icon" icon="star"></span><span uikit-stargazers>{{stargazers}}</span> Stargazers</a>
                     </li>
                     <li>
-                        <a class="uk-text-lowercase" href="https://twitter.com/getuikit"><span class="uk-margin-small-right" ref="uk-icon" icon="twitter"></span>@getuikit</a>
+                        <a class="uk-text-lowercase" href="https://twitter.com/getuikit"><span class="uk-margin-small-right" uk="icon" icon="twitter"></span>@getuikit</a>
                     </li>
                     <li>
-                        <a href="https://gitter.im/uikit/uikit"><span class="uk-margin-small-right" ref="uk-icon" icon="gitter"></span>Community</a>
+                        <a href="https://gitter.im/uikit/uikit"><span class="uk-margin-small-right" uk="icon" icon="gitter"></span>Community</a>
                     </li>
                 </ul>
 
-                <a class="uk-button uk-button-default tm-button-default uk-position-center-right uk-position-medium uk-visible@m" href="./v2">UIkit 2 <span ref="uk-icon" icon="arrow-right"></span></a>
+                <a class="uk-button uk-button-default tm-button-default uk-position-center-right uk-position-medium uk-visible@m" href="./v2">UIkit 2 <span uk="icon" icon="arrow-right"></span></a>
 
             </div>
         </div>
@@ -60,6 +60,8 @@
 </template>
 
 <script>
+
+    import pack from 'uikit/package.json';
 
     function getGazers() {
         return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
@@ -78,8 +80,16 @@
             return getGazers()
         },
 
+        computed: {
+            version() {
+                return pack.version;
+            }
+        },
+
         mounted() {
-            debugger;
+
+            console.log('index');
+
             getGazers().then(data => {
                 this.stargazers = data.stargazers;
             })

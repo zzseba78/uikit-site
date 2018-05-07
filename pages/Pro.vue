@@ -15,7 +15,7 @@
                                 <h1 class="uk-h6 tm-h6 uk-margin-remove">YOOtheme Pro</h1>
                                 <h2 class="uk-h1 uk-margin-top uk-margin-medium-bottom">A theme and page builder for WordPress &amp; Joomla from the UIkit creators</h2>
 
-                                <div class="uk-grid-medium uk-flex-middle uk-flex-inline" ref="uk-grid">
+                                <div class="uk-grid-medium uk-flex-middle uk-flex-inline" uk="grid">
                                     <div>
 
                                         <a class="uk-button uk-button-default uk-button-large tm-button-primary tm-button-large uk-visible@s" href="https://yootheme.com/themes/buy-now/?utm_campaign=YOOtheme+Pro&amp;utm_source=UIkit&amp;utm_medium=referral&amp;utm_content=Buy+Top">Buy Now</a>
@@ -40,7 +40,7 @@
                                     <canvas width="960" height="670" v-show="!imgLoaded"></canvas>
                                     <img src="../images/pro/device-laptop.png" width="960" height="670" alt="Laptop Device" v-show="imgLoaded" @load="imgLoaded = true">
                                     <div style="position: absolute; top: 5%; left: 12%; right: 12%;">
-                                        <img src="../images/pro/page-builder.gif" width="730" height="456" alt="Animated Gif YOOtheme Pro Page Builder" ref="uk-gif">
+                                        <img src="../images/pro/page-builder.gif" width="730" height="456" alt="Animated Gif YOOtheme Pro Page Builder" uk="gif">
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
         <div class="uk-section uk-section-large uk-section-default uk-padding-remove-top">
             <div class="uk-container">
 
-                <div class="uk-child-width-expand@m uk-child-width-1-2@s" ref="uk-grid">
+                <div class="uk-child-width-expand@m uk-child-width-1-2@s" uk="grid">
                     <div>
 
                         <h3 class="uk-h4">A perfect fit</h3>
@@ -93,7 +93,7 @@
         <div class="uk-section uk-section-default uk-section-large">
             <div class="uk-container">
 
-                <div class="uk-grid-large uk-flex-middle uk-text-center uk-text-left@l" ref="uk-grid">
+                <div class="uk-grid-large uk-flex-middle uk-text-center uk-text-left@l" uk="grid">
                     <div class="uk-width-1-3@l uk-flex-last@l">
 
                         <div class="uk-inline uk-width-xlarge">
@@ -115,7 +115,7 @@
                     <p class="uk-text-large tm-text-large">Try out any UIkit theme with one click. You can switch between styles from the library and your content adapts automatically.</p>
                 </div>
 
-                <div class="uk-child-width-1-4@m uk-child-width-1-2@s" ref="uk-grid">
+                <div class="uk-child-width-1-4@m uk-child-width-1-2@s" uk="grid">
 
                     <div>
 
@@ -207,7 +207,7 @@
                     <p class="uk-text-large tm-text-large">Load existing layouts or create your own and save it to the library. Anything you can think of can be built with YOOtheme Pro.</p>
                 </div>
 
-                <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-child-width-1-2" ref="uk-grid">
+                <div class="uk-child-width-1-5@m uk-child-width-1-3@s uk-child-width-1-2" uk="grid">
 
                     <div>
 
@@ -352,7 +352,7 @@
                 <h2 class="uk-h1">Get YOOtheme Pro</h2>
                 <p class="uk-text-large tm-text-large uk-margin-medium-bottom">The all-in-one theme and page builder for WordPress &amp; Joomla</p>
 
-                <div class="uk-grid-medium uk-flex-middle uk-flex-center" ref="uk-grid">
+                <div class="uk-grid-medium uk-flex-middle uk-flex-center" uk="grid">
                     <div>
 
                         <a class="uk-button uk-button-default uk-button-large tm-button-primary tm-button-large uk-visible@s" href="https://yootheme.com/themes/buy-now/?utm_campaign=YOOtheme+Pro&amp;utm_source=UIkit&amp;utm_medium=referral&amp;utm_content=Buy+Top">Buy Now</a>
@@ -370,12 +370,12 @@
                 <hr class="uk-margin-remove-bottom uk-margin-xlarge-top">
 
                 <div class="uk-margin-top uk-margin-bottom">
-                    <div class="uk-child-width-auto@m uk-flex-middle" ref="uk-grid">
+                    <div class="uk-child-width-auto@m uk-flex-middle" uk="grid">
                         <div>
 
                             <div class="uk-text-left@m uk-text-center">
                                 <a class="uk-logo" href="/">
-                                    <img class="uk-margin-small-right" width="28" height="34" ref="uk-svg" src="../images/uikit-logo.svg"></img>
+                                    <img class="uk-margin-small-right" width="28" height="34" uk="svg" src="../images/uikit-logo.svg"></img>
                                     UIkit
                                 </a>
                             </div>
@@ -383,7 +383,7 @@
                         </div>
                         <div class="uk-margin-auto">
 
-                            <ul class="uk-subnav uk-flex-center" ref="uk-margin">
+                            <ul class="uk-subnav uk-flex-center" uk="margin">
                                 <li v-for="entry in $app.config.themeConfig.nav">
                                     <a :href="entry.link">{{entry.text}}</a>
                                 </li>
@@ -394,11 +394,11 @@
                         <div>
 
                             <div class="uk-text-right@m uk-text-center">
-                                <div class="uk-child-width-auto uk-grid-small uk-flex-center" ref="uk-grid">
-                                    <div><a href="https://github.com/uikit/uikit" class="uk-icon-link" ref="uk-icon" icon="github"></a></div>
-                                    <div><a href="https://gitter.im/uikit/uikit" class="uk-icon-link" ref="uk-icon" icon="gitter"></a></div>
-                                    <div><a href="https://twitter.com/getuikit" class="uk-icon-link" ref="uk-icon" icon="twitter"></a></div>
-                                    <div><a href="https://www.facebook.com/getuikit" class="uk-icon-link" ref="uk-icon" icon="facebook"></a></div>
+                                <div class="uk-child-width-auto uk-grid-small uk-flex-center" uk="grid">
+                                    <div><a href="https://github.com/uikit/uikit" class="uk-icon-link" uk="icon" icon="github"></a></div>
+                                    <div><a href="https://gitter.im/uikit/uikit" class="uk-icon-link" uk="icon" icon="gitter"></a></div>
+                                    <div><a href="https://twitter.com/getuikit" class="uk-icon-link" uk="icon" icon="twitter"></a></div>
+                                    <div><a href="https://www.facebook.com/getuikit" class="uk-icon-link" uk="icon" icon="facebook"></a></div>
                                 </div>
                             </div>
 
@@ -412,12 +412,12 @@
 
         <!-- Modal -->
 
-        <div id="modal-demo" class="uk-modal-full" ref="uk-modal">
-            <div class="uk-modal-dialog tm-modal-dialog uk-flex uk-flex-column"ref="uk-height-viewport">
-                <button class="uk-modal-close-full tm-modal-close-full uk-close-large" type="button" ref="uk-close"></button>
+        <div id="modal-demo" class="uk-modal-full" ref="modal" uk="modal">
+            <div class="uk-modal-dialog tm-modal-dialog uk-flex uk-flex-column" uk="height-viewport">
+                <button class="uk-modal-close-full tm-modal-close-full uk-close-large" type="button" uk="close"></button>
                 <div class="tm-modal-header">
 
-                    <div class="uk-grid-medium uk-flex-middle" ref="uk-grid">
+                    <div class="uk-grid-medium uk-flex-middle" uk="grid">
                         <div>
 
                             <a class="uk-button uk-button-primary tm-button-primary uk-button-large tm-button-large uk-visible@s" href="https://yootheme.com/themes/buy-now/?utm_campaign=YOOtheme+Pro&amp;utm_source=UIkit&amp;utm_medium=referral&amp;utm_content=Buy+Modal">Buy YOOtheme Pro</a>
@@ -455,6 +455,8 @@
 
         mounted() {
 
+        console.log('pro');
+
             UIkit.util.on(this.$el, 'click', '[data-modal]', e => {
 
                 var {iframe} = this.$refs;
@@ -469,7 +471,7 @@
                 }
 
                 iframe.src = '';
-                UIkit.modal(this.$refs['uk-modal']).show();
+                UIkit.modal(this.$refs.modal).show();
 
                 requestAnimationFrame(() => iframe.src = el.href);
 
