@@ -4,7 +4,7 @@ module.exports = {
 
   build: {
     plugins: [
-      new DoctoolsWebpack()
+      // new DoctoolsWebpack()
     ]
   },
   plugins: [

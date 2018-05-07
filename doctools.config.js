@@ -22,9 +22,7 @@ module.exports = {
         'ComponentLinker',
     ],
 
-    output: __dirname + '/docs.json'
+    output: __dirname + '/docs.json',
 
     getResourceName: desc => desc.fileInPackage.substr(2)
 };
-
-debugger
