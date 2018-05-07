@@ -1,4 +1,5 @@
-const uikitConf = require('uikit/doctools.config.js');
+const uikitConf = require('/Users/jms/uikit/doctools.config.js');
+
 const ModuleMapper = require('yootheme-doctools/src/plugins/ModuleMapper.js');
 const RuntimeAnalyzer = require('yootheme-doctools/src/plugins/RuntimeAnalyzer.js');
 const path = require('path');
@@ -10,19 +11,24 @@ module.exports = {
      * extra mapping plugins
      */
     plugins: [
-        new RuntimeAnalyzer({
-            output: __dirname + '/runtime'
-        }),
+        'RuntimeAnalyzer',
         new ModuleMapper({
             getReadme(desc) {
-                return path.join(__dirname, 'docs', 'components', desc.name.toLowerCase() + '.md');
+                return path.join(desc.config.base, 'docs', 'components', desc.name.toLowerCase() + '.md');
             }
         }),
         'UIkitComponentMapper',
         'ComponentLinker',
     ],
 
+    dev: true,
+
     output: __dirname + '/docs.json',
 
-    getResourceName: desc => desc.fileInPackage.substr(2)
+    getResourceName: desc => {
+        const name = desc.path.split('/');
+        name.pop();
+
+        return 'documentation/' + name.pop() + '-' + desc.name;
+    }
 };

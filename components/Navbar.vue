@@ -1,13 +1,13 @@
 <template>
 
-    <div class="uk-navbar-container tm-navbar-container" uk-sticky="media: 960">
+    <div class="uk-navbar-container tm-navbar-container" ref="sticky" media="960" width-element="#navbar-placeholder">
         <div class="uk-container uk-container-expand">
             <nav class="uk-navbar">
 
                 <div class="uk-navbar-left">
 
                     <router-link class="uk-navbar-item uk-logo" to="/">
-                        <img class="uk-margin-small-right" width="28" height="34" uk-svg src="../images/uikit-logo.svg"></img> UIkit
+                        <img class="uk-margin-small-right" width="28" height="34" ref="uk-svg" src="../images/uikit-logo.svg"></img> UIkit
                     </router-link>
 
                 </div>
@@ -22,11 +22,13 @@
                     </ul>
 
                     <div class="uk-navbar-item uk-visible@m">
-                        <router-link class="uk-button uk-button-default tm-button-default uk-icon" :to="$app.config.themeConfig.routes.download" activeClass="page-active">Download <img uk-icon="icon: download" width="20" height="20"></img>
+                        <router-link class="uk-button uk-button-default tm-button-default uk-icon" :to="$app.config.themeConfig.routes.download" activeClass="page-active">
+                            Download
+                            <span ref="uk-icon" icon="download" width="20" height="20"></span>
                         </router-link>
                     </div>
 
-                    <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#offcanvas" uk-toggle></a>
+                    <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#offcanvas" ref="uk-toggle"></a>
 
                 </div>
 
@@ -37,9 +39,14 @@
 </template>
 
 <script>
+
 export default {
 
-    inject: ['$app']
+    inject: ['$app'],
+
+    mounted() {
+        UIkit.sticky(this.$refs.sticky);
+    }
 
 }
 </script>

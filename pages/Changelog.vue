@@ -1,9 +1,11 @@
+
+
+
 <template>
 
 
     <div class="uk-section-primary tm-section-texture uk-preserve-color">
-        <Navbar class="uk-light" uk-sticky="media: 960;show-on-up: true;animation: uk-animation-slide-top;cls-inactive: uk-navbar-transparent;top: 400"></Navbar>
-
+        <Navbar class="uk-navbar-container tm-navbar-container uk-light uk-sticky uk-navbar-transparent" show-on-up="true" animation="uk-animation-slide-top" cls-inactive="uk-navbar-transparent" top="400"/>
         <div class="uk-section" uk-height-viewport="expand: true">
             <div class="uk-container uk-container-small">
 
@@ -11,7 +13,7 @@
 
                     <h1 class="uk-margin-medium uk-text-center">Changelog</h1>
 
-                    <div ref="changelog"></div>
+                    <div v-html="changelog"></div>
 
                 </div>
 
@@ -23,21 +25,13 @@
 
 <script>
 
-    import changelog from '!raw-loader!uikit/CHANGELOG.md';
-    import marked from 'marked';
 
-    export default {
+    function getChangelog() {
 
-        mounted() {
+        return import('!raw-loader!uikit/CHANGELOG.md').then(text => {
+            return import('marked').then(marked => {
 
-            this.$refs.changelog.innerHTML = this.parse(changelog)
-
-        },
-
-        methods: {
-
-            parse(markdown) {
-
+                console.warn('render changelog');
                 var renderer = new marked.Renderer(), section;
 
                 renderer.list = text => `<ul class="uk-list">${text}</ul>`;
@@ -70,6 +64,7 @@
 
                 renderer.heading = (text, level) => {
 
+
                     text = text.replace(/(\(.*?\))/, '<span class="uk-text-muted">$1</span>');
 
                     if (level === 2) {
@@ -83,8 +78,17 @@
                     return '';
                 };
 
-                return marked(markdown, {renderer});
-            }
+                return {changelog: marked(text, {renderer})};
+            })
+        });
+
+    }
+
+    export default {
+
+        asyncData() {
+
+            return getChangelog();
         }
     }
 

@@ -3,15 +3,19 @@ const {DoctoolsWebpack} = require('yootheme-doctools');
 module.exports = {
 
   build: {
+
+    vendor: ['uikit'],
+
     plugins: [
       // new DoctoolsWebpack()
     ]
   },
   plugins: [
-    '~/plugins/Doctools.js'
+    '~/plugins/uikit.js'
   ],
 
-  modules: [
-      '~/modules/Doctools.js'
-  ]
+  generate: {
+    dir: '/Applications/MAMP/htdocs/dist'
+  }
+
 }

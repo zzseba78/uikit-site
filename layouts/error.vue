@@ -24,11 +24,7 @@
 
 
 export default {
-    props: ['error'],
-
-    created() {
-        debugger;
-    }
+    props: ['error']
 }
 
 </script>

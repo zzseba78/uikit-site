@@ -3,7 +3,6 @@
     <div class="uk-section-primary tm-section-texture">
 
         <Navbar class="uk-navbar-transparent"></Navbar>
-
         <div class="uk-section uk-flex uk-flex-middle uk-text-center" uk-height-viewport="offset-top: true">
             <div class="uk-width-1-1">
                 <div class="uk-container">
@@ -48,9 +47,7 @@
 
         mounted() {
 
-            // ajax(`assets/uikit/package.json`, {responseType: 'json'}).then(({response}) =>
-                setTimeout(() => location.href = `https://github.com/uikit/uikit/releases/download/v${pack.version}/uikit-${pack.version}.zip`, 100)
-            // );
+            setTimeout(() => location.href = `https://github.com/uikit/uikit/releases/download/v${pack.version}/uikit-${pack.version}.zip`, 100)
 
         }
     }

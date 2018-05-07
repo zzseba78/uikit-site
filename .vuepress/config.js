@@ -39,6 +39,7 @@ export default {
         download: '/download'
       },
       nav: [
+        // { text: 'test', link: '/test'},
         { text: 'pro', link: '/pro'},
         { text: 'documentation', link: '/documentation' },
         { text: 'changelog', link: '/changelog' },

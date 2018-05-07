@@ -2,27 +2,7 @@
 
     <div class="uk-offcanvas-content">
 
-        <template >
-
-                <template v-if="sidebar">
-                    <Navbar />
-                    <div  v-if="sidebar" class="tm-sidebar-left uk-visible@m">
-                        <h3>Documentation</h3>
-                        <ul class="uk-nav uk-nav-default tm-nav" :class="{ 'uk-margin-top': index }" v-for="(group, index) in sidebar">
-                            <li class="uk-nav-header">{{group.title}}</li>
-                            <router-link tag="li" :to="item[0].replace('.md', '.html')" :key="item[0]" v-for="item in group.children" exact><a>{{item[1]}}</a></router-link>
-                        </ul>
-                    </div>
-                    <div class="tm-main uk-section uk-section-default">
-                        <div class="uk-container uk-container-small uk-position-relative">
-                        <nuxt />
-                        </div>
-                    </div>
-                </template>
-
-                <nuxt v-else/>
-
-        </template>
+                <nuxt/>
 
         <div id="offcanvas" uk-offcanvas="mode: push; overlay: true">
             <div class="uk-offcanvas-bar">
@@ -73,7 +53,6 @@ export default {
         },
         sidebar() {
 
-            return ;
             for (const path in this.$app.config.themeConfig.sidebar) {
 
                 if (this.$route.path.indexOf(path) === 0) {
