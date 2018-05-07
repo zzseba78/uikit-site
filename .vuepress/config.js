@@ -24,7 +24,6 @@ const sidebar = [
         return [`/doc/${value}.md`, name];
     })
   },
-  ...require('../api/sidebar.json')
 ];
 
 export default {
