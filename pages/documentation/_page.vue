@@ -25,7 +25,13 @@ ExampleRunner.runners['uikit'] = new UIkitRunner;
 function getPageData(context) {
   return import('../../docs.json').then(docData => {
 
-    const res = 'documentation/' + context.params.page;
+    // debugger;
+    const res =  context.params.page;
+
+    const module = docData.resources[res];
+
+    const nodeGlobals = docData.globals;
+    const types = docData.types;
 
     const resources = {};
     Object.keys(docData.resources).forEach(key => {
@@ -33,11 +39,24 @@ function getPageData(context) {
       resources[key] = {name: resource.name};
     });
 
-    const module = docData.resources[res];
-    const nodeGlobals = docData.globals;
-    const types = docData.types;
+    const data = {strippedModule: module, resources, types, nodeGlobals};
 
-    return {strippedModule: module, resources, types, nodeGlobals};
+  if (module) {
+
+      // debugger;
+    return data;
+
+  } else {
+    const resource = `/Users/jms/uikit/docs/components/${res}.md`;
+    return import(`!raw-loader!${resource}`).then(readme => {
+
+      // debugger;
+      // const readme = readmes[res];
+
+      data.strippedModule = {readme, type: 'markdown', resource};
+      return data;
+    });
+  }
 
   });
 }
@@ -56,7 +75,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>

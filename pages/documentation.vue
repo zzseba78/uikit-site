@@ -9,7 +9,7 @@
                 <h3>Documentation</h3>
                 <ul class="uk-nav uk-nav-default tm-nav" :class="{ 'uk-margin-top': index }" v-for="(group, index) in sidebar">
                     <li class="uk-nav-header">{{group.label}}</li>
-                    <router-link tag="li" :to="`/${item}`" :key="item" v-for="item in group.items" exact><a>{{item.split('/').pop()}}</a></router-link>
+                    <router-link tag="li" :to="`/documentation/${item}`" :key="item" v-for="item in group.items" exact><a>{{item.split('/').pop()}}</a></router-link>
                 </ul>
             </div>
 
@@ -27,7 +27,18 @@
 
 function getSideBar() {
     return import('../docs.json').then(docData => {
-        return {sidebar: docData.menu};
+        return import('../components.json').then(components => {
+            // debugger;
+            return {
+                sidebar: {
+                    components:{
+                        label: 'Components',
+                        items: Object.keys(components)
+                    }
+                }
+            };
+
+        })
     });
 }
 
