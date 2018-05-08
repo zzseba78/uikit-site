@@ -3,19 +3,56 @@
 
         <div class="uk-section-primary tm-section-texture uk-preserve-color">
 
-            <Navbar class="uk-light" show-on-up="true" animation="uk-animation-slide-top" cls-inactive="uk-navbar-transparent" top="400"/>
+            <Navbar/>
 
             <div class="tm-sidebar-left uk-visible@m">
                 <h3>Documentation</h3>
-                <ul class="uk-nav uk-nav-default tm-nav" :class="{ 'uk-margin-top': index }" v-for="(group, index) in sidebar">
-                    <li class="uk-nav-header">{{group.label}}</li>
-                    <router-link tag="li" :to="`/documentation/${item}`" :key="item" v-for="item in group.items" exact><a>{{item.split('/').pop()}}</a></router-link>
-                </ul>
+                <DocumentationSidebar/>
             </div>
 
             <div class="tm-main uk-section uk-section-default">
                 <div class="uk-container uk-container-small uk-position-relative">
-                    <nuxt-child v-if="$route.params.page"/>
+
+                    <nuxt-child ref="page"/>
+
+                    <div class="tm-sidebar-right uk-visible@l">
+                    <div uk="sticky" offset="160">
+
+                        <ul class="uk-nav uk-nav-default tm-nav uk-nav-parent-icon" uk="scrollspy-nav" closest="li" scroll="true" offset="100">
+                            <li v-for="(id, subject) in ids">
+                                <a :href="'#'+id">{{ subject }}</a>
+                            </li>
+                            <li class="uk-nav-divider"></li>
+                            <li v-if="module.component">
+                                <a :href="'../assets/uikit/tests/' + module.component + '.html'" target="_blank">
+                                    <span class="uk-margin-small-right" uk="icon" icon="push"></span>
+                                    <span class="uk-text-middle">Open test</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/uikit/uikit/issues" target="_blank">
+                                    <span class="uk-margin-small-right" uk="icon" icon="warning"></span>
+                                    <span class="uk-text-middle">Report issue</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://gitter.im/uikit/uikit" target="_blank">
+                                    <span class="uk-margin-small-right" uk="icon" icon="commenting"></span>
+                                    <span class="uk-text-middle">Get help</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a :href="'https://github.com/uikit/uikit-site/tree/develop/docs/pages/'+$route.params.page+'.md'" target="_blank">
+                                    <span class="uk-margin-small-right" uk="icon" icon="pencil"></span>
+                                    <span class="uk-text-middle">Edit this page</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
                 </div>
             </div>
 
@@ -25,33 +62,28 @@
 <script>
 
 
-function getSideBar() {
-    return import('../docs.json').then(docData => {
-        return import('../components.json').then(components => {
-            // debugger;
-            return {
-                sidebar: {
-                    components:{
-                        label: 'Components',
-                        items: Object.keys(components)
-                    }
-                }
-            };
-
-        })
-    });
-}
-
 export default {
-
-    asyncData: getSideBar,
-
+    data() {
+        return {ids:{}};
+    },
     provide() {
         return {$doc: {}}
     },
 
     mounted() {
-        console.log('documentation');
+        const ids = UIkit.util.$$('h2 a[href^="#"]', this.$refs.page.$el).reduce((ids, el) => {
+                ids[el.innerText] = UIkit.util.attr(el, 'href').substr(1);
+                return ids;
+
+            }, {});
+
+            this.ids = ids;
+    },
+
+    computed: {
+        module() {
+            return {};
+        }
     }
 
 }

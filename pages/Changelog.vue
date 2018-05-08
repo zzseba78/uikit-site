@@ -3,7 +3,6 @@
 
 <template>
 
-
     <div class="uk-section-primary tm-section-texture uk-preserve-color">
         <Navbar class="uk-navbar-container tm-navbar-container uk-light uk-sticky uk-navbar-transparent" show-on-up="true" animation="uk-animation-slide-top" cls-inactive="uk-navbar-transparent" top="400"/>
         <div class="uk-section" uk-height-viewport="expand: true">
@@ -24,7 +23,6 @@
 </template>
 
 <script>
-
 
     function getChangelog() {
 
@@ -86,14 +84,8 @@
 
     export default {
 
-        asyncData() {
+        asyncData: getChangelog
 
-            return getChangelog();
-        },
-
-        mounted() {
-            console.log('changelog');
-        }
     }
 
 </script>

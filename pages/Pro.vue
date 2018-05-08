@@ -375,7 +375,7 @@
 
                             <div class="uk-text-left@m uk-text-center">
                                 <a class="uk-logo" href="/">
-                                    <img class="uk-margin-small-right" width="28" height="34" uk="svg" src="../images/uikit-logo.svg"></img>
+                                    <img class="uk-margin-small-right" width="28" height="34"  src="../images/uikit-logo.svg"></img>
                                     UIkit
                                 </a>
                             </div>
@@ -384,10 +384,10 @@
                         <div class="uk-margin-auto">
 
                             <ul class="uk-subnav uk-flex-center" uk="margin">
-                                <li v-for="entry in $app.config.themeConfig.nav">
+                                <li v-for="entry in $config.nav">
                                     <a :href="entry.link">{{entry.text}}</a>
                                 </li>
-                                <li><a :href="$app.config.themeConfig.routes.download">Download</a></li>
+                                <li><a :href="$config.routes.download">Download</a></li>
                             </ul>
 
                         </div>
@@ -447,15 +447,11 @@
 
     export default {
 
-        inject: ['$app'],
-
         data: () => ({
             imgLoaded: false
         }),
 
         mounted() {
-
-        console.log('pro');
 
             UIkit.util.on(this.$el, 'click', '[data-modal]', e => {
 

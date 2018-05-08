@@ -3,17 +3,19 @@ const routes = Object.keys(require('./docs.json').resources).map(res => `/${res}
 
 const fs = require('fs');
 
+//generate a list of all components
 const allComponents = fs.readdirSync('/Users/jms/uikit/docs/components')
                 .filter(name => ~name.indexOf('.md'))
                 .map(name => name.replace('.md', ''))
                 .reduce((prev, curr) => {
-                  prev[curr] = fs.readFileSync(`/Users/jms/uikit/docs/components/${curr}.md`, 'utf8');
+                  const interlacedCamel = curr.replace(/(-[a-z])/, res => " " + res[1].toUpperCase());
+                  const interlacesPascal = interlacedCamel.substr(0, 1).toUpperCase() + interlacedCamel.substr(1);
+                  prev[curr] = interlacesPascal;  //fs.readFileSync(`/Users/jms/uikit/docs/components/${curr}.md`, 'utf8');
                   return prev;
                 }, {});
 
                 // debugger
 fs.writeFileSync('components.json', JSON.stringify(allComponents, null, 2));
-
 
 module.exports = {
 
@@ -25,19 +27,15 @@ module.exports = {
       // new DoctoolsWebpack()
     ]
   },
-  plugins: [
-    '~/plugins/uikit.js'
-  ],
 
-  modules:[
-    '~/modules/navigation.js'
+  plugins: [
+    '~/plugins/boot'
   ],
 
   generate: {
-    routes
-    // dir: '/Applications/MAMP/htdocs/dist'
+
+    dir: '/Applications/MAMP/htdocs/dist'
   },
 
-  allComponents
 
 }

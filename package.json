@@ -24,7 +24,7 @@
     "nuxt": "^1.4.0",
     "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
-    "uikit": "^3.0.0-beta.42",
+    "uikit": "github:uikit/uikit#develop",
     "unique-id": "0.0.1",
     "vue-highlight-component": "^1.0.0",
     "vue-loader": "^14.2.1",

@@ -1,7 +1,7 @@
 
 
 
-const gettingStarted = {
+const intro = {
 
     "Introduction": "introduction",
     "Installation": "installation",
@@ -16,38 +16,24 @@ const gettingStarted = {
 
 };
 
-const sidebar = [
-  {
-    title: "Introduction",
-    children: Object.keys(gettingStarted).map(name => {
-      const value = gettingStarted[name];
-        return [`/doc/${value}.md`, name];
-    })
-  },
-];
+function swap(json) {
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
+}
+
 
 export default {
 
-    dest: '/Applications/MAMP/htdocs/dist',
-
-    title: 'UIkit',
-    description: 'UIkit site',
-    editLinks: false,
-    themeConfig: {
-      repo: 'uikit/uikit',
       routes: {
         download: '/download'
       },
       nav: [
-        // { text: 'test', link: '/test'},
-        { text: 'pro', link: '/pro'},
-        { text: 'documentation', link: '/documentation' },
-        { text: 'changelog', link: '/changelog' },
+        { text: 'Pro', link: '/pro'},
+        { text: 'Documentation', link: '/documentation/introduction' },
+        { text: 'Changelog', link: '/changelog' }
       ],
-      sidebar: {
-        '/api/': sidebar,
-        '/doc/': sidebar
-      },
-
-    }
+      intro: swap(intro)
   }

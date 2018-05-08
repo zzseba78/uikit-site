@@ -8,7 +8,7 @@
                 <div class="uk-container">
 
                     <p class="uk-margin-large-bottom">
-                        <img style="color: #fff" width="142" height="117" uk="svg" src="../images/download.svg"></img>
+                        <img style="color: #fff" width="142" height="117"  src="../images/download.svg"></img>
                     </p>
 
                     <h1>Thanks for giving UIkit a try.</h1>

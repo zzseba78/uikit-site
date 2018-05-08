@@ -9,7 +9,7 @@
                 <div class="uk-container">
 
                     <p>
-                        <img style="color: #fff" width="168" height="155" uk="svg" src="../images/uikit-logo-large.svg"></img>
+                        <img style="color: #fff" width="168" height="155"  src="../images/uikit-logo-large.svg"></img>
                     </p>
 
                     <p class="uk-margin-medium uk-text-lead">
