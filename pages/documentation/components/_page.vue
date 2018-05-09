@@ -12,6 +12,7 @@
 import DocPage from 'yootheme-doctools/ui/app/DocPage.vue';
 import ExampleRunner from 'yootheme-doctools/ui/app/ExampleRunner.vue';
 import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner';
+import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
 
 import Code from 'vue-highlight-component';
 ExampleRunner.components = {
@@ -58,11 +59,17 @@ function getPageData(context) {
 }
 
 export default {
+
   asyncData: getPageData,
+
   extends: DocPage,
+
+  mixins: [HeadlineProvider],
+
   provide() {
     return {$doc: this};
   },
+
   computed: {
     module() {
       return this.strippedModule;

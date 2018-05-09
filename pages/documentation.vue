@@ -13,7 +13,7 @@
             <div class="tm-main uk-section uk-section-default">
                 <div class="uk-container uk-container-small uk-position-relative">
 
-                    <nuxt-child ref="page"/>
+                    <nuxt-child ref="content"/>
 
                     <div class="tm-sidebar-right uk-visible@l">
                     <div uk="sticky" offset="160">
@@ -63,28 +63,21 @@
 
 
 export default {
+
     data() {
         return {ids:{}};
     },
+
     provide() {
-        return {$doc: {}}
-    },
-
-    mounted() {
-        const ids = UIkit.util.$$('h2 a[href^="#"]', this.$refs.page.$el).reduce((ids, el) => {
-                ids[el.innerText] = UIkit.util.attr(el, 'href').substr(1);
-                return ids;
-
-            }, {});
-
-            this.ids = ids;
+        return {$doc: {}, $headlineCollector: this};
     },
 
     computed: {
         module() {
             return {};
         }
-    }
+    },
+
 
 }
 </script>

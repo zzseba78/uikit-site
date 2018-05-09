@@ -9,6 +9,7 @@
 
 import Markdown from 'yootheme-doctools/ui/app/utils/Markdown.vue';
 import pack from 'uikit/package.json'
+import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
 
 function getPageData(context) {
     return import(`!raw-loader!/Users/jms/uikit/docs/intro/${context.params.page}.md`).then(readme => {
@@ -39,10 +40,15 @@ export default {
   components: {
     Markdown
   },
+
   asyncData: getPageData,
+
+  mixins: [HeadlineProvider],
+
   provide() {
     return {$doc: this};
   },
+
   computed: {
     module() {
       return this.strippedModule;

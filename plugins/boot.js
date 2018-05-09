@@ -60,7 +60,7 @@ Vue.mixin({
         }
     },
 
-    mounted() {
+    updated() {
 
         this.$nextTick(el => {
 
