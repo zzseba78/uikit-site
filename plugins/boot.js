@@ -62,6 +62,17 @@ Vue.mixin({
 
     updated() {
 
+        this.attachUIKit();
+
+    },
+
+    mounted() {
+
+        this.attachUIKit();
+
+    },
+
+    attachUIKit() {
         this.$nextTick(el => {
 
             const uks = UIkit.util.$$('[uk]', this.$el);
@@ -75,8 +86,9 @@ Vue.mixin({
 
             });
         });
-
     }
+
+
 });
 
 export default (context, inject) => {

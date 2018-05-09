@@ -64,7 +64,7 @@
     import pack from 'uikit/package.json';
 
     function getGazers() {
-        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
+        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {timeout:10, responseType: 'json'}).then(({response}) => {
 
             if (response && response.stargazers_count) {
                 return {stargazers: response.stargazers_count}
