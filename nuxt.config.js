@@ -27,7 +27,16 @@ const routes = sidebar.reduce((prev, val) => {
 module.exports = {
 
   build: {
+    extend(config, context) {
 
+      if (context.isClient) {
+        config.externals = {
+          'uikit': 'UIkit'
+        }
+      }
+
+
+    },
     extractCSS: true,
 
     analyze: true,
@@ -49,10 +58,9 @@ module.exports = {
 
   },
 
-
-  // css: [
-  //   '~/less/theme.less'
-  // ]
+  css: [
+    '~/less/theme.less'
+  ]
 
 
 }

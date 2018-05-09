@@ -1,22 +1,24 @@
 
 <template>
-  <div>
-    <Markdown :text="readme"/>
+  <div v-html="html">
   </div>
 </template>
 
 <script>
 
-import Markdown from 'yootheme-doctools/ui/app/utils/Markdown.vue';
-import pack from 'uikit/package.json'
 import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
+import Vue from 'vue';
 
 function getPageData(context) {
-    return import(`!raw-loader!/Users/jms/uikit/docs/intro/${context.params.page}.md`).then(readme => {
-      return import(`~/docs.json`).then(docs => {
+
+    return Promise.all([
+      import(`!raw-loader!/Users/jms/uikit/docs/intro/${context.params.page}.md`),
+      import(`~/docs.json`),
+      import('yootheme-doctools/ui/app/utils/Markdown.vue'),
+      import('uikit/package.json')])
+      .then(([readme, docs, Markdown, pack]) => {
 
         readme = readme
-
         .replace(/(\w*).md/g, function(file ,name ) {
             const resource = docs.resources[name];
             if(resource) {
@@ -24,39 +26,29 @@ function getPageData(context) {
               console.log('link to resource');
               return name;
             } else {
-                return name
+              return name
             }
         })
         .replace(/\[uikit-version\]/g, pack.version);
 
-         return {readme};
-      })
+        const def = Markdown.default;
+        const MDComp = Vue.extend(def);
+        const vm = new MDComp({propsData: {text: readme}});
 
+        const html = vm.html;
+
+
+        return {html}
     });
 
 }
 
 export default {
-  components: {
-    Markdown
-  },
 
   asyncData: getPageData,
 
   mixins: [HeadlineProvider],
 
-  provide() {
-    return {$doc: this};
-  },
-
-  computed: {
-    module() {
-      return this.strippedModule;
-    },
-    uriPrefix() {
-      return '/documentation/'
-    }
-  }
 }
 
 </script>

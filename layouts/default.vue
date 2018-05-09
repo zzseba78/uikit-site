@@ -24,20 +24,4 @@
 
 </template>
 
-<script>
-
-    export default {
-        // head() {
-        //     return {
-        //         link: [
-        //             { rel: 'stylesheet', href: '/css/index.css' },
-        //             { rel: 'favicon', href: 'favicon.ico' }
-        //             ]
-        //     }
-        // }
-    }
-
-</script>
-
-<style src="../less/theme.less" lang="less"></style>
 

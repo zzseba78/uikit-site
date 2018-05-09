@@ -1,8 +1,7 @@
 
 <template>
   <div >
-    <p>{{module.description}}</p>
-    <Markdown :text="module.readme"/>
+    <div v-html="html"/>
     <component :is="module.type" :data="module"/>
   </div>
 </template>
@@ -13,19 +12,22 @@ import DocPage from 'yootheme-doctools/ui/app/DocPage.vue';
 import ExampleRunner from 'yootheme-doctools/ui/app/ExampleRunner.vue';
 import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner';
 import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
+import Vue from 'vue';
 
-import Code from 'vue-highlight-component';
-ExampleRunner.components = {
-  Code
-}
 
 ExampleRunner.runners['uikit'] = new UIkitRunner;
 
 function getPageData(context) {
 
-  return import('~/docs.json').then(docData => {
+  return Promise.all([
+    import('~/docs.json'),
+    import('yootheme-doctools/ui/app/utils/Markdown.vue'),
+    import('marked')
+    ])
+  .then(([docData, Markdown, marked]) => {
 
     const res =  context.params.page;
+
     if (!res) {
       return {};
     }
@@ -41,19 +43,32 @@ function getPageData(context) {
       resources[key] = {name: resource.name};
     });
 
-    const data = {strippedModule: module, resources, types, nodeGlobals};
 
-  if (module) {
+      const data = {strippedModule:{...module, readme: null, script: null} , resources, types, nodeGlobals};
 
-    return data;
+      const def = Markdown.default;
+        const MDComp = Vue.extend(def);
 
-  } else {
 
-    return import(`!raw-loader!/Users/jms/uikit/docs/components/${res}.md`).then(readme => {
-      data.strippedModule = {readme, type: 'markdown', resource: res};
+
+
+    if (module) {
+
+      const vm = new MDComp({propsData: {text: module.readme}});
+      data.html = vm.html;
       return data;
-    });
-  }
+
+    } else {
+
+      return import(`!raw-loader!/Users/jms/uikit/docs/components/${res}.md`).then(readme => {
+        data.strippedModule = {type: 'markdown', resource: res};
+
+        const vm = new MDComp({propsData: {text: readme}});
+        data.html = vm.html;
+        return data;
+      });
+
+    }
 
   });
 }

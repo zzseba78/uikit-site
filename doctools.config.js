@@ -42,7 +42,10 @@ module.exports = {
 
     dev: true,
 
-    output: __dirname + '/docs.json',
+    output: {
+        split: true,
+        path: __dirname + '/docs'
+    },
 
     getResourceName: desc => {
         const name = desc.path.split('/');
