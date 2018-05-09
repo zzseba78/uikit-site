@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div >
     <p>{{module.description}}</p>
     <Markdown :text="module.readme"/>
     <component :is="module.type" :data="module"/>
@@ -23,7 +23,7 @@ ExampleRunner.runners['uikit'] = new UIkitRunner;
 
 function getPageData(context) {
 
-  return import('../../../docs.json').then(docData => {
+  return import('~/docs.json').then(docData => {
 
     const res =  context.params.page;
     if (!res) {

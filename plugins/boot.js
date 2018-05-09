@@ -1,12 +1,13 @@
 import '../isomorphic';
+
 import Vue from 'vue';
 import _ from 'lodash';
 import Code from 'vue-highlight-component';
 import ExampleRunner from 'yootheme-doctools/ui/app/ExampleRunner.vue';
 import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner';
-import config from '../.vuepress/config';
-import Navbar from '../components/Navbar.vue';
-import DocumentationSidebar from '../components/DocumentationSidebar.vue';
+import config from '~/config';
+import Navbar from '~/components/Navbar.vue';
+import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
 import Markdown from 'yootheme-doctools/ui/app/utils/Markdown.vue';
 import highlight from 'highlight.js';
 
@@ -49,8 +50,11 @@ ExampleRunner.runners['uikit'] = new UIkitRunner;
 Vue.component('Navbar', Navbar);
 Vue.component('Code', Code);
 Vue.component('DocumentationSidebar', DocumentationSidebar);
+let id = 1;
 
 Vue.mixin({
+
+    data: ()=>({id: id++}),
     computed: {
         _() {
             return _;
@@ -61,31 +65,39 @@ Vue.mixin({
     },
 
     updated() {
-
+        // console.log('updated', this.id)
         this.attachUIKit();
 
     },
 
     mounted() {
-
+        // console.log('mounted',this.id)
         this.attachUIKit();
 
     },
 
-    attachUIKit() {
-        this.$nextTick(el => {
+    methods: {
 
-            const uks = UIkit.util.$$('[uk]', this.$el);
+        attachUIKit() {
+            this.$nextTick(el => {
 
-            uks.forEach(el => {
+                const uks = UIkit.util.$$('[uk]', this.$el);
 
-                const name = UIkit.util.attr(el,'uk');
-                UIkit.util.attr(el, `uk-${name}`, '');
-                const func = UIkit.util.camelize(name);
-                UIkit[func](el);
+                uks.forEach(el => {
 
+                    const name = UIkit.util.attr(el,'uk');
+                    // UIkit.util.attr(el, `uk-${name}`, '');
+                    const func = UIkit.util.camelize(name);
+                    const comp = UIkit[func](el);
+                    if (comp && comp.connected) {
+                        // console.log('destroying a:', func, 'on:', this.id);
+                        comp.connected(); //reconnect
+                        // UIkit[func](el);
+                    }
+
+                });
             });
-        });
+        }
     }
 
 

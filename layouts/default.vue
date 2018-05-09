@@ -4,7 +4,7 @@
 
         <nuxt/>
 
-        <div id="offcanvas" uk-offcanvas="mode: push; overlay: true">
+        <div id="offcanvas" uk="offcanvas" mode="push" overlay="true">
             <div class="uk-offcanvas-bar">
                 <div class="uk-panel">
 
@@ -24,7 +24,20 @@
 
 </template>
 
+<script>
 
+    export default {
+        // head() {
+        //     return {
+        //         link: [
+        //             { rel: 'stylesheet', href: '/css/index.css' },
+        //             { rel: 'favicon', href: 'favicon.ico' }
+        //             ]
+        //     }
+        // }
+    }
 
-<style src="../less/theme.less" lang="less" ></style>
+</script>
+
+<style src="../less/theme.less" lang="less"></style>
 

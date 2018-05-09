@@ -29,7 +29,6 @@
         return import('!raw-loader!uikit/CHANGELOG.md').then(text => {
             return import('marked').then(marked => {
 
-                console.warn('render changelog');
                 var renderer = new marked.Renderer(), section;
 
                 renderer.list = text => `<ul class="uk-list">${text}</ul>`;

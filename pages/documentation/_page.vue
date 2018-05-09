@@ -13,7 +13,7 @@ import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
 
 function getPageData(context) {
     return import(`!raw-loader!/Users/jms/uikit/docs/intro/${context.params.page}.md`).then(readme => {
-      return import(`../../docs.json`).then(docs => {
+      return import(`~/docs.json`).then(docs => {
 
         readme = readme
 

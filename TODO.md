@@ -9,3 +9,9 @@ genate tests as well
 cleanup dependecies of doctools
 
 build uikit!!!
+
+cleanup
+
+unbundle uikit & less
+
+pages => strings

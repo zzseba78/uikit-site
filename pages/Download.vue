@@ -47,8 +47,6 @@
 
         mounted() {
 
-            console.log('download');
-
             setTimeout(() => location.href = `https://github.com/uikit/uikit/releases/download/v${pack.version}/uikit-${pack.version}.zip`, 100)
 
         }

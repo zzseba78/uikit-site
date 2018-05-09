@@ -1,5 +1,4 @@
-const {DoctoolsWebpack} = require('yootheme-doctools');
-const routes = Object.keys(require('./docs.json').resources).map(res => `/${res}`);
+// const {DoctoolsWebpack} = require('yootheme-doctools');
 
 const fs = require('fs');
 
@@ -17,9 +16,21 @@ const allComponents = fs.readdirSync('/Users/jms/uikit/docs/components')
                 // debugger
 fs.writeFileSync('components.json', JSON.stringify(allComponents, null, 2));
 
+const {sidebar} = require('./config');
+
+const routes = sidebar.reduce((prev, val) => {
+    return prev.concat(Object.keys(val.items).map(route => '/documentation/' + (val.path && (val.path + '/' + route) || route )));
+}, []);
+
+
+
 module.exports = {
 
   build: {
+
+    extractCSS: true,
+
+    analyze: true,
 
     vendor: ['uikit'],
 
@@ -33,9 +44,15 @@ module.exports = {
   ],
 
   generate: {
+    routes,
+    dir: '/Applications/MAMP/htdocs/dist',
 
-    dir: '/Applications/MAMP/htdocs/dist'
   },
+
+
+  // css: [
+  //   '~/less/theme.less'
+  // ]
 
 
 }

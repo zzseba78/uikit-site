@@ -4,7 +4,7 @@
 
         <Navbar class="uk-navbar-transparent"/>
 
-        <div class="uk-section uk-section-small uk-flex uk-flex-middle uk-text-center" uk="height-viewport" offset-top="true" offset-bottom="true">
+        <div class="uk-section uk-section-small uk-flex uk-flex-middle uk-text-center" uk-height-viewport offset-top="true" offset-bottom="true">
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
@@ -64,7 +64,7 @@
     import pack from 'uikit/package.json';
 
     function getGazers() {
-        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {timeout:10, responseType: 'json'}).then(({response}) => {
+        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
 
             if (response && response.stargazers_count) {
                 return {stargazers: response.stargazers_count}
@@ -87,8 +87,6 @@
         },
 
         mounted() {
-
-            console.log('index');
 
             getGazers().then(data => {
                 this.stargazers = data.stargazers;

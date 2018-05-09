@@ -33,7 +33,7 @@ export function parse(markdown, cb) {
 
                         <ul class="uk-switcher uk-margin">
                             <li>${code}</li>
-                            <li><pre><code id="${id}" class="lang-html">${escape(code)}</code></pre></li>
+                            <li><pre><code id="${id}" class="lang-html">${code}</code></pre></li>
                         </ul>
 
                         <div class="uk-position-top-right uk-margin-small-top">

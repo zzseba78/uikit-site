@@ -1,5 +1,4 @@
-
-
+const components = require('./components.json');
 
 const intro = {
 
@@ -24,16 +23,27 @@ function swap(json) {
   return ret;
 }
 
-
-export default {
+module.exports = {
 
       routes: {
         download: '/download'
       },
+
       nav: [
         { text: 'Pro', link: '/pro'},
         { text: 'Documentation', link: '/documentation/introduction' },
         { text: 'Changelog', link: '/changelog' }
       ],
-      intro: swap(intro)
+
+      sidebar: [
+        {
+            label: 'Getting Started',
+            items: swap(intro)
+        },
+        {
+            path: 'components',
+            label: 'Components',
+            items: components
+        }
+    ]
   }
