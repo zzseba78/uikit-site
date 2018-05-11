@@ -1,27 +1,5 @@
 const components = require('./components.json');
-
-const intro = {
-
-    "Introduction": "introduction",
-    "Installation": "installation",
-    "Less": "less",
-    "Sass": "sass",
-    "JavaScript": "javascript",
-    "Webpack": "webpack",
-    "Custom icons": "custom-icons",
-    "Avoiding conflicts": "avoiding-conflicts",
-    "RTL support": "rtl",
-    "Migration": "migration"
-
-};
-
-function swap(json) {
-  var ret = {};
-  for(var key in json){
-    ret[json[key]] = key;
-  }
-  return ret;
-}
+const menu = require('./docs/_menu.json');
 
 module.exports = {
 
@@ -37,8 +15,8 @@ module.exports = {
 
       sidebar: [
         {
-            label: 'Getting Started',
-            items: swap(intro)
+          ...menu.introduction,
+          items: require('./utils').swap(menu.introduction.items)
         },
         {
             path: 'components',

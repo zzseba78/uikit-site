@@ -3,42 +3,46 @@ const util = require('yootheme-doctools/src/util');
 const ModuleMapper = require('yootheme-doctools/src/plugins/ModuleMapper.js');
 const RuntimeAnalyzer = require('yootheme-doctools/src/plugins/RuntimeAnalyzer.js');
 const path = require('path');
+const _ = require('lodash');
 
 module.exports = {
 
     ...uikitConf,
 
-    include: [ '/Users/jms/uikit/src/js/@(core|mixin|components)/*'],
+    include: [ '/Users/jms/uikit/src/js/@(core|mixin|components)/*', '/Users/jms/uikit/docs/**/*.md'],
 
-     /**
-     * extra mapping plugins
-     */
-    plugins: [
-        'RuntimeAnalyzer',
-        new ModuleMapper({
-            getReadme(desc) {
-                return path.join(desc.config.base, 'docs', 'components', desc.name.toLowerCase() + '.md');
+    menu: {
+        introduction: {
+            label: 'Getting Started',
+            items: {
+                "Introduction": "introduction",
+                "Installation": "installation",
+                "Less": "less",
+                "Sass": "sass",
+                "JavaScript": "javascript",
+                "Webpack": "webpack",
+                "Custom icons": "custom-icons",
+                "Avoiding conflicts": "avoiding-conflicts",
+                "RTL support": "rtl",
+                "Migration": "migration"
             }
-        }),
-        'UIkitComponentMapper',
-        'ComponentLinker',
-    ],
+        },
+        components : {
 
-    menu: [
-        {
-            label: 'components',
-            match:
-                util.match.and([
+            items: package => _.filter(package.getResources(), res => {
+                return util.match(util.match.and([
                     'src/js/core/*.js',
                     'src/js/components/*.js',
-                    'src/js/mixins/*.js'
-                ], (file, desc) => desc.readme)
+                    'src/js/mixins/*.js',
+                    'docs/components/*.md'
+                ], (file, desc) => !desc.isAsset), res.path, res, false);
+            })
+
         },
-        {
-            label: 'utils',
+        utils: {
             match: ['src/js/util/*.js']
         }
-    ],
+    },
 
     dev: true,
 
@@ -47,10 +51,10 @@ module.exports = {
         path: __dirname + '/docs'
     },
 
-    getResourceName: desc => {
-        const name = desc.path.split('/');
-        name.pop();
+    // getResourceName: desc => {
+    //     const name = desc.path.split('/');
+    //     name.pop();
 
-        return desc.name; //name.pop() + '-' + desc.name;
-    }
+    //     return name.pop() + '-' + desc.name;
+    // }
 };

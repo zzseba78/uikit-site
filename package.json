@@ -12,7 +12,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils"
+    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils",
+    "gzip": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done"
   },
   "devDependencies": {
     "buble-loader": "^0.4.1",
@@ -24,7 +25,6 @@
     "nuxt": "^1.4.0",
     "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
-    "uikit": "github:uikit/uikit#develop",
     "unique-id": "0.0.1",
     "vue-highlight-component": "^1.0.0",
     "vue-loader": "^14.2.1",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "jsdom": "^11.10.0",
-    "jsdom-global": "^3.0.2"
+    "jsdom-global": "^3.0.2",
+    "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
   }
 }

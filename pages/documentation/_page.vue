@@ -8,22 +8,24 @@
 
 import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
 import Vue from 'vue';
+import {swap} from '~/utils';
 
 function getPageData(context) {
 
-    return Promise.all([
-      import(`!raw-loader!/Users/jms/uikit/docs/intro/${context.params.page}.md`),
-      import(`~/docs.json`),
-      import('yootheme-doctools/ui/app/utils/Markdown.vue'),
+    return context.params.page && Promise.all([
+      import(`~/docs/docs.intro.${context.params.page}.md.json`),
+      import(`~/docs/_index.json`),
+      import('~/asyncLoaders/Markdown.js'),
       import('uikit/package.json')])
-      .then(([readme, docs, Markdown, pack]) => {
+      .then(([readme, resources, Markdown, pack]) => {
 
-        readme = readme
+
+        readme = readme.readme
         .replace(/(\w*).md/g, function(file ,name ) {
-            const resource = docs.resources[name];
+            // debugger;
+            const resource = swap(resources)[name];
             if(resource) {
-              // debugger;
-              console.log('link to resource');
+              // console.log('link to resource');
               return name;
             } else {
               return name
@@ -36,7 +38,6 @@ function getPageData(context) {
         const vm = new MDComp({propsData: {text: readme}});
 
         const html = vm.html;
-
 
         return {html}
     });

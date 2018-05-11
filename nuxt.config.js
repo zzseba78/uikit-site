@@ -35,28 +35,38 @@ module.exports = {
         }
       }
 
-
     },
     extractCSS: true,
 
     analyze: true,
 
-    vendor: ['uikit'],
-
-    plugins: [
-      // new DoctoolsWebpack()
+    vendor: [
+      'yootheme-doctools',
+      // 'lodash-es'
     ]
+
   },
 
   plugins: [
     '~/plugins/boot'
   ],
 
+  // render: {
+  //   static:
+  // },
+
   generate: {
     routes,
-    dir: '/Applications/MAMP/htdocs/dist',
+    // dir: '/Applications/MAMP/htdocs/dist',
 
   },
+
+  head: {
+      script: [
+        { src: '/uikit.min.js', type: 'text/javascript', charset: 'utf-8'},
+        { src: '/uikit-icons.min.js', type: 'text/javascript', charset: 'utf-8'}
+      ]
+    },
 
   css: [
     '~/less/theme.less'
