@@ -1,12 +1,10 @@
-import '../isomorphic';
-
-
 import Vue from 'vue';
 
-import config from '~/config';
+import '../isomorphic';
+import config from '../config.js';
+
 import Navbar from '~/components/Navbar.vue';
 import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
-
 
 Vue.component('Navbar', Navbar);
 Vue.component('DocumentationSidebar', DocumentationSidebar);
@@ -52,3 +50,5 @@ Vue.mixin({
 
 
 });
+
+export default () => {};

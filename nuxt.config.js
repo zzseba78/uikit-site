@@ -1,6 +1,7 @@
 // const {DoctoolsWebpack} = require('yootheme-doctools');
 
 const fs = require('fs');
+const _ = require('lodash');
 
 //generate a list of all components
 const allComponents = fs.readdirSync('/Users/jms/uikit/docs/components')
@@ -16,12 +17,11 @@ const allComponents = fs.readdirSync('/Users/jms/uikit/docs/components')
                 // debugger
 fs.writeFileSync('components.json', JSON.stringify(allComponents, null, 2));
 
-const {sidebar} = require('./config');
+const sidebar = require('./docs.json').menu;
 
-const routes = sidebar.reduce((prev, val) => {
-    return prev.concat(Object.keys(val.items).map(route => '/documentation/' + (val.path && (val.path + '/' + route) || route )));
+const routes = _.reduce(sidebar, (prev, val) => {
+    return prev.concat(Object.values(val.items).map(route => '/documentation/' + (val.path && (val.path + '/' + route) || route )));
 }, []);
-
 
 
 module.exports = {
@@ -30,8 +30,25 @@ module.exports = {
     extend(config, context) {
 
       if (context.isClient) {
+
         config.externals = {
           'uikit': 'UIkit'
+        }
+
+        if (!context.isDev) {
+          config.externals = (context, request, callback) => {
+            // console.log(request);
+            if(
+            [/yootheme-doctools.*(vue|lodash.js|prismjs).*/].some(matcher => matcher.exec(request)) ||
+              ['uikit-icons', 'docs.json', 'highlight.js', 'marked'].some(name => request.includes(name)) ||
+              ['uikit'].some(name => name === request)) {
+                console.log('skip dep:', request);
+              return callback(null, 'null');
+            }
+
+            callback()
+
+          }
         }
       }
 
@@ -42,7 +59,7 @@ module.exports = {
 
     vendor: [
       'yootheme-doctools',
-      // 'lodash-es'
+      // 'vue'
     ]
 
   },
@@ -57,6 +74,7 @@ module.exports = {
 
   generate: {
     routes,
+    // routes: ['/documentation/components/accordion', '/documentation/introduction']
     // dir: '/Applications/MAMP/htdocs/dist',
 
   },

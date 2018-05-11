@@ -12,43 +12,30 @@ module.exports = {
     include: [ '/Users/jms/uikit/src/js/@(core|mixin|components)/*', '/Users/jms/uikit/docs/**/*.md'],
 
     menu: {
-        introduction: {
-            label: 'Getting Started',
-            items: {
-                "Introduction": "introduction",
-                "Installation": "installation",
-                "Less": "less",
-                "Sass": "sass",
-                "JavaScript": "javascript",
-                "Webpack": "webpack",
-                "Custom icons": "custom-icons",
-                "Avoiding conflicts": "avoiding-conflicts",
-                "RTL support": "rtl",
-                "Migration": "migration"
-            }
-        },
+        ...require('./intro.json'),
         components : {
-
+            path: 'components',
             items: package => _.filter(package.getResources(), res => {
-                return util.match(util.match.and([
+                return util.match([
                     'src/js/core/*.js',
                     'src/js/components/*.js',
                     'src/js/mixins/*.js',
                     'docs/components/*.md'
-                ], (file, desc) => !desc.isAsset), res.path, res, false);
+                ], res.path, {data:res, matchBase: '/Users/jms/uikit'}) && !res.isAsset;
             })
 
-        },
-        utils: {
-            match: ['src/js/util/*.js']
         }
+        // utils: {
+        //     match: ['src/js/util/*.js']
+        // }
     },
 
     dev: true,
 
     output: {
-        split: true,
-        path: __dirname + '/docs'
+        split: false,
+        // path: __dirname + '/docs'
+        path: __dirname + '/docs.json'
     },
 
     // getResourceName: desc => {

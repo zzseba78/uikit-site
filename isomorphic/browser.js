@@ -1,8 +1,10 @@
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
+// import UIkit from 'uikit';
+// import Icons from 'uikit/dist/js/uikit-icons';
 
-UIkit.use(Icons);
+// if (!window.uikit) {}
 
-window.UIkit = UIkit;
+// window.UIkit.use(Icons);
 
-export default UIkit;
+// window.UIkit = UIkit;
+
+// export default UIkit;

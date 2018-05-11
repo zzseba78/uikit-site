@@ -2,7 +2,7 @@
 <template>
   <div>
     <div v-html="html"/>
-    <UIkitComponent v-if="module" :data="module"/>
+    <UIkitComponent v-if="module && module.component" :data="module"/>
   </div>
 </template>
 
@@ -14,42 +14,45 @@
 import HeadlineProvider from '!babel-loader!~/components/HeadlineProvider';
 import UIkitComponent from 'yootheme-doctools/ui/app/types/Component.vue';
 import Vue from 'vue';
+import find from 'lodash/find';
 
-import index from '~/docs/_menu.json';
+// import index from '~/docs/_menu.json';
 import {swap} from '~/utils';
 
-const map = swap(index.components.items);
+// const map = swap(index.components.items);
 
 function getPageData(context) {
 
-  const resource = map[context.params.page];
+  // const resource = map[context.params.page];
 
   // debugger;
 
   return Promise.all([
-    import(`~/docs/${resource}.json`),
+    import(`~/docs.json`),
     import('~/asyncLoaders/Markdown.js'),
-    import('marked'),
     import('!babel-loader!yootheme-doctools/src/runnner/UIkitRunner'),
     import('yootheme-doctools/ui/app/ExampleRunner.vue')
     ])
-  .then(([module, Markdown, marked, UIkitRunner, ExampleRunner]) => {
+  .then(([docData, Markdown, UIkitRunner, ExampleRunner]) => {
+
 
     const res =  context.params.page;
 
-    ExampleRunner.default.runners['uikit'] = new UIkitRunner.default;
+    if (!context.params.page) {
+      console.log('miss');
 
-    if (!res) {
-      return {};
+      return {html:''};
     }
 
-    // const module = docData.resources[res];
+    const index = swap(docData.menu.components.items);
 
-    const nodeGlobals = docData.globals;
+    const module = docData.resources[index[context.params.page]];
+
+    const nodeGlobals = docData.nodeGlobals;
     const types = docData.types;
 
     const resources = {};
-    Object.keys(docData.resources).forEach(key => {
+      Object.keys(docData.resources).forEach(key => {
       const resource = docData.resources[key];
       resources[key] = {name: resource.name};
     });
@@ -57,24 +60,32 @@ function getPageData(context) {
       const data = { resources, types, nodeGlobals};
 
       const def = Markdown.default;
-        const MDComp = Vue.extend(def);
 
-    if (module) {
+    if (module.assets && module.assets.readme) {
 
-      data.strippedModule = {...module, readme: null, script: null};
-      const vm = new MDComp({propsData: {text: module.readme}});
-      data.html = vm.html;
+      const readme = docData.resources[module.assets.readme];
+
+      data.strippedModule = module;
+      data.html = Markdown.default(readme.readme);
+
       return data;
+
+    } else if (module.isAsset) {
+
+      data.strippedModule = module;
+      data.html = Markdown.default(module.readme);
 
     } else {
 
-      return import(`!raw-loader!/Users/jms/uikit/docs/components/${res}.md`).then(readme => {
-        data.strippedModule = {type: 'markdown', resource: res};
+      return {html: ''};
+      // debugger;
 
-        const vm = new MDComp({propsData: {text: readme}});
-        data.html = vm.html;
-        return data;
-      });
+      // return import(`!raw-loader!/Users/jms/uikit/docs/components/${res}.md`).then(readme => {
+      //   data.strippedModule = {type: 'markdown', resource: res};
+
+      //   data.html = Markdown.default(readme);
+      //   return data;
+      // });
 
     }
 

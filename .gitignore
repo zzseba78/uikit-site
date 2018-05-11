@@ -10,3 +10,4 @@ vuepress/.vuepress/dist
 vuepress/.vuepress/theme_
 .nuxt
 dist
+docs
