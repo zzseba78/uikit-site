@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "install": "cd ./node_modules/uikit && npm i && cd ../../ && symlink-dir ./node_modules/uikit ./assets/uikit",
+    "install_": "cd ./node_modules/uikit && npm i && cd ../../ && symlink-dir ./node_modules/uikit ./assets/uikit",
     "setup": "npm install && npm run compile",
     "compile": "npm run compile-js && npm run compile-less && npm run compile-uikit",
     "compile-uikit": "cd ./assets/uikit && npm run compile && npm run compile-rtl",
@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils",
+    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils"
   },
   "devDependencies": {
     "buble-loader": "^0.4.1",

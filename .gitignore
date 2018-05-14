@@ -11,3 +11,5 @@ vuepress/.vuepress/theme_
 .nuxt
 dist
 docs
+html
+docs.json
