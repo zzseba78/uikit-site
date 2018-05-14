@@ -10,6 +10,7 @@ const _ = require('lodash');
 const {swap} = require('./utils');
 
 const introMapping = swap(require('./intro.json').introduction.items);
+const marked = require('./markdown');
 
 module.exports = {
 
@@ -25,11 +26,9 @@ module.exports = {
                 data.routeMap = _.reduce(app.resources, (map, res) => {
 
                     if (res.path.includes('/intro/')) {
-                        // map[res.resource] = res.name;
                         map[res.name] = res.resource;//res.resource;
                     } else if(res.type === 'UIkitComponent' || (!res.isAsset && res.path.includes('/components/') )) {
-                        // map[res.resource] = 'component/' + res.name;//res.resource;
-                        // map['component/' + res.name] = res.resource;//res.resource;
+                        map['component/' + res.name] = res.resource;//res.resource;
                     }
                     return map;
                 }, {});
@@ -52,17 +51,31 @@ module.exports = {
 
               resources (app, data) {
                 return _.mapValues(data.routeMap, res => app.resources[res]);
-                // const res = _.mapValues(data.routeMap, res => app.resources[res]);
-                // return _.filter(res, res => !res.path.includes('/component/'))
+              },
+
+              markdown(markdown) {
+                const text = marked(markdown);
+                return text;
               },
 
               postProcess(app, html) {
 
-                html = html.replace(/src="\.\//g, `src="${app.config.base}/`)
+                html = html.replace(/src="\.\//g, `src="${app.config.base}/`);
+                html = html.replace(/src="\.\.\/docs/g,`src="${app.config.base}/docs"` );
+                html = html.replace(/src="\.\.\/assets\/uikit/g,`src="${app.config.base}"` );
 
                   return `<template>
                     ${html}
-                  </template>`;
+                  </template>
+                  <script>
+
+                  import HeadlineProvider from '~/components/HeadlineProvider';
+
+                  export default {
+                      extends: HeadlineProvider
+                  };
+
+                  </script>`;
               }
         })
     ],

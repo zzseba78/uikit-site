@@ -12,7 +12,10 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils"
+    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils",
+    "serve": "nuxt generate && npm run test:dist",
+    "test:dist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
+
   },
   "devDependencies": {
     "buble-loader": "^0.4.1",

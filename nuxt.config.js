@@ -13,7 +13,7 @@ module.exports = {
 
 		},
 
-		// analyze: true,
+		analyze: true,
 
 	},
 
