@@ -29,7 +29,7 @@ export default {
       },
       {
           label: 'Components',
-          path: 'components',
+          path: 'component',
           items: components
       }
   ]
