@@ -35,7 +35,7 @@ Vue.mixin({
 
                 uks.forEach(el => {
 
-                    const name = UIkit.util.attr(el,'uk');
+                    const name = UIkit.util.attr(el, 'uk');
                     const func = UIkit.util.camelize(name);
                     const comp = UIkit[func](el);
                     if (comp && comp.connected) {
