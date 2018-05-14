@@ -13,21 +13,13 @@ module.exports = {
 
 		},
 
-		extractCSS: true,
-
-		analyze: true,
+		// analyze: true,
 
 	},
 
 	plugins: [
 
 		'~/plugins/boot'
-
-	],
-
-	modules: [
-
-		'~/modules/doctools'
 
 	],
 

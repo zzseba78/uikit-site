@@ -17,22 +17,6 @@ module.exports = {
 
     include: [ 'src/js/@(core|mixin|components)/*', 'docs/**/*.md', 'package.json', 'README.md'],
 
-    menu: {
-        ...require('./intro.json'),
-        components : {
-            path: 'components',
-            items: pack => _.filter(pack.getResources(), res => {
-                return util.match([
-                    'src/js/core/*.js',
-                    'src/js/components/*.js',
-                    'src/js/mixins/*.js',
-                    'docs/components/*.md'
-                ], res.path, {data:res, matchBase: uikitConf.base }) && !res.isAsset;
-            })
-
-        }
-    },
-
     plugins: [
         ...uikitConf.plugins,
         {
@@ -45,7 +29,7 @@ module.exports = {
                         map[res.name] = res.resource;//res.resource;
                     } else if(res.type === 'UIkitComponent' || (!res.isAsset && res.path.includes('/components/') )) {
                         // map[res.resource] = 'component/' + res.name;//res.resource;
-                        map['component/' + res.name] = res.resource;//res.resource;
+                        // map['component/' + res.name] = res.resource;//res.resource;
                     }
                     return map;
                 }, {});
@@ -53,20 +37,29 @@ module.exports = {
             }
         },
         new ComponentExporter({
-            output: __dirname + '/html',
+            output: __dirname + '/pages/documentation',
+
               createLink(app, desc, data) {
                 const map = swap(data.routeMap);
                 return map[desc.resource] || '#';
               },
+
               getFileName(app, desc, data) {
                 const map = swap(data.routeMap);
                 const name = map[desc.resource] + '.vue';
                 return name;
               },
+
               resources (app, data) {
                 return _.mapValues(data.routeMap, res => app.resources[res]);
+                // const res = _.mapValues(data.routeMap, res => app.resources[res]);
+                // return _.filter(res, res => !res.path.includes('/component/'))
               },
+
               postProcess(app, html) {
+
+                html = html.replace(/src="\.\//g, `src="${app.config.base}/`)
+
                   return `<template>
                     ${html}
                   </template>`;

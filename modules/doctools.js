@@ -3,7 +3,6 @@
 const fs = require('fs');
 const _ = require('lodash');
 
-
 module.exports = function DocTools (options) {
 
     //generate a list of all components
@@ -28,7 +27,6 @@ module.exports = function DocTools (options) {
     }, []);
 
 
-
-    this.extendRoutes(routes);
+    // this.extendRoutes(routes);
   // Write your code here
 };

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import '../isomorphic';
+import '../isomorphic'; //UIkit
 import config from '../config.js';
 
 import Navbar from '~/components/Navbar.vue';
@@ -24,7 +24,6 @@ Vue.mixin({
 
     mounted() {
         this.attachUIKit();
-
     },
 
     methods: {
@@ -48,7 +47,4 @@ Vue.mixin({
         }
     }
 
-
 });
-
-export default () => {};
