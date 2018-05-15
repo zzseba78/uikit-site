@@ -1,4 +1,5 @@
 const marked = require('marked');
+// const highlight = require('highlight.js');
 
 const base = new marked.Renderer();//Markdown.baseRenderer;
 const renderer = new marked.Renderer();
@@ -46,7 +47,7 @@ renderer.strong = text => text === 'Note' ? `<span class="uk-label">${text}</spa
 renderer.list = text => `<ul class="uk-list uk-list-bullet">${text}</ul>`;
 renderer.image = (href, title, text) => href.match(/modal$/) ? modal(href, text) : base.image(href, title, text);
 renderer.link = (href, title, text) => href.match(/\.md/) ? base.link(href.replace(/.md(.*)/, '$1'), title, text) : base.link(href, title, text);
-renderer.code = (code, lang, escaped) => lang === 'example' ? example(code) : '<div class="uk-margin-medium">' + base.code(code, lang, escaped) + '</div>';
+// renderer.code = (code, lang, escaped) => lang === 'example' ? example(code) : '<div class="uk-margin-medium">' + base.code(code, lang, escaped) + '</div>';
 // renderer.code = (code, lang, escaped) => {
 //     const res = '<div class="uk-margin-medium"><pre><code>' + highlight.highlight(lang, code).value + '</code></pre></div>';
 //     return res;
@@ -56,4 +57,4 @@ renderer.table = (header, body) => `<div class="uk-overflow-auto"><table class="
 renderer.heading = (text, level) => `<h${level} id="${sluggify(text)}" class="uk-h${level > 1 ? level + 1 : level} tm-heading-fragment"><a href="#${sluggify(text)}">${text}</a></h${level}>`;
 
 
-module.exports = text => marked(text, {renderer});
+module.exports = (text, options = {}) => marked(text, {renderer, ...options});
