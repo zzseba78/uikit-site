@@ -13,6 +13,8 @@ module.exports = {
 
 		},
 
+		cache: true,
+		parallel: true,
 		extractCSS: true,
 
 		analyze: true,
