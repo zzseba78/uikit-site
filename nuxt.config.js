@@ -13,6 +13,8 @@ module.exports = {
 
 		},
 
+		extractCSS: true,
+
 		analyze: true,
 
 	},
