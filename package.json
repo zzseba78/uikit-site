@@ -15,16 +15,13 @@
     "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils",
     "serve": "nuxt generate && npm run test:dist",
     "test:dist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
-
   },
   "devDependencies": {
-    "buble-loader": "^0.4.1",
     "highlight.js": "^9.12.0",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
     "marked": "^0.3.19",
     "mkdirp": "^0.5.1",
-    "nuxt": "^1.4.0",
     "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
     "unique-id": "0.0.1",
@@ -34,8 +31,10 @@
     "webpack": "^3.6.1"
   },
   "dependencies": {
+    "extract-text-webpack-plugin": "^3.0.2",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
+    "nuxt": "npm:nuxt-edge",
     "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
   }
 }
