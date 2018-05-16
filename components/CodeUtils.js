@@ -1,22 +1,33 @@
-import UIkitRunner from 'yootheme-doctools/src/runnner/UIkitRunner';
+import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner';
 import copyToCB from 'copy-text-to-clipboard';
+
+function deIndent(code) {
+    const lines = code.split('\n').filter(line => line.trim());
+    const ws = lines[0].search(/\S/);
+    return lines.map(line => line.substr(ws)).join('\n');
+}
 
 export default {
 
     methods: {
         click(e) {
-            if (UIkit.util.hasClass(e.target.parentNode, 'edit')) {
-                debugger;
-            } else if (UIkit.util.hasClass(e.target.parentNode, 'copy')) {
-                debugger;
-            } else {
-                debugger;
-            }
-        },
 
-        edit: UIkitRunner.edit,
-        copyToCB(text) {
-            copyToCB(text);
+            const target = UIkit.util.closest(e.target, 'a');
+
+            if (UIkit.util.hasClass(target, 'edit')) {
+
+                const el = UIkit.util.closest(target, '.uikit-runner');
+                const code = UIkit.util.$('.code', el).innerHTML;
+
+                UIkitRunner.edit(deIndent(code));
+
+            } else if (UIkit.util.hasClass(target, 'copy')) {
+
+                const el = UIkit.util.closest(target, '.uikit-runner');
+                const code = UIkit.util.$('.code', el).innerHTML;
+                copyToCB(deIndent(code));
+
+            }
         }
 
     }

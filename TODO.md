@@ -15,3 +15,10 @@ cleanup
 unbundle uikit & less
 
 pages => strings
+
+
+--------
+
+clickable exampel links (copy, edit)
+prebuild changelog
+preload fonts / meta headers

@@ -31,11 +31,12 @@
     "webpack": "^3.6.1"
   },
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "copy-text-to-clipboard": "^1.0.4",
     "extract-text-webpack-plugin": "^3.0.2",
     "jsdom": "^11.10.0",
     "jsdom-global": "^3.0.2",
-    "nuxt": "npm:nuxt-edge",
+    "nuxt": "^1.4.0",
     "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
   }
 }

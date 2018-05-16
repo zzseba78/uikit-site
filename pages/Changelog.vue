@@ -26,10 +26,12 @@
 
     function getChangelog() {
 
-        return import('!raw-loader!uikit/CHANGELOG.md').then(text => {
-            return import('marked').then(marked => {
+        return import('!raw-loader!uikit/CHANGELOG.md').then((text) => {
 
-                var renderer = new marked.Renderer(), section;
+            return import('marked').then((marked) => {
+
+                const renderer = new marked.Renderer();
+                let section;
 
                 renderer.list = text => `<ul class="uk-list">${text}</ul>`;
 
@@ -61,7 +63,6 @@
 
                 renderer.heading = (text, level) => {
 
-
                     text = text.replace(/(\(.*?\))/, '<span class="uk-text-muted">$1</span>');
 
                     if (level === 2) {
@@ -76,7 +77,7 @@
                 };
 
                 return {changelog: marked(text, {renderer})};
-            })
+            });
         });
 
     }
