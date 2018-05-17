@@ -16,9 +16,13 @@ module.exports = {
 		cache: true,
 		parallel: true,
 
-		// extractCSS: true,
+		extractCSS: true,
 		// analyze: true
 
+	},
+
+	loading: {
+		color: 'white'
 	},
 
 	plugins: [

@@ -3,7 +3,7 @@ const uikitConf = require('/Users/jms/uikit-doctools/doctools.config.js');
 const util = require('yootheme-doctools/src/util.js');
 const ModuleMapper = require('yootheme-doctools/src/plugins/ModuleMapper.js');
 const RuntimeAnalyzer = require('yootheme-doctools/src/plugins/RuntimeAnalyzer.js');
-const ComponentExporter = require('yootheme-doctools/src/plugins/ComponentExporter.js');
+const HTMLExporter = require('yootheme-doctools/src/plugins/HTMLExporter.js');
 const UIkitRunner = require('yootheme-doctools/src/runnner/UIkitRunner.min.js').default;
 // const UIkitRunner = require('yootheme-doctools/src/runners/UIkitRunner');
 
@@ -11,8 +11,8 @@ const highlight = require('highlight.js');
 
 const path = require('path');
 const _ = require('lodash');
-const {swap} = require('./utils');
 const fs = require('fs');
+const mkpath = require('mkpath');
 
 // const introMapping = swap(require('./intro.json').introduction.items);
 const marked = require('./markdown');
@@ -25,10 +25,15 @@ module.exports = {
 
     plugins: [
         ...uikitConf.plugins,
-        {
-            onGet(app, data) {
+        new HTMLExporter({
+            output: __dirname + '/pages/documentation',
 
-                data.routeMap = _.reduce(app.resources, (map, res) => {
+            runners: {
+                uikit: new UIkitRunner
+            },
+
+            routeMap(app, data) {
+                return _.reduce(app.resources, (map, res) => {
 
                     if (res.path.includes('/intro/')) {
                         map[res.name] = res.resource;//res.resource;
@@ -37,23 +42,15 @@ module.exports = {
                     }
                     return map;
                 }, {});
-
-            }
-        },
-        new ComponentExporter({
-            output: __dirname + '/pages/documentation',
-
-            runners: {
-                uikit: new UIkitRunner
             },
 
             createLink(app, desc, data) {
-                const map = swap(data.routeMap);
+                const map = _.invert(data.routeMap);
                 return map[desc.resource] || '#';
             },
 
             getFileName(app, desc, data) {
-                const map = swap(data.routeMap);
+                const map = _.invert(data.routeMap);
                 const name = map[desc.resource] + '.vue';
                 return name;
             },
@@ -87,8 +84,9 @@ module.exports = {
                 html = html.replace(/src="\.\.\/images\//g,`src="/images/` );
                 // const escapedHtml = html.replace(/\\/g, '\\\\').replace(/`/g, `\\\``).replace(/\${/g, '\\\${');
 
-                const htmlDataPath = path.join(this.output, this.getFileName(app,desc,data) + '.html');
+                const htmlDataPath = path.join(this.output, this.getFileName(app, desc, data) + '.html');
 
+                mkpath.sync(path.dirname(htmlDataPath));
                 fs.writeFileSync(htmlDataPath, html);
 
 
