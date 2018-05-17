@@ -1,14 +1,6 @@
 const components = require('./components.json');
 const menu = require('./intro.json');
-// const {swap} = require('./utils');
 
-function swap(json) {
-  var ret = {};
-  for(var key in json){
-    ret[json[key]] = key;
-  }
-  return ret;
-}
 
 export default {
 
@@ -25,7 +17,7 @@ export default {
     sidebar: [
       {
         ...menu.introduction,
-        items: swap(menu.introduction.items)
+        items: (menu.introduction.items)
       },
       {
           label: 'Components',

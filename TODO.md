@@ -19,6 +19,9 @@ pages => strings
 
 --------
 
-clickable exampel links (copy, edit)
 prebuild changelog
 preload fonts / meta headers
+
+evalueate runner
+
+create hash to trigger client changes
