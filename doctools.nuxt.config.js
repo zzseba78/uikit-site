@@ -40,7 +40,7 @@ module.exports = {
 
     },
 
-    postProcess(app, html, desc, data) {
+    postProcess(app, html, desc) {
 
         html = html.replace(/src="\.\//g, `src="${app.config.base}/`);
         html = html.replace(/src="\.\.\/docs/g,`src="${app.config.base}/docs"` );
