@@ -1,51 +1,100 @@
 const fs = require('fs');
 const _ = require('lodash');
 const path = require('path');
+const mkpath = require('mkpath');
+
+// const mkpath = require('mkpath');
 
 const Config = require('yootheme-doctools/src/Config');
 const DocTools = require('yootheme-doctools/src/DocTools');
 const HTMLExporter = require('yootheme-doctools/src/plugins/HTMLExporter.js');
 
 
-module.exports = function DocToolsModule (options) {
+// debugger;
+module.exports = function DocToolsModule (config) {
 
     //generate a list of all components
-    const dir = options.path || '/doctools';
+    const dir = config.path || '/doctools';
 
-    this.nuxt.hook('close', nuxt => {
-
-        this.doctools.dispose();
-
-    });
 
     this.writtenFiles = [];
+
+    const tmpDir = path.join(this.options.srcDir, '.doctools');
+
+
+    const writeJSON = data => {
+        const publicResources = this.htmlExporter.config.resources(this.doctools, data);
+        const nameMap = _.reduce(publicResources,(map,res) => {
+           map[res.resource] = {name: res.name};
+           return map;
+        }, {});
+
+        _.forEach(publicResources, (res, name) => {
+
+            //inline assets
+            res.assets = _.mapValues(res.assets, asset => data.resources[asset]);
+
+            const dest = path.join(tmpDir, name) + '.json';
+
+            mkpath.sync(path.dirname(dest));
+            fs.writeFileSync(dest, JSON.stringify({
+                moduleData: res,
+                resources: nameMap,
+                nodeGlobals: data.nodeGlobals,
+                types: data.types
+            }, null, 2));
+
+            this.writtenFiles.push(dest);
+
+        })
+
+        if (config.mode === 'no-ssr') {
+
+        } else {
+
+        }
+    }
+
+    // debugger
+
 
     this.nuxt.hook('generate:before', generator => {
 
         return this.doctools.analyze().then(app => {
 
-            const postProcess = options.postProcess;
+            const postProcess = config.postProcess;
+            const data =  this.doctools.get();
+            if(config.mode === 'flatten') {
 
-            this.htmlExporter.config.postProcess = function(...args) {
-                const html = postProcess(...args);
-                return `<template>${html}</template>` + (options.component ?
-                `<script>
-                    import Base from '${options.component}';
-                    export default {
-                        extends: Base
-                    };
-                </script>` : '');
+                this.htmlExporter.config.postProcess = function(...args) {
+                    const html = postProcess(...args);
+                    return `<template>${html}</template>` + (config.component ?
+                        `<script>
+                        import Base from '${config.component}';
+                        export default {
+                            extends: Base
+                        };
+                        </script>` : '');
+                    }
+
+                    this.writtenFiles = this.htmlExporter.renderHTML(this.doctools, data, path.join(this.config.srcDir, 'pages', dir ) );
+
+            } else {
+
+                writeJSON(data);
+
             }
-
-            this.writtenFiles = this.htmlExporter.renderHTML(this.doctools, this.doctools.get(), path.join(this.options.rootDir, 'pages', dir ) );
 
             this.htmlExporter.config.postProcess = postProcess;
 
             return app;
+
         });
+
+
     });
 
-    this.nuxt.hook('generate:before', () => {
+    this.nuxt.hook('generate:done', () => {
         this.writtenFiles.forEach(fs.unlinkSync);
     });
 
@@ -55,16 +104,14 @@ module.exports = function DocToolsModule (options) {
         Object.keys(data.routeMap).forEach(route => {
             routes.push({route: `${dir}/${route}`});
         });
+
     })
 
     this.nuxt.hook('ready', nuxt => {
 
-
         this.htmlExporter = new HTMLExporter({
 
-            output:false,
-
-            serve: true,
+            output: false,
 
             getFileName(app, desc, data) {
                 const map = _.invert(data.routeMap);
@@ -78,19 +125,42 @@ module.exports = function DocToolsModule (options) {
             },
 
             resources (app, data) {
-                return _.mapValues(data.routeMap, res => app.resources[res]);
+                return _.mapValues(data.routeMap, res => data.resources[res]);
             },
 
-            ..._.pick(options, ['routeMap', 'highlight', 'markdown', 'postProcess'])
+            ..._.pick(config, ['routeMap', 'highlight', 'markdown', 'postProcess'])
 
         });
 
-        const config = new Config();
+        const conf = new Config();
 
-        config.addPlugin(this.htmlExporter);
+        conf.addPlugin(this.htmlExporter);
 
-        this.doctools = new DocTools(config);
-        this.doctools.analyze();
+        this.doctools = new DocTools(conf);
+
+        if (this.options.dev) {
+
+            // this.addServerMiddleware({
+            //     path: path + '/*',
+            //     handler(req, res, next) {
+            //         debugger;
+            //     }
+            // })
+
+            this.doctools.analyze().then(app => {
+
+                writeJSON(app.get());
+
+            });
+
+
+        }
+
+    });
+
+    this.nuxt.hook('close', nuxt => {
+
+        this.doctools.dispose();
 
     });
 
@@ -99,7 +169,7 @@ module.exports = function DocToolsModule (options) {
         const docToolsRoute = {
             name: 'doctools',
             path: dir + '/*',
-            component: options.component || (__dirname + '/page.vue')
+            component: config.component || (__dirname + '/page.vue')
         };
 
         if (routes.some(route => {

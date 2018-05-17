@@ -1,6 +1,7 @@
-const UIkitRunner = require('yootheme-doctools/src/runnner/UIkitRunner.min.js').default;
+import UIkitRunner from 'yootheme-doctools/src/runnner/UIkitRunner.min.js';
+import doctoolsConf from './doctools.nuxt.config';
 
-module.exports = {
+export default {
 
 	build: {
 		extend(config, context) {
@@ -22,17 +23,18 @@ module.exports = {
 
 	},
 
-	loading: {
-		color: 'white'
-	},
+	// loading: {
+	// 	color: 'white'
+	// },
 
 	plugins: [
 		'~/plugins/boot'
 	],
 
 	modules: [
-		['@nuxtjs/google-analytics', { id: 'UA-42150424-1' }],
-		['~/modules/doctools', require('./doctools.nuxt.config.js')]
+		// ['~/modules/test']
+		['~/modules/doctools', doctoolsConf]
+		// ['@nuxtjs/google-analytics', { id: 'UA-42150424-1' }],
 	],
 
 	head: {

@@ -1,15 +1,40 @@
-<template>
-    <div v-html="html"></div>
-</template>
+
 
 <script>
 
-    import http from 'iso-http';
+    import DocPage from 'yootheme-doctools/ui/app/DocPage.vue';
+    import DocBase from '!babel-loader!yootheme-doctools/ui/app/DocBase.js';
+    import {highlight, markdown} from '~/doctools.nuxt.config.js';
+
+    import Vue from 'vue';
+
+    const DocApp = Vue.extend({
+        extends: DocBase,
+        methods: {
+            highlight,
+            markdown
+        }
+    });
 
     export default {
+
+        extends: DocPage,
+
+        provide() {
+            return {$doc: new DocApp()}
+        },
+
         asyncData(context) {
-            const url = `http://localhost:3050/${context.params[0]}`;
-            return new Promise(resolve => http.request({url}, res => resolve({html: res.text})));
+
+            // return Promise.resolve();
+            // debugger;
+
+            return import(`~/.doctools/${context.params[0]}.json`).then(data => {
+
+                debugger;
+                return data;
+            })
+            // return new Promise(resolve => http.request({url}, res => resolve({html: res.text})));
         }
     }
 

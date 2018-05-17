@@ -1,6 +1,5 @@
 {
   "scripts": {
-
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -11,25 +10,16 @@
     "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
+    "copy-text-to-clipboard": "^1.0.4",
     "highlight.js": "^9.12.0",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
+    "lodash-es": "^4.17.10",
     "marked": "^0.3.19",
-    "mkdirp": "^0.5.1",
+    "nuxt": "npm:nuxt-edge",
     "raw-loader": "^0.5.1",
-    "symlink-dir": "^1.1.2",
-    "vue-loader": "^14.2.1",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.6.1"
-  },
-  "dependencies": {
-    "@nuxtjs/google-analytics": "^2.0.2",
-    "copy-text-to-clipboard": "^1.0.4",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "iso-http": "^0.0.5",
-    "jsdom": "^11.10.0",
-    "jsdom-global": "^3.0.2",
-    "nuxt": "^1.4.0",
+    "mkpath": "^1.0.0",
     "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
   }
 }

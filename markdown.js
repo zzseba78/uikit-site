@@ -1,4 +1,4 @@
-const marked = require('marked');
+import marked from 'marked';
 // const highlight = require('highlight.js');
 
 const base = new marked.Renderer();//Markdown.baseRenderer;
@@ -27,4 +27,4 @@ renderer.table = (header, body) => `<div class="uk-overflow-auto"><table class="
 renderer.heading = (text, level) => `<h${level} id="${sluggify(text)}" class="uk-h${level > 1 ? level + 1 : level} tm-heading-fragment"><a href="#${sluggify(text)}">${text}</a></h${level}>`;
 
 
-module.exports = (text, options = {}) => marked(text, {renderer, ...options});
+export default (text, options = {}) => marked(text, {renderer, ...options});

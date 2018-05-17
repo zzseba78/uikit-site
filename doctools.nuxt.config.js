@@ -1,8 +1,8 @@
-const highlight = require('highlight.js');
-const marked = require('./markdown');
-const _ = require('lodash');
+import {reduce} from 'lodash-es';
+import highlight from 'highlight.js';
+import markdown from './markdown';
 
-module.exports = {
+export default {
 
     path: '/documentation',
 
@@ -10,7 +10,8 @@ module.exports = {
 
     routeMap(app, data) {
 
-        return _.reduce(app.resources, (map, res) => {
+
+        return reduce(app.resources, (map, res) => {
 
             if (res.path.includes('/intro/')) {
                 map[res.name] = res.resource;//res.resource;
@@ -23,6 +24,7 @@ module.exports = {
     },
 
     highlight(code, lang, frame) {
+
 
         const html = lang ? highlight.highlight(lang, code).value : highlight.highlightAuto(code).value;
         return frame ? `<pre><code class="language-${lang}">${html}</code></pre>` : html;
