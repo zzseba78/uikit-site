@@ -6,7 +6,6 @@ import config from '../config.js';
 import Navbar from '~/components/Navbar.vue';
 import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
 
-debugger
 
 Vue.component('Navbar', Navbar);
 Vue.component('DocumentationSidebar', DocumentationSidebar);

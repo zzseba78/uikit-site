@@ -1,6 +1,6 @@
 import {reduce} from 'lodash-es';
 import highlight from 'highlight.js';
-import markdown from './markdown';
+import marked from './markdown';
 
 export default {
 
@@ -9,7 +9,6 @@ export default {
     component: __dirname + '/components/DocPage.js',
 
     routeMap(app, data) {
-
 
         return reduce(app.resources, (map, res) => {
 
