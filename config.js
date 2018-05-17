@@ -1,6 +1,6 @@
 const components = require('./components.json');
 const menu = require('./intro.json');
-
+const _ = require('lodash');
 
 export default {
 
@@ -17,7 +17,7 @@ export default {
     sidebar: [
       {
         ...menu.introduction,
-        items: (menu.introduction.items)
+        items: _.invert(menu.introduction.items)
       },
       {
           label: 'Components',

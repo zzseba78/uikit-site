@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import '../isomorphic'; //UIkit
+import 'yootheme-doctools/packages/uikit-ssr'; //UIkit
 import config from '../config.js';
 
 import Navbar from '~/components/Navbar.vue';
@@ -38,8 +38,8 @@ Vue.mixin({
                     const name = UIkit.util.attr(el, 'uk');
                     const func = UIkit.util.camelize(name);
                     const comp = UIkit[func](el);
-                    if (comp && comp.connected) {
-                        comp.connected(); //reconnect
+                    if (comp) {
+                        comp.$reset && comp.$reset(); //reconnect
                     }
 
                 });

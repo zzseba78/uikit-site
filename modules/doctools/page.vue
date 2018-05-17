@@ -4,12 +4,12 @@
 
 <script>
 
+    import http from 'iso-http';
+
     export default {
         asyncData(context) {
             const url = `http://localhost:3050/${context.params[0]}`;
-            return UIkit.util.ajax(url).then(res => {
-                return {html: res.responseText};
-            })
+            return new Promise(resolve => http.request({url}, res => resolve({html: res.text})));
         }
     }
 

@@ -25,3 +25,4 @@ preload fonts / meta headers
 evalueate runner
 
 create hash to trigger client changes
+replace iso data template (more templates?)

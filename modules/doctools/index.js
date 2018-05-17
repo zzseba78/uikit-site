@@ -1,5 +1,6 @@
 const fs = require('fs');
 const _ = require('lodash');
+const path = require('path');
 
 const Config = require('yootheme-doctools/src/Config');
 const DocTools = require('yootheme-doctools/src/DocTools');
@@ -9,7 +10,7 @@ const HTMLExporter = require('yootheme-doctools/src/plugins/HTMLExporter.js');
 module.exports = function DocToolsModule (options) {
 
     //generate a list of all components
-    const path = options.path || '/doctools';
+    const dir = options.path || '/doctools';
 
     this.nuxt.hook('close', nuxt => {
 
@@ -17,22 +18,59 @@ module.exports = function DocToolsModule (options) {
 
     });
 
+    this.writtenFiles = [];
+
+    this.nuxt.hook('generate:before', generator => {
+
+        return this.doctools.analyze().then(app => {
+
+            const postProcess = options.postProcess;
+
+            this.htmlExporter.config.postProcess = function(...args) {
+                const html = postProcess(...args);
+                return `<template>${html}</template>` + (options.component ?
+                `<script>
+                    import Base from '${options.component}';
+                    export default {
+                        extends: Base
+                    };
+                </script>` : '');
+            }
+
+            this.writtenFiles = this.htmlExporter.renderHTML(this.doctools, this.doctools.get(), path.join(this.options.rootDir, 'pages', dir ) );
+
+            this.htmlExporter.config.postProcess = postProcess;
+
+            return app;
+        });
+    });
+
+    this.nuxt.hook('generate:before', () => {
+        this.writtenFiles.forEach(fs.unlinkSync);
+    });
+
     this.nuxt.hook('generate:extendRoutes', routes => {
 
         const data = this.doctools.get();
         Object.keys(data.routeMap).forEach(route => {
-            routes.push({route: `${path}/${route}`});
+            routes.push({route: `${dir}/${route}`});
         });
     })
 
     this.nuxt.hook('ready', nuxt => {
 
 
-        const exporter = new HTMLExporter({
+        this.htmlExporter = new HTMLExporter({
 
             output:false,
 
             serve: true,
+
+            getFileName(app, desc, data) {
+                const map = _.invert(data.routeMap);
+                const name = map[desc.resource] + '.vue';
+                return name;
+            },
 
             createLink(app, desc, data) {
                 const map = _.invert(data.routeMap);
@@ -45,14 +83,14 @@ module.exports = function DocToolsModule (options) {
 
             ..._.pick(options, ['routeMap', 'highlight', 'markdown', 'postProcess'])
 
-
         });
 
         const config = new Config();
 
-        config.addPlugin(exporter);
+        config.addPlugin(this.htmlExporter);
 
         this.doctools = new DocTools(config);
+        this.doctools.analyze();
 
     });
 
@@ -60,13 +98,13 @@ module.exports = function DocToolsModule (options) {
 
         const docToolsRoute = {
             name: 'doctools',
-            path: path + '/*',
+            path: dir + '/*',
             component: options.component || (__dirname + '/page.vue')
         };
 
         if (routes.some(route => {
 
-            if(route.path === path) {
+            if(route.path === dir) {
                 docToolsRoute.path = '*'
                 route.children = [
                     docToolsRoute

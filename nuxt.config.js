@@ -18,6 +18,12 @@ module.exports = {
 		cache: true,
 		parallel: true,
 
+		extractCSS: true
+
+	},
+
+	loading: {
+		color: 'white'
 	},
 
 	plugins: [
