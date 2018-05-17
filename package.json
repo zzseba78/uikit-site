@@ -1,36 +1,24 @@
 {
   "scripts": {
-    "install_": "cd ./node_modules/uikit && npm i && cd ../../ && symlink-dir ./node_modules/uikit ./assets/uikit",
-    "setup": "npm install && npm run compile",
-    "compile": "npm run compile-js && npm run compile-less && npm run compile-uikit",
-    "compile-uikit": "cd ./assets/uikit && npm run compile && npm run compile-rtl",
-    "compile-js": "webpack -p",
-    "compile-less": "mkdirp css && lessc less/theme.less > css/theme.css --relative-urls --rootpath=../less/ -x",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "link": "npm link uikit && npm link yootheme-doctools && npm link uikit-utils",
-    "serve": "nuxt generate && npm run test:dist",
-    "test:dist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
+    "test:genServe": "nuxt generate && npm run serveDist",
+    "serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
   },
   "devDependencies": {
     "highlight.js": "^9.12.0",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
     "marked": "^0.3.19",
-    "mkdirp": "^0.5.1",
     "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
-    "unique-id": "0.0.1",
-    "vue-highlight-component": "^1.0.0",
     "vue-loader": "^14.2.1",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^3.6.1"
-  },
-  "dependencies": {
+    "webpack": "^3.6.1",
     "@nuxtjs/google-analytics": "^2.0.2",
     "copy-text-to-clipboard": "^1.0.4",
     "extract-text-webpack-plugin": "^3.0.2",

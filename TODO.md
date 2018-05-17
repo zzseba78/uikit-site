@@ -6,19 +6,9 @@ show component links to test
 
 genate tests as well
 
-cleanup dependecies of doctools
-
-build uikit!!!
-
-cleanup
-
-unbundle uikit & less
-
-pages => strings
-
 
 --------
 
-clickable exampel links (copy, edit)
 prebuild changelog
-preload fonts / meta headers
+fix links into assets
+improve attributes without value (head)

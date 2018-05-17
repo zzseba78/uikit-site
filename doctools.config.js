@@ -78,6 +78,7 @@ module.exports = {
 
             postProcess(app, html, desc, data) {
 
+
                 html = html.replace(/src="\.\//g, `src="${app.config.base}/`);
                 html = html.replace(/src="\.\.\/docs/g,`src="${app.config.base}/docs"` );
                 html = html.replace(/src="\.\.\/assets\/uikit/g,`src="${app.config.base}"` );

@@ -1,6 +1,5 @@
 const components = require('./components.json');
 const menu = require('./intro.json');
-// const {swap} = require('./utils');
 
 function swap(json) {
   var ret = {};
