@@ -3,7 +3,7 @@ import marked from 'marked';
 const base = new marked.Renderer();//Markdown.baseRenderer;
 const renderer = new marked.Renderer();
 
-function sluggify(text) {
+export function sluggify(text) {
     return text.toLowerCase().trim().replace(/(&amp;| & )/g, '-and-').replace(/&(.+?);/g, '').replace(/[\s\W-]+/g, '-');
 }
 

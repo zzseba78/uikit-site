@@ -8,13 +8,16 @@ export default {
         this.$nextTick(this.collectHeadlines, this);
     },
     methods: {
-        collectHeadlines() {
-            const ids = UIkit.util.$$('h2 a[href^="#"]', this.$el).reduce((ids, el) => {
+
+        getHeadLines() {
+            return UIkit.util.$$('h2 a[href^="#"]', this.$el).reduce((ids, el) => {
                 ids[el.innerText] = UIkit.util.attr(el, 'href').substr(1);
                 return ids;
             }, {});
+        },
 
-            this.$headlineCollector.ids = ids;
+        collectHeadlines() {
+            this.$headlineCollector.ids = this.getHeadLines();
         }
     }
 }

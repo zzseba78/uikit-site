@@ -11,10 +11,40 @@
     import Page from '~/modules/doctools/page.vue';
     import HeadlineProvider from './HeadlineProvider';
     import CodeUtils from './CodeUtils';
+    import {forEach} from 'lodash-es';
+    import {sluggify} from '~/markdown';
+
 
     export default {
         extends: Page,
-        mixins: [HeadlineProvider, CodeUtils]
+        mixins: [HeadlineProvider, CodeUtils],
+
+        created() {
+            this.collectHeadlines();
+        },
+
+        methods: {
+            getHeadLines() {
+
+                const headlines = {};
+
+                const modules = [this.module];
+                forEach(this.module.assets, asset => {
+                    modules.push(asset);
+                });
+
+                modules.forEach(module => {
+
+                    forEach(module.headlines, cur => {
+                        const slug = sluggify(cur);
+                        headlines[cur] = slug;
+
+                    });
+                })
+
+                return headlines;
+            }
+        }
     }
 
 </script>

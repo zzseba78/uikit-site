@@ -10,6 +10,8 @@ cleanup dependecies of doctools
 
 build uikit!!!
 
+headline plugin
+
 cleanup
 
 unbundle uikit & less

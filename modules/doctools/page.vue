@@ -31,7 +31,7 @@
 
         head() {
             return {
-                title: upperFirst(this.moduleData.name)
+                title: upperFirst(this.moduleData.name) + ' - UIkit'
             };
         },
 

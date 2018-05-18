@@ -51,6 +51,9 @@
             "name": "nuxt generate",
             "program": "${workspaceFolder}/node_modules/.bin/nuxt",
             "cwd": "${workspaceFolder}",
+            "env": {
+                "DEBUG": "nuxt:*"
+            },
             "args": [
                 "generate"
             ]

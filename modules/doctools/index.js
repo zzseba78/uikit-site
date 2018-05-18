@@ -22,11 +22,6 @@ module.exports = function DocToolsModule (config) {
            return map;
         }, {});
 
-        fs.writeFileSync(path.join(tmpDir, '_globals.json'), JSON.stringify({
-            resources: nameMap,
-            nodeGlobals: data.nodeGlobals,
-            types: data.types
-        }, null, 2));
 
         _.forEach(publicResources, (res, name) => {
 
@@ -42,6 +37,13 @@ module.exports = function DocToolsModule (config) {
 
 
         })
+
+        fs.writeFileSync(path.join(tmpDir, '_globals.json'), JSON.stringify({
+            resources: nameMap,
+            nodeGlobals: data.nodeGlobals,
+            types: data.types
+        }, null, 2));
+
 
         if (config.mode === 'no-ssr') {
 
