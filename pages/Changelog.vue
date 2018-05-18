@@ -1,6 +1,4 @@
 
-
-
 <template>
 
     <div class="uk-section-primary tm-section-texture uk-preserve-color">
@@ -24,11 +22,12 @@
 
 <script>
 
+    import marked from 'marked';
+
     function getChangelog() {
 
-        return import('!raw-loader!uikit/CHANGELOG.md').then((text) => {
+        return import('!raw-loader!uikit/CHANGELOG.md').then(({default:text}) => {
 
-            return import('marked').then((marked) => {
 
                 const renderer = new marked.Renderer();
                 let section;
@@ -78,7 +77,6 @@
 
                 return {changelog: marked(text, {renderer})};
             });
-        });
 
     }
 

@@ -3,24 +3,19 @@ const _ = require('lodash');
 const path = require('path');
 const mkpath = require('mkpath');
 
-// const mkpath = require('mkpath');
-
 const Config = require('yootheme-doctools/src/Config');
 const DocTools = require('yootheme-doctools/src/DocTools');
 const HTMLExporter = require('yootheme-doctools/src/plugins/HTMLExporter.js');
 
 
-// debugger;
 module.exports = function DocToolsModule (config) {
 
     //generate a list of all components
     const dir = config.path || '/doctools';
 
-
     this.writtenFiles = [];
 
     const tmpDir = path.join(this.options.srcDir, '.doctools');
-
 
     const writeJSON = data => {
         const publicResources = this.htmlExporter.config.resources(this.doctools, data);
@@ -46,7 +41,11 @@ module.exports = function DocToolsModule (config) {
 
             this.writtenFiles.push(dest);
 
+
+
         })
+
+        debugger;
 
         if (config.mode === 'no-ssr') {
 
@@ -54,9 +53,6 @@ module.exports = function DocToolsModule (config) {
 
         }
     }
-
-    // debugger
-
 
     this.nuxt.hook('generate:before', generator => {
 
@@ -95,7 +91,9 @@ module.exports = function DocToolsModule (config) {
     });
 
     this.nuxt.hook('generate:done', () => {
+
         this.writtenFiles.forEach(fs.unlinkSync);
+
     });
 
     this.nuxt.hook('generate:extendRoutes', routes => {
@@ -140,19 +138,11 @@ module.exports = function DocToolsModule (config) {
 
         if (this.options.dev) {
 
-            // this.addServerMiddleware({
-            //     path: path + '/*',
-            //     handler(req, res, next) {
-            //         debugger;
-            //     }
-            // })
-
             this.doctools.analyze().then(app => {
 
                 writeJSON(app.get());
 
             });
-
 
         }
 
@@ -182,7 +172,9 @@ module.exports = function DocToolsModule (config) {
                 return true;
             }
         })) {} else {
+
             routes.push(docToolsRoute);
+
         }
 
     });

@@ -2,11 +2,12 @@ import {reduce} from 'lodash-es';
 import highlight from 'highlight.js';
 import marked from './markdown';
 
+
 export default {
 
     path: '/documentation',
 
-    component: __dirname + '/components/DocPage.js',
+    component: __dirname + '/components/DocPage.vue',
 
     routeMap(app, data) {
 
@@ -24,6 +25,11 @@ export default {
 
     highlight(code, lang, frame) {
 
+        // console.log('lang', lang);
+
+        if (!lang) {
+            console.warn('you should define needed languages for highlighting');
+        }
 
         const html = lang ? highlight.highlight(lang, code).value : highlight.highlightAuto(code).value;
         return frame ? `<pre><code class="language-${lang}">${html}</code></pre>` : html;
