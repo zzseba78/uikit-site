@@ -24,6 +24,12 @@ module.exports = function DocToolsModule (config) {
            return map;
         }, {});
 
+        fs.writeFileSync(path.join(tmpDir, '_globals.json'), JSON.stringify({
+            resources: nameMap,
+            nodeGlobals: data.nodeGlobals,
+            types: data.types
+        }, null, 2));
+
         _.forEach(publicResources, (res, name) => {
 
             //inline assets
@@ -32,20 +38,12 @@ module.exports = function DocToolsModule (config) {
             const dest = path.join(tmpDir, name) + '.json';
 
             mkpath.sync(path.dirname(dest));
-            fs.writeFileSync(dest, JSON.stringify({
-                moduleData: res,
-                resources: nameMap,
-                nodeGlobals: data.nodeGlobals,
-                types: data.types
-            }, null, 2));
+            fs.writeFileSync(dest, JSON.stringify(res, null, 2));
 
             this.writtenFiles.push(dest);
 
 
-
         })
-
-        debugger;
 
         if (config.mode === 'no-ssr') {
 
@@ -136,7 +134,7 @@ module.exports = function DocToolsModule (config) {
 
         this.doctools = new DocTools(conf);
 
-        if (this.options.isDev) {
+        if (this.options.dev) {
 
             this.doctools.analyze().then(app => {
 

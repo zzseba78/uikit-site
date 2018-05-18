@@ -32,12 +32,14 @@
 
         asyncData(context) {
 
-            return import(`~/.doctools/${context.params[0]}.json`).then(data => {
+            return Promise.all([
+                import(`~/.doctools/${context.params[0]}.json`),
+                import(`~/.doctools/_globals.json`)
+                ]).then(([moduleData, globals]) => {
 
-                return data;
-
+                    globals.moduleData = moduleData;
+                    return globals;
             });
-
         }
     }
 

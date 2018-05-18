@@ -55,8 +55,8 @@ export default {
 			{name: 'og:image', content:'https://getuikit.com/images/uikit-meta.png'}
 		],
 		link: [
-			{rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Reg-webfont.woff2'},
-			{rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Light-webfont.woff2'},
+			// {rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Reg-webfont.woff2'},
+			// {rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Light-webfont.woff2'},
 			{rel: 'shortcut icon', type: 'image/png', href: '/images/favicon.png'},
 			{rel: 'apple-touch-icon-precomposed', type: 'image/png', href: '/images/apple-touch-icon.png'}
 		],
@@ -66,8 +66,8 @@ export default {
 		]
 	},
 
-	css: [
-		'~/less/theme.less'
-	]
+	// css: [
+	// 	'~/less/theme.less'
+	// ]
 
 }
