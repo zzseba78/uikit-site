@@ -3,9 +3,7 @@ const _ = require('lodash');
 const path = require('path');
 const mkpath = require('mkpath');
 
-const Config = require('yootheme-doctools/src/Config');
-const DocTools = require('yootheme-doctools/src/DocTools');
-const HTMLExporter = require('yootheme-doctools/src/plugins/HTMLExporter.js');
+const {DocTools, HTMLExporter, Config} = require('yootheme-doctools');
 
 
 module.exports = function DocToolsModule (config) {
@@ -90,7 +88,7 @@ module.exports = function DocToolsModule (config) {
 
     this.nuxt.hook('generate:done', () => {
 
-        this.writtenFiles.forEach(fs.unlinkSync);
+        // this.writtenFiles.forEach(fs.unlinkSync);
 
     });
 

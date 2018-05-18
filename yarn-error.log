@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js dev
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js generate
 
 PATH: 
   /opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6:/Applications/MAMP/library/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6
@@ -22,19 +22,20 @@ npm manifest:
       "generate": "nuxt generate",
       "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
       "precommit": "npm run lint",
-      "test:genServ": "nuxt generate && npm run test:dist",
+      "test:genServ": "nuxt generate && npm run test:serveDist",
       "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
     },
     "devDependencies": {
+      "@nuxtjs/google-analytics": "^2.0.2",
+      "copy-text-to-clipboard": "^1.0.4",
       "highlight.js": "^9.12.0",
       "less": "^2.7.2",
       "less-loader": "^4.1.0",
-      "marked": "^0.3.19",
-      "raw-loader": "^0.5.1",
-      "@nuxtjs/google-analytics": "^2.0.2",
-      "copy-text-to-clipboard": "^1.0.4",
       "lodash-es": "^4.17.10",
+      "marked": "^0.3.19",
       "nuxt": "npm:nuxt-edge",
+      "raw-loader": "^0.5.1",
+      "mkpath": "^1.0.0",
       "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
     }
   }
@@ -3431,6 +3432,10 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
+  mkpath@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-1.0.0.tgz#ebb3a977e7af1c683ae6fda12b545a6ba6c5853d"
+  
   move-concurrently@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -5846,7 +5851,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c nuxt
+  Arguments: -c nuxt generate
   Directory: /Applications/MAMP/htdocs/uikit-site
   Output:
   

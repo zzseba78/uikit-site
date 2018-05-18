@@ -1,5 +1,4 @@
 import marked from 'marked';
-// const highlight = require('highlight.js');
 
 const base = new marked.Renderer();//Markdown.baseRenderer;
 const renderer = new marked.Renderer();

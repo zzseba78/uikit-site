@@ -1,6 +1,6 @@
-const components = require('./components.json');
-const menu = require('./intro.json');
-const _ = require('lodash');
+import components from './components.json';
+import menu from'./intro.json';
+import {invert} from 'lodash-es';
 
 export default {
 
@@ -17,7 +17,7 @@ export default {
     sidebar: [
       {
         ...menu.introduction,
-        items: _.invert(menu.introduction.items)
+        items: invert(menu.introduction.items)
       },
       {
           label: 'Components',

@@ -1,14 +1,19 @@
 
 <script>
 
-    import DocPage from 'yootheme-doctools/ui/app/DocPage.vue';
-    import DocBase from '!babel-loader!yootheme-doctools/ui/app/DocBase.js';
+    import {DocPage, DocBase} from 'yootheme-doctools/exports.es.js';
     import config from '~/doctools.nuxt.config.js';
     import Vue from 'vue';
+    import {upperFirst} from 'lodash-es';
+    import data from '~/.doctools/_globals.json';
 
     const DocApp = Vue.extend({
 
         extends: DocBase,
+
+        data() {
+            return {data}
+        },
 
         methods: {
 
@@ -24,6 +29,12 @@
 
         extends: DocPage,
 
+        head() {
+            return {
+                title: upperFirst(this.moduleData.name)
+            };
+        },
+
         provide() {
 
             return {$doc: new DocApp()};
@@ -32,14 +43,8 @@
 
         asyncData(context) {
 
-            return Promise.all([
-                import(`~/.doctools/${context.params[0]}.json`),
-                import(`~/.doctools/_globals.json`)
-                ]).then(([moduleData, globals]) => {
-
-                    globals.moduleData = moduleData;
-                    return globals;
-            });
+            return import(`~/.doctools/${context.params[0]}.json`)
+                .then(({default: moduleData}) => ({moduleData}));
         }
     }
 

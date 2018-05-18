@@ -13,7 +13,7 @@ module.exports = {
         uikit: new UIkitRunner
     },
 
-    dev: false,
+    dev: true,
 
     output: false
 

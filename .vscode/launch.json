@@ -11,6 +11,9 @@
             "name": "VuePress dev",
             "program": "/usr/local/bin/vuepress",
             "cwd": "${workspaceFolder}/vuepress",
+            "env": {
+                "DEBUG": "nuxt:*"
+            },
             "args": [
                 "dev"
             ]
@@ -30,6 +33,9 @@
             "request": "launch",
             "name": "nuxt dev",
             "program": "${workspaceFolder}/node_modules/.bin/nuxt",
+            "env": {
+                "DEBUG": "nuxt:*"
+            },
             "cwd": "${workspaceFolder}",
         },
         {

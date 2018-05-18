@@ -1,10 +1,10 @@
 import Vue from 'vue';
 
-import 'yootheme-doctools/packages/uikit-ssr'; //UIkit
-import ExampleRunner from 'yootheme-doctools/ui/app/ExampleRunner.vue'; //UIkit
-import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner'; //UIkit
+import 'yootheme-doctools/packages/uikit-ssr';
 
-ExampleRunner.runners['uikit'] = new UIkitRunner;
+import {Registry, UIkitRunner} from 'yootheme-doctools/exports.es.js'; //UIkit
+
+Registry.runners['uikit'] = new UIkitRunner;
 
 import config from '../config.js';
 
@@ -34,7 +34,8 @@ Vue.mixin({
     methods: {
 
         attachUIKit() {
-            this.$nextTick(el => {
+
+            process.client && this.$nextTick(el => {
 
                 const uks = UIkit.util.$$('[uk]', this.$el);
 

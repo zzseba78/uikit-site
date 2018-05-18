@@ -14,15 +14,22 @@ cleanup
 
 unbundle uikit & less
 
-pages => strings
-
-
---------
 
 prebuild changelog
-preload fonts / meta headers
 
-evalueate runner
+edit page links
 
-create hash to trigger client changes
-replace iso data template (more templates?)
+create hash to trigger client changes (only if using middleware)
+    -also for caching
+
+align bug?
+
+empty pages on server (to save space)
+
+accordion/page (type) change bug
+
+fonts preload bug?
+font prelload attr value?
+
+preload only for non mamanged assets!
+    non managed and managed

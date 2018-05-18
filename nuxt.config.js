@@ -1,4 +1,3 @@
-import UIkitRunner from 'yootheme-doctools/src/runnner/UIkitRunner.min.js';
 import doctoolsConf from './doctools.nuxt.config';
 
 export default {
@@ -15,7 +14,7 @@ export default {
 
 		},
 
-		cache: true,
+		// cache: true,
 
 		// parallel: true,
 
@@ -38,6 +37,15 @@ export default {
 		['@nuxtjs/google-analytics', { id: 'UA-42150424-1' }]
 	],
 
+	// render: {
+	// 	bundleRenderer: {
+	// 	  shouldPreload: (file, type) => {
+	// 		// console.log('preload?:', file);
+	// 		return ['script', 'style', 'font'].includes(type)
+	// 	  }
+	// 	}
+	//   },
+
 	head: {
 		title: 'UIkit',
 		meta: [
@@ -55,8 +63,8 @@ export default {
 			{name: 'og:image', content:'https://getuikit.com/images/uikit-meta.png'}
 		],
 		link: [
-			// {rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Reg-webfont.woff2'},
-			// {rel: 'preload', type: 'font/woff2', as:"font", crossorigin: true, href: '/fonts/ProximaNova-Light-webfont.woff2'},
+			{rel: 'preload', type: 'font/woff2', as: 'font', crossorigin: '', href: '/fonts/ProximaNova-Reg-webfont.woff2'},
+			{rel: 'preload', type: 'font/woff2', as: 'font', crossorigin: '', href: '/fonts/ProximaNova-Light-webfont.woff2'},
 			{rel: 'shortcut icon', type: 'image/png', href: '/images/favicon.png'},
 			{rel: 'apple-touch-icon-precomposed', type: 'image/png', href: '/images/apple-touch-icon.png'}
 		],
@@ -66,8 +74,8 @@ export default {
 		]
 	},
 
-	css: [
-		'~/less/theme.less'
-	]
+	// css: [
+	// 	'~/less/theme.less'
+	// ]
 
 }
