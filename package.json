@@ -6,7 +6,7 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "test:genServ": "nuxt generate && npm run test:dist",
+    "test:genServ": "nuxt generate && npm run test:serveDist",
     "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
   },
   "devDependencies": {

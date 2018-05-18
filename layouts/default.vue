@@ -24,4 +24,7 @@
 
 </template>
 
+<style src="~/less/theme.less">
+</style>
+
 

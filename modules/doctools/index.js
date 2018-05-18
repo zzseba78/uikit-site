@@ -136,7 +136,7 @@ module.exports = function DocToolsModule (config) {
 
         this.doctools = new DocTools(conf);
 
-        if (this.options.dev) {
+        if (this.options.isDev) {
 
             this.doctools.analyze().then(app => {
 
