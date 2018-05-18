@@ -66,8 +66,8 @@ export default {
 		]
 	},
 
-	// css: [
-	// 	'~/less/theme.less'
-	// ]
+	css: [
+		'~/less/theme.less'
+	]
 
 }
