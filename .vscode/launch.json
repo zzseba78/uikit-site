@@ -57,6 +57,13 @@
             "args": [
                 "generate"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "inline uikit",
+            "program": "${workspaceFolder}/preinline.js",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

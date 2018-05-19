@@ -6,20 +6,10 @@ show component links to test
 
 genate tests as well
 
-cleanup dependecies of doctools
-
-build uikit!!!
-
-headline plugin
-
-cleanup
-
-unbundle uikit & less
+-pre- inline uikit in generate page html
 
 
-prebuild changelog
-
-edit page links
+edit page/source links
 
 create hash to trigger client changes (only if using middleware)
     -also for caching
@@ -35,3 +25,6 @@ font prelload attr value?
 
 preload only for non mamanged assets!
     non managed and managed
+
+
+check manually registering assets to webpack
