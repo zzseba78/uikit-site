@@ -13,7 +13,7 @@ module.exports = function DocToolsModule (config) {
 
     this.writtenFiles = [];
 
-    const tmpDir = path.join(this.options.srcDir, '.doctools');
+    const tmpDir = path.join(this.options.srcDir, '.doctools', '_export');
 
     const writeJSON = data => {
         const publicResources = this.htmlExporter.config.resources(this.doctools, data);
@@ -21,7 +21,6 @@ module.exports = function DocToolsModule (config) {
            map[res.resource] = {name: res.name};
            return map;
         }, {});
-
 
         _.forEach(publicResources, (res, name) => {
 
@@ -35,15 +34,15 @@ module.exports = function DocToolsModule (config) {
 
             this.writtenFiles.push(dest);
 
-
         })
 
         fs.writeFileSync(path.join(tmpDir, '_globals.json'), JSON.stringify({
             resources: nameMap,
             nodeGlobals: data.nodeGlobals,
+            path: dir,
+            routeMap: data.routeMap,
             types: data.types
         }, null, 2));
-
 
         if (config.mode === 'no-ssr') {
 
@@ -128,7 +127,11 @@ module.exports = function DocToolsModule (config) {
 
         });
 
-        const conf = new Config();
+        const conf = new Config({
+            cache: {
+                dir: this.options.srcDir
+            }
+        });
 
         conf.addPlugin(this.htmlExporter);
 
@@ -136,11 +139,15 @@ module.exports = function DocToolsModule (config) {
 
         if (this.options.dev) {
 
-            this.doctools.analyze().then(app => {
+            this.doctools.on('change', res => {
 
-                writeJSON(app.get());
+                this.doctools.analyze().then(app => {
+                    writeJSON(app.get());
+                });
 
             });
+
+            this.doctools.emit('change');
 
         }
 

@@ -1,5 +1,9 @@
 import marked from 'marked';
 
+marked.Lexer.rules.normal.code = {exec: () => false};
+marked.Lexer.rules.gfm.code = {exec: () => false};
+marked.Lexer.rules.tables.code = {exec: () => false};
+
 const base = new marked.Renderer();//Markdown.baseRenderer;
 const renderer = new marked.Renderer();
 
@@ -24,6 +28,5 @@ renderer.link = (href, title, text) => href.match(/\.md/) ? base.link(href.repla
 renderer.hr = () => `<hr class="uk-margin-large">`;
 renderer.table = (header, body) => `<div class="uk-overflow-auto"><table class="uk-table uk-table-divider"><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
 renderer.heading = (text, level) => `<h${level} id="${sluggify(text)}" class="uk-h${level > 1 ? level + 1 : level} tm-heading-fragment"><a href="#${sluggify(text)}">${text}</a></h${level}>`;
-
 
 export default (text, options = {}) => marked(text, {renderer, ...options});

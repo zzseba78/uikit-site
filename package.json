@@ -17,9 +17,13 @@
     "less-loader": "^4.1.0",
     "lodash-es": "^4.17.10",
     "marked": "^0.3.19",
+    "mkpath": "^1.0.0",
     "nuxt": "npm:nuxt-edge",
     "raw-loader": "^0.5.1",
-    "mkpath": "^1.0.0",
     "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
+  },
+  "dependencies": {
+    "jsdom": "^11.10.0",
+    "jsdom-global": "^3.0.2"
   }
 }
