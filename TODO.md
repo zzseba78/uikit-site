@@ -15,6 +15,7 @@ align bug?
 
 empty pages on server (to save space) ?
 
+link inside modeule
 
 preload only for non mamanged assets!
     non managed and managed
@@ -27,3 +28,12 @@ markedjs, chokes on code with pre-indention, thinks is actual code block
 utility, transition, table, parallax, overlay, marker
 
 compare original UIkit repo
+
+
+today:
+
+asset management
+event declaration
+language usage
+structure
+stick bug width?

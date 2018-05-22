@@ -6,6 +6,9 @@ export default {
 
 		extend(config, context) {
 
+			config.module.rules[0].options.compilerOptions = {
+				preserveWhitespace: false
+			}
 			if (context.isClient) {
 				config.externals = {
 					'uikit': 'UIkit'
@@ -13,10 +16,6 @@ export default {
 			}
 
 		},
-
-		// cache: true,
-
-		// parallel: true,
 
 		extractCSS: true,
 
@@ -69,8 +68,8 @@ export default {
 			{rel: 'apple-touch-icon-precomposed', type: 'image/png', href: '/images/apple-touch-icon.png'}
 		],
 		script: [
-			{src: '/js/uikit.min.js', defer: true},
-			{src: '/js/uikit-icons.min.js', defer: true}
+			{src: '/uikit/dist/js/uikit.min.js', defer: true},
+			{src: '/uikit/dist/js/uikit-icons.min.js', defer: true}
 		]
 	},
 

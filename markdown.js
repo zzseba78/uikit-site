@@ -29,4 +29,6 @@ renderer.hr = () => `<hr class="uk-margin-large">`;
 renderer.table = (header, body) => `<div class="uk-overflow-auto"><table class="uk-table uk-table-divider"><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
 renderer.heading = (text, level) => `<h${level} id="${sluggify(text)}" class="uk-h${level > 1 ? level + 1 : level} tm-heading-fragment"><a href="#${sluggify(text)}">${text}</a></h${level}>`;
 
-export default (text, options = {}) => marked(text, {renderer, ...options});
+export default (text, options = {}) => {
+    return marked(text, {renderer, ...options})
+};
