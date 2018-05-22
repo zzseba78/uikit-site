@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "install": "cd ./node_modules/uikit && npm i && cd ../../ && symlink-dir ./node_modules/uikit ./static/uikit",
+    "link": "yarn link yootheme-doctools && yarn link uikit",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -10,6 +12,7 @@
     "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
   },
   "devDependencies": {
+    "yootheme-doctools": "dasdeck/doctools#master",
     "@nuxtjs/google-analytics": "^2.0.2",
     "copy-text-to-clipboard": "^1.0.4",
     "highlight.js": "^9.12.0",
@@ -18,12 +21,9 @@
     "lodash-es": "^4.17.10",
     "marked": "^0.3.19",
     "mkpath": "^1.0.0",
+    "symlink-dir": "^1.1.2",
     "nuxt": "npm:nuxt-edge",
     "raw-loader": "^0.5.1",
-    "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
-  },
-  "dependencies": {
-    "jsdom": "^11.10.0",
-    "jsdom-global": "^3.0.2"
+    "uikit": "uikit/uikit#feature/doctools"
   }
 }

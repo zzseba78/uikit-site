@@ -27,6 +27,8 @@ markedjs, chokes on code with pre-indention, thinks is actual code block
 
 utility, transition, table, parallax, overlay, marker
 
+- modal, overlay, grid parallax
+
 compare original UIkit repo
 
 
