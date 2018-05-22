@@ -19,23 +19,10 @@ Vue.mixin({
     computed: {
         $config() {
             return config;
-        }
-    },
+        },
 
-    updated() {
-        this.attachUIKit();
-
-    },
-
-    mounted() {
-        this.attachUIKit();
-    },
-
-    methods: {
-
-        $t(text, vars) {
-
-            const trans = {
+        $language() {
+            return {
                 '<h2>props:</h2>':
 
                 `<h2 id="component-options" class="uk-h3 tm-heading-fragment"><a href="#component-options">Component options</a></h2>
@@ -54,9 +41,26 @@ Vue.mixin({
                 '<h2>$functionName:</h2>':
 
                 `<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>`
-            }
+            };
+        }
+    },
 
-            text = trans[text] || text;
+    updated() {
+        this.attachUIKit();
+
+    },
+
+    mounted() {
+        this.attachUIKit();
+    },
+
+    methods: {
+
+        $t(text, vars) {
+
+
+
+            text = this.$language[text] || text;
 
             if (vars) {
                 return text.replace(/\$(\w+)/g, (all, word) => vars[word] ? vars[word] : word);
