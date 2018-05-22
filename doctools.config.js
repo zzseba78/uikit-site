@@ -1,4 +1,4 @@
-const uikitConf = require('/Users/jms/uikit-doctools/doctools.config.js');
+const uikitConf = require('uikit/doctools.config.js');
 
 const UIkitRunner = require('yootheme-doctools/src/runnner/UIkitRunner.min.js').default;
 

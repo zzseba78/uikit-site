@@ -29,6 +29,8 @@ utility, transition, table, parallax, overlay, marker
 
 - modal, overlay, grid parallax
 
+- prevent marked from damaging preprocessed examples
+
 compare original UIkit repo
 
 
