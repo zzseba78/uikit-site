@@ -18,7 +18,7 @@ export default {
 
     path: '/documentation',
 
-    component: __dirname + '/components/DocPage.vue',
+    component: __dirname + '/components/Page.vue',
 
     routeMap(app, data) {
 
