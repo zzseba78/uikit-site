@@ -63,8 +63,8 @@
 
     import pack from 'uikit/package.json';
 
-    function getGazers() {
-        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
+    function getGazers(context) {
+        return  UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
 
             if (response && response.stargazers_count) {
                 return {stargazers: response.stargazers_count}
@@ -76,9 +76,7 @@
 
     export default {
 
-        asyncData ()  {
-            return getGazers()
-        },
+        asyncData: getGazers,
 
         computed: {
             version() {
