@@ -1,7 +1,7 @@
 
 <script>
 
-    import {DocPage, DocBase} from 'yootheme-doctools/exports.es.js';
+    import {Page, DocBase} from 'yootheme-doctools/exports.es.js';
     import config from '~/doctools.nuxt.config.js';
     import Vue from 'vue';
     import {upperFirst, invert} from 'lodash-es';
@@ -35,7 +35,7 @@
             .then(({default: moduleData}) => ({moduleData}))
         },
 
-        extends: DocPage,
+        extends: Page,
 
         head() {
             return {

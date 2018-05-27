@@ -36,15 +36,6 @@ export default {
 		['@nuxtjs/google-analytics', { id: 'UA-42150424-1' }]
 	],
 
-	// render: {
-	// 	bundleRenderer: {
-	// 	  shouldPreload: (file, type) => {
-	// 		// console.log('preload?:', file);
-	// 		return ['script', 'style', 'font'].includes(type)
-	// 	  }
-	// 	}
-	//   },
-
 	head: {
 		title: 'UIkit',
 		meta: [

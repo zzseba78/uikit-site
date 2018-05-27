@@ -13,7 +13,6 @@ module.exports = function DocToolsModule (config) {
 
     this.writtenFiles = [];
 
-    const tmpDir = path.join(this.options.srcDir, '.doctools', '_export');
 
     const writeJSON = data => {
         const publicResources = this.htmlExporter.config.resources(this.doctools, data);
@@ -27,28 +26,21 @@ module.exports = function DocToolsModule (config) {
             //inline assets
             res.assets = _.mapValues(res.assets, asset => data.resources[asset]);
 
-            const dest = path.join(tmpDir, name) + '.json';
 
-            mkpath.sync(path.dirname(dest));
-            fs.writeFileSync(dest, JSON.stringify(res, null, 2));
+            const dest = this.doctools.writeExport(`${name}.json`, res);
 
             this.writtenFiles.push(dest);
 
         })
 
-        fs.writeFileSync(path.join(tmpDir, '_globals.json'), JSON.stringify({
+        this.doctools.writeExport('_globals.json', {
             resources: nameMap,
             nodeGlobals: data.nodeGlobals,
             path: dir,
             routeMap: data.routeMap,
             types: data.types
-        }, null, 2));
-
-        if (config.mode === 'no-ssr') {
-
-        } else {
-
-        }
+        })
+        config.onWrite && config.onWrite(this.doctools, data);
     }
 
     this.nuxt.hook('generate:before', generator => {

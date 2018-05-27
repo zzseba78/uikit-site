@@ -1,21 +1,18 @@
 fix direct/md links in components
 
-improve components layout / make customizable
 
 
 show component links to test
 generate tests as well
 
--pre- inline uikit in generate page html
-
 
 edit page/source links
 
-align bug?
+align bug when generating?
 
 empty pages on server (to save space) ?
 
-link inside modeule
+link inside module (#hash to headlines)
 
 preload only for non mamanged assets!
     non managed and managed
@@ -23,13 +20,13 @@ preload only for non mamanged assets!
 
 check manually registering assets to webpack
 
-markedjs, chokes on code with pre-indention, thinks is actual code block
 
-utility, transition, table, parallax, overlay, marker
 
 - modal, overlay, grid parallax
+- utility, transition, table, parallax, overlay, marker
 
 - prevent marked from damaging preprocessed examples
+    -prevent form adding <p> inside html
 
 compare original UIkit repo
 
@@ -37,7 +34,4 @@ compare original UIkit repo
 today:
 
 asset management
-event declaration
-language usage
-structure
-stick bug width?
+language usage -> out as much as possible

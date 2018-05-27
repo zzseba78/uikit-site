@@ -20,6 +20,12 @@ export default {
 
     component: __dirname + '/components/Page.vue',
 
+    onWrite(app, data) {
+        const components = {};
+        Object.values(app.resources).foreEach(res => components[res.name] = res.name.replace(/-[a-z]/g, res => ` ${res.toUpperCase()}`));
+        app.writeExport('_components.json', components);
+    },
+
     routeMap(app, data) {
 
         return reduce(app.resources, (map, res) => {

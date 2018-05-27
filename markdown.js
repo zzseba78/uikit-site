@@ -1,4 +1,5 @@
 import marked from 'marked';
+import {sluggify} from './utils';
 
 marked.Lexer.rules.normal.code = {exec: () => false};
 marked.Lexer.rules.gfm.code = {exec: () => false};
@@ -7,9 +8,6 @@ marked.Lexer.rules.tables.code = {exec: () => false};
 const base = new marked.Renderer();//Markdown.baseRenderer;
 const renderer = new marked.Renderer();
 
-export function sluggify(text) {
-    return text.toLowerCase().trim().replace(/(&amp;| & )/g, '-and-').replace(/&(.+?);/g, '').replace(/[\s\W-]+/g, '-');
-}
 
 const modal = (href, text) => {
     const slug = 'modal-' + sluggify(text);

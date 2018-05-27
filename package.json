@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "install": "symlink-dir ./node_modules/uikit ./static/uikit",
+    "install": "cd node_modules/uikit && npm i && cd ../.. && symlink-dir ./node_modules/uikit ./static/uikit",
     "link": "yarn link yootheme-doctools && yarn link uikit",
     "dev": "nuxt",
     "build": "nuxt build",
