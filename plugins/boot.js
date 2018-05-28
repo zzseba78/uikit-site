@@ -42,7 +42,11 @@ Vue.mixin({
 
                 '<h2>$functionName:</h2>':
 
-                `<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>`
+                `<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>`,
+
+                '<a href="$repoLink">edit in repo</a>': (vars) => {
+                    return '<a href="$repoLink"><span uk="icon" icon="pencil" uk-tooltip="edit this resource">edit this resource</span></a>';
+                }
             };
         }
     },
@@ -60,9 +64,11 @@ Vue.mixin({
 
         $t(text, vars) {
 
-
-
             text = this.$language[text] || text;
+
+            if (typeof text === 'function') {
+                text = text(vars);
+            }
 
             if (vars) {
                 return text.replace(/\$(\w+)/g, (all, word) => vars[word] ? vars[word] : word);

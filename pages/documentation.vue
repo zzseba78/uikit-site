@@ -21,8 +21,8 @@
                             <a :href="'#'+id">{{ subject }}</a>
                         </li>
                         <li class="uk-nav-divider"></li>
-                        <li v-if="module.component">
-                            <a :href="'../assets/uikit/tests/' + module.component + '.html'" target="_blank">
+                        <li v-if="component">
+                            <a :href="'/uikit/tests/' + component + '.html'" target="_blank">
                                 <span class="uk-margin-small-right" uk="icon" icon="push"></span>
                                 <span class="uk-text-middle">Open test</span>
                             </a>
@@ -39,12 +39,12 @@
                                 <span class="uk-text-middle">Get help</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a :href="'https://github.com/uikit/uikit-site/tree/develop/docs/pages/'+$route.params.page+'.md'" target="_blank">
                                 <span class="uk-margin-small-right" uk="icon" icon="pencil"></span>
                                 <span class="uk-text-middle">Edit this page</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
 
                 </div>
@@ -69,8 +69,8 @@ export default {
     },
 
     computed: {
-        module() {
-            return {};
+        component() {
+            return this.$route.path.includes('/component/') && this.$route.path.split('/').pop()
         }
     },
 

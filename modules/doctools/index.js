@@ -16,16 +16,18 @@ module.exports = function DocToolsModule (config) {
 
     const writeJSON = data => {
         const publicResources = this.htmlExporter.config.resources(this.doctools, data);
+
         const nameMap = _.reduce(publicResources,(map,res) => {
            map[res.resource] = {name: res.name};
            return map;
         }, {});
 
+        const rootPackage = data.resources[data.rootPackage];
+
         _.forEach(publicResources, (res, name) => {
 
             //inline assets
             res.assets = _.mapValues(res.assets, asset => data.resources[asset]);
-
 
             const dest = this.doctools.writeExport(`${name}.json`, res);
 
@@ -37,6 +39,7 @@ module.exports = function DocToolsModule (config) {
             resources: nameMap,
             nodeGlobals: data.nodeGlobals,
             path: dir,
+            repo: rootPackage && rootPackage.packageJson && rootPackage.packageJson.repository,
             routeMap: data.routeMap,
             types: data.types
         })
