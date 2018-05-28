@@ -33,8 +33,27 @@ export default {
 
 	modules: [
 		['~/modules/doctools', doctoolsConf],
+		'@nuxtjs/pwa',
 		['@nuxtjs/google-analytics', { id: 'UA-42150424-1' }]
 	],
+
+	manifest: {
+		name: 'UIkit',
+		lang: 'de'
+	},
+
+	workbox: {
+		runtimeCaching: [
+		{
+		  // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
+		  urlPattern: '/.*',
+		  // Defaults to `networkFirst` if omitted
+		  handler: 'cacheFirst',
+		  // Defaults to `GET` if omitted
+		  method: 'GET'
+		}
+	  ]
+  },
 
 	head: {
 		title: 'UIkit',

@@ -2,7 +2,7 @@ Arguments:
   /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js dev
 
 PATH: 
-  /opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6:/Applications/MAMP/library/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+  /opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6:/Applications/MAMP/library/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6
 
 Yarn version: 
   1.5.1
