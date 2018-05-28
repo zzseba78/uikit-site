@@ -2,7 +2,7 @@
     <div v-if="module" @click="click">
         <Markdown v-if="module.readme" :text="module.readme"/>
         <Assets v-if="module.assets" :assets="module.assets"/>
-        <UIkitComponent v-if="module.component" :data="module"/>
+        <UIkitComponent v-if="module.component" :moduleProperty="module"/>
     </div>
 </template>
 
