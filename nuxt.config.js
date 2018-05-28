@@ -43,6 +43,10 @@ export default {
 	},
 
 	workbox: {
+		globDirectory: __dirname,
+		globPatterns: [
+			'static/**/*'
+		],
 		runtimeCaching: [
 		{
 		  // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
