@@ -1,4 +1,4 @@
-import UIkitRunner from '!babel-loader!yootheme-doctools/src/runnner/UIkitRunner';
+import UIkitRunner from '../lib/UIkitRunner';
 import copyToCB from 'copy-text-to-clipboard';
 
 function deIndent(code) {

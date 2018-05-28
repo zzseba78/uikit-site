@@ -1,5 +1,5 @@
 import marked from 'marked';
-import {sluggify} from './utils';
+import {sluggify} from './lib/utils';
 
 marked.Lexer.rules.normal.code = {exec: () => false};
 marked.Lexer.rules.gfm.code = {exec: () => false};

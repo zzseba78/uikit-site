@@ -2,7 +2,9 @@ import Vue from 'vue';
 
 import 'yootheme-doctools/packages/uikit-ssr';
 
-import {Registry, UIkitRunner} from 'yootheme-doctools/exports.es.js'; //UIkit
+import {Registry} from 'yootheme-doctools/exports.es.js'; //UIkit
+import UIkitRunner from '../lib/UIkitRunner';
+
 
 Registry.runners['uikit'] = new UIkitRunner;
 

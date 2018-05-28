@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js generate
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js dev
 
 PATH: 
-  /opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6:/Applications/MAMP/library/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6
+  /opt/local/bin:/opt/local/sbin:/Applications/MAMP/bin/php/php7.1.6/bin:/Applications/MAMP/library/bin:/Applications/MAMP/bin/php/php7.1.6:/Applications/MAMP/library/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 Yarn version: 
   1.5.1
@@ -16,6 +16,8 @@ Platform:
 npm manifest: 
   {
     "scripts": {
+      "install": "cd node_modules/uikit && npm i && cd ../.. && symlink-dir ./node_modules/uikit ./static/uikit",
+      "link": "yarn link yootheme-doctools && yarn link uikit",
       "dev": "nuxt",
       "build": "nuxt build",
       "start": "nuxt start",
@@ -26,6 +28,7 @@ npm manifest:
       "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
     },
     "devDependencies": {
+      "yootheme-doctools": "dasdeck/doctools#master",
       "@nuxtjs/google-analytics": "^2.0.2",
       "copy-text-to-clipboard": "^1.0.4",
       "highlight.js": "^9.12.0",
@@ -33,10 +36,11 @@ npm manifest:
       "less-loader": "^4.1.0",
       "lodash-es": "^4.17.10",
       "marked": "^0.3.19",
+      "mkpath": "^1.0.0",
+      "symlink-dir": "^1.1.2",
       "nuxt": "npm:nuxt-edge",
       "raw-loader": "^0.5.1",
-      "mkpath": "^1.0.0",
-      "uikit": "github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
+      "uikit": "uikit/uikit#feature/doctools"
     }
   }
 
@@ -70,6 +74,16 @@ Lockfile:
       cookie "^0.3.1"
       mustache "^2.3.0"
       stack-trace "0.0.10"
+  
+  "@types/mz@0.0.32":
+    version "0.0.32"
+    resolved "https://registry.yarnpkg.com/@types/mz/-/mz-0.0.32.tgz#e8248b4e41424c052edc1725dd33650c313a3659"
+    dependencies:
+      "@types/node" "*"
+  
+  "@types/node@*", "@types/node@^10.0.8":
+    version "10.1.2"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.2.tgz#1b928a0baa408fc8ae3ac012cc81375addc147c6"
   
   "@vue/component-compiler-utils@^1.2.1":
     version "1.2.1"
@@ -288,6 +302,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
     dependencies:
       color-convert "^1.9.0"
+  
+  any-promise@^1.0.0:
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
   
   anymatch@^2.0.0:
     version "2.0.0"
@@ -2972,7 +2990,7 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   
-  is-windows@^1.0.2:
+  is-windows@^1.0.0, is-windows@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
   
@@ -3426,7 +3444,13 @@ Lockfile:
       for-in "^1.0.2"
       is-extendable "^1.0.1"
   
-  "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+  mkdirp-promise@^5.0.0:
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/mkdirp-promise/-/mkdirp-promise-5.0.1.tgz#e9b8f68e552c68a9c1713b84883f7a1dd039b8a1"
+    dependencies:
+      mkdirp "*"
+  
+  mkdirp@*, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
     version "0.5.1"
     resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
     dependencies:
@@ -3458,6 +3482,14 @@ Lockfile:
   mute-stream@0.0.7:
     version "0.0.7"
     resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
+  
+  mz@^2.4.0:
+    version "2.7.0"
+    resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
+    dependencies:
+      any-promise "^1.0.0"
+      object-assign "^4.0.1"
+      thenify-all "^1.0.0"
   
   nan@^2.3.0:
     version "2.10.0"
@@ -3756,6 +3788,10 @@ Lockfile:
   opener@^1.4.3:
     version "1.4.3"
     resolved "https://registry.yarnpkg.com/opener/-/opener-1.4.3.tgz#5c6da2c5d7e5831e8ffa3964950f8d6674ac90b8"
+  
+  openurl@^1.1.1:
+    version "1.1.1"
+    resolved "https://registry.yarnpkg.com/openurl/-/openurl-1.1.1.tgz#3875b4b0ef7a52c156f0db41d4609dbb0f94b387"
   
   opn@4.0.2:
     version "4.0.2"
@@ -5256,6 +5292,17 @@ Lockfile:
       sax "~1.2.1"
       whet.extend "~0.9.9"
   
+  symlink-dir@^1.1.2:
+    version "1.1.3"
+    resolved "https://registry.yarnpkg.com/symlink-dir/-/symlink-dir-1.1.3.tgz#b09af9599af5310c2fb77adc0c1613dee382ce4e"
+    dependencies:
+      "@types/mz" "0.0.32"
+      "@types/node" "^10.0.8"
+      graceful-fs "^4.1.11"
+      is-windows "^1.0.0"
+      mkdirp-promise "^5.0.0"
+      mz "^2.4.0"
+  
   table@^4.0.3:
     version "4.0.3"
     resolved "https://registry.yarnpkg.com/table/-/table-4.0.3.tgz#00b5e2b602f1794b9acaf9ca908a76386a7813bc"
@@ -5295,6 +5342,18 @@ Lockfile:
       block-stream "*"
       fstream "^1.0.2"
       inherits "2"
+  
+  thenify-all@^1.0.0:
+    version "1.6.0"
+    resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
+    dependencies:
+      thenify ">= 3.1.0 < 4"
+  
+  "thenify@>= 3.1.0 < 4":
+    version "3.3.0"
+    resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.3.0.tgz#e69e38a1babe969b0108207978b9f62b88604839"
+    dependencies:
+      any-promise "^1.0.0"
   
   thread-loader@^1.1.5:
     version "1.1.5"
@@ -5435,9 +5494,9 @@ Lockfile:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
   
-  "uikit@github:uikit/uikit#12d04b7c6cd7343fc0e7e9599f9c89246947cb70":
-    version "3.0.0-beta.42"
-    resolved "https://codeload.github.com/uikit/uikit/tar.gz/12d04b7c6cd7343fc0e7e9599f9c89246947cb70"
+  uikit@uikit/uikit#feature/doctools:
+    version "3.0.0-rc.2"
+    resolved "https://codeload.github.com/uikit/uikit/tar.gz/74ce9727474af4c032689ad83ca7f90fe78bc529"
   
   union-value@^1.0.0:
     version "1.0.0"
@@ -5846,12 +5905,18 @@ Lockfile:
   yallist@^2.1.2:
     version "2.1.2"
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+  
+  yootheme-doctools@dasdeck/doctools#master:
+    version "1.0.0"
+    resolved "https://codeload.github.com/dasdeck/doctools/tar.gz/7ec204b3b309abad4c10498392ee2d32c327f28f"
+    dependencies:
+      openurl "^1.1.1"
 
 Trace: 
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c nuxt generate
+  Arguments: -c nuxt
   Directory: /Applications/MAMP/htdocs/uikit-site
   Output:
   

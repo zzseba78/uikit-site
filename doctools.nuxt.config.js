@@ -22,7 +22,7 @@ export default {
 
     onWrite(app, data) {
         const components = {};
-        Object.values(app.resources).foreEach(res => components[res.name] = res.name.replace(/-[a-z]/g, res => ` ${res.toUpperCase()}`));
+        Object.values(app.resources).forEach(res => components[res.name] = res.name.replace(/-[a-z]/g, res => ` ${res.toUpperCase()}`));
         app.writeExport('_components.json', components);
     },
 

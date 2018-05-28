@@ -1,5 +1,8 @@
 fix direct/md links in components
 
+keep fonts in asset management?
+    -fonts have mixed management due to preloading
+-deployment as full copy?
 
 
 show component links to test
@@ -19,7 +22,6 @@ preload only for non mamanged assets!
 
 
 check manually registering assets to webpack
-
 
 
 - modal, overlay, grid parallax

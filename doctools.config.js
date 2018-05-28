@@ -1,7 +1,5 @@
 const uikitConf = require('uikit/doctools.config.js');
 
-const UIkitRunner = require('yootheme-doctools/src/runnner/UIkitRunner.min.js').default;
-
 
 module.exports = {
 
@@ -9,9 +7,6 @@ module.exports = {
 
     include: [ 'src/js/@(core|mixin|components)/*', 'docs/**/*.md', 'package.json', 'README.md'],
 
-    runners: {
-        uikit: new UIkitRunner
-    },
 
     dev: true,
 
