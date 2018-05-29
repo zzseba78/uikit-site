@@ -39,22 +39,29 @@ export default {
 
 	manifest: {
 		name: 'UIkit',
-		lang: 'de'
+		lang: 'de',
+		background_color: '#39f'
 	},
 
 	workbox: {
-		globDirectory: __dirname,
+		// globDirectory: __dirname,
 		globPatterns: [
-			'static/**/*'
+			// 'static/**/*',
+			'dist/**/*'
 		],
-		runtimeCaching: [
+		globDirectory: __dirname,
+		modifyUrlPrefix: {
+			'dist/': '/',
+			'': ''
+		},
+		_runtimeCaching: [
 		{
-		  // Should be a regex string. Compiles into new RegExp('https://my-cdn.com/.*')
+		  urlPattern: '/_nuxt/.*',
+		  handler: 'cacheFirst'
+		},
+		{
 		  urlPattern: '/.*',
-		  // Defaults to `networkFirst` if omitted
-		  handler: 'cacheFirst',
-		  // Defaults to `GET` if omitted
-		  method: 'GET'
+		  handler: 'cacheFirst'
 		}
 	  ]
   },

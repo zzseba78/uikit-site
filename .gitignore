@@ -17,3 +17,4 @@ pages/documentation/component
 pages/documentation
 .doctools
 static/uikit
+static/sw.js
