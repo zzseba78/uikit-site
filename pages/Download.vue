@@ -3,7 +3,7 @@
     <div class="uk-section-primary tm-section-texture">
 
         <Navbar class="uk-navbar-transparent"></Navbar>
-        <div class="uk-section uk-flex uk-flex-middle uk-text-center" uk"height-viewport" offset-top="true">
+        <div class="uk-section uk-flex uk-flex-middle uk-text-center" uk="height-viewport" offset-top="true">
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
