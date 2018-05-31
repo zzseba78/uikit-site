@@ -89,8 +89,8 @@ export default {
 			{rel: 'apple-touch-icon-precomposed', type: 'image/png', href: '/images/apple-touch-icon.png'}
 		],
 		script: [
-			{src: '/uikit/dist/js/uikit.min.js', defer: true},
-			{src: '/uikit/dist/js/uikit-icons.min.js', defer: true}
+			{src: '/uikit/dist/js/uikit.min.js', rel: 'preload'},
+			{src: '/uikit/dist/js/uikit-icons.min.js', defer: ''}
 		]
 	},
 
