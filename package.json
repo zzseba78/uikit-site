@@ -6,14 +6,17 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "eslint": "eslint './@(components|layouts|lib|modules|pages|plugins)/**/*.@(js|vue)'",
     "precommit": "npm run lint",
     "test:genServ": "nuxt generate && npm run test:serveDist",
     "test:serveDist": "cd dist && find . -type f ! -name \"*.gz\" | while read -r x; do gzip -c9 \"$x\" > \"$x.gz\"; done && cd .. && http-server ./dist -g -o"
   },
   "devDependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
+    "@nuxtjs/pwa": "^2.0.8",
     "copy-text-to-clipboard": "^1.0.4",
+    "eslint": "^4.19.1",
+    "eslint-config-yootheme": "github:dasdeck/eslit-config",
     "highlight.js": "^9.12.0",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
@@ -24,7 +27,6 @@
     "raw-loader": "^0.5.1",
     "symlink-dir": "^1.1.2",
     "uikit": "uikit/uikit#feature/doctools",
-    "@nuxtjs/pwa": "^2.0.8",
     "yootheme-doctools": "dasdeck/doctools#master"
   }
 }

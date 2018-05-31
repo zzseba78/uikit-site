@@ -11,7 +11,7 @@
                     <ul class="uk-nav uk-nav-default tm-nav">
                         <li class="uk-nav-header">General</li>
                         <li><a href="/">Home</a></li>
-                        <li v-for="entry in $config.nav"><a :href="entry.link">{{entry.text}}</a></li>
+                        <li v-for="entry in $config.nav"><a :href="entry.link">{{ entry.text }}</a></li>
                         <DocumentationSidebar class="uk-margin"/>
 
                     </ul>
@@ -23,14 +23,5 @@
     </div>
 
 </template>
-
-<script>
-export default {
-    // head() {
-    //     debugger;
-    // }
-}
-</script>
-
 
 <style src="~/less/theme.less" lang="less"></style>

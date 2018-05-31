@@ -2,15 +2,15 @@
 
     <div class="uk-section-primary tm-section-texture">
 
-        <Navbar class="uk-navbar-transparent"></Navbar>
+        <Navbar class="uk-navbar-transparent"/>
 
         <div class="uk-section uk-section-small uk-text-center" uk-height-viewport>
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
-                    <h1 class="uk-margin-medium uk-text-center">{{error.statusCode}}</h1>
+                    <h1 class="uk-margin-medium uk-text-center">{{ error.statusCode }}</h1>
 
-                    <p class="uk-text-large">{{error.message}}</p>
+                    <p class="uk-text-large">{{ error.message }}</p>
 
                 </div>
             </div>
@@ -22,9 +22,10 @@
 
 <script>
 
-
 export default {
-    props: ['error']
-}
+    props: {
+        error: Object
+    }
+};
 
 </script>

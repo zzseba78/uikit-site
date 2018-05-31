@@ -2,13 +2,13 @@
 
     <div class="uk-section-primary tm-section-texture">
 
-        <Navbar class="uk-navbar-transparent"></Navbar>
+        <Navbar class="uk-navbar-transparent"/>
         <div class="uk-section uk-flex uk-flex-middle uk-text-center" uk="height-viewport" offset-top="true">
             <div class="uk-width-1-1">
                 <div class="uk-container">
 
                     <p class="uk-margin-large-bottom">
-                        <img style="color: #fff" width="142" height="117"  src="../images/download.svg"></img>
+                        <img style="color: #fff" width="142" height="117" src="../images/download.svg">
                     </p>
 
                     <h1>Thanks for giving UIkit a try.</h1>
@@ -40,19 +40,16 @@
 
 <script>
 
-
     import pack from 'uikit/package.json';
 
     export default {
 
         mounted() {
 
-            setTimeout(() => location.href = `https://github.com/uikit/uikit/releases/download/v${pack.version}/uikit-${pack.version}.zip`, 100)
+            setTimeout(() => location.href = `https://github.com/uikit/uikit/releases/download/v${pack.version}/uikit-${pack.version}.zip`, 100);
 
         }
 
-
-
-    }
+    };
 
 </script>

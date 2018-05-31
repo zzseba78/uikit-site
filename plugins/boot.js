@@ -1,10 +1,10 @@
+/* global process */
 import Vue from 'vue';
 
 import 'yootheme-doctools/packages/uikit-ssr';
 
 import {Registry} from 'yootheme-doctools/exports.es.js'; //UIkit
 import UIkitRunner from '../lib/UIkitRunner';
-
 
 Registry.runners['uikit'] = new UIkitRunner;
 
@@ -42,7 +42,7 @@ Vue.mixin({
 
                 '<h2>$functionName:</h2>':
 
-                `<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>`,
+                '<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>',
 
                 '<a href="$repoLink">edit in repo</a>': (vars) => {
                     return '<a href="$repoLink"><span uk="icon" icon="pencil" uk-tooltip="edit this resource">edit this resource</span></a>';
@@ -77,7 +77,7 @@ Vue.mixin({
             }
         },
 
-        attachUIKit() {
+        attachUIKit() {
 
             process.client && this.$nextTick(el => {
 

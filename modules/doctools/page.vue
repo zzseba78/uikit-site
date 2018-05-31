@@ -12,7 +12,7 @@
         extends: DocBase,
 
         data() {
-            return {data}
+            return {data};
         },
 
         methods: {
@@ -32,7 +32,7 @@
 
         asyncData(context) {
             return import(`~/.doctools/_export/${context.params[0]}.json`)
-            .then(({default: moduleData}) => ({moduleData}))
+            .then(({default: moduleData}) => ({moduleData}));
         },
 
         extends: Page,
@@ -49,6 +49,6 @@
 
         }
 
-    }
+    };
 
 </script>

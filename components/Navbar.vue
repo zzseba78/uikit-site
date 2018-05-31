@@ -7,7 +7,7 @@
                 <div class="uk-navbar-left">
 
                     <router-link class="uk-navbar-item uk-logo" to="/">
-                        <img class="uk-margin-small-right" width="28" height="34"  src="../images/uikit-logo.svg"></img> UIkit
+                        <img class="uk-margin-small-right" width="28" height="34" src="../images/uikit-logo.svg"> UIkit
                     </router-link>
 
                 </div>
@@ -17,12 +17,12 @@
                     <ul class="uk-navbar-nav uk-visible@m">
 
                         <router-link v-for="entry in $config.nav" :key="entry.link" :to="entry.link" tag="li">
-                            <a>{{entry.text}}</a>
+                            <a>{{ entry.text }}</a>
                         </router-link>
                     </ul>
 
                     <div class="uk-navbar-item uk-visible@m">
-                        <router-link class="uk-button uk-button-default tm-button-default uk-icon" :to="$config.routes.download" activeClass="page-active">
+                        <router-link :to="$config.routes.download" class="uk-button uk-button-default tm-button-default uk-icon" active-class="page-active">
                             Download
                             <span uk="icon" icon="download" width="20" height="20"></span>
                         </router-link>

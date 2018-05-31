@@ -20,4 +20,4 @@ export default {
             this.$headlineCollector.ids = this.getHeadLines();
         }
     }
-}
+};

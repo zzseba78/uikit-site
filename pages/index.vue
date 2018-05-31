@@ -9,7 +9,7 @@
                 <div class="uk-container">
 
                     <p>
-                        <img style="color: #fff" width="168" height="155"  src="../images/uikit-logo-large.svg"></img>
+                        <img style="color: #fff" width="168" height="155" src="../images/uikit-logo-large.svg">
                     </p>
 
                     <p class="uk-margin-medium uk-text-lead">
@@ -37,10 +37,10 @@
 
                 <ul class="uk-subnav tm-subnav uk-flex-inline uk-flex-center uk-margin-remove-bottom" uk="margin">
                     <li>
-                        <span>Version <span>{{version}}</span></span>
+                        <span>Version <span>{{ version }}</span></span>
                     </li>
                     <li>
-                        <a href="https://github.com/uikit/uikit/stargazers"><span class="uk-margin-small-right" uk="icon" icon="star"></span><span uikit-stargazers>{{stargazers}}</span> Stargazers</a>
+                        <a href="https://github.com/uikit/uikit/stargazers"><span class="uk-margin-small-right" uk="icon" icon="star"></span><span uikit-stargazers>{{ stargazers }}</span> Stargazers</a>
                     </li>
                     <li>
                         <a class="uk-text-lowercase" href="https://twitter.com/getuikit"><span class="uk-margin-small-right" uk="icon" icon="twitter"></span>@getuikit</a>
@@ -64,12 +64,12 @@
     import pack from 'uikit/package.json';
 
     function getGazers(context) {
-        return  UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
+        return UIkit.util.ajax('https://api.github.com/repos/uikit/uikit', {responseType: 'json'}).then(({response}) => {
 
             if (response && response.stargazers_count) {
-                return {stargazers: response.stargazers_count}
+                return {stargazers: response.stargazers_count};
             } else {
-                return {stargazers: '?'}
+                return {stargazers: '?'};
             }
         }).catch(res => ({stargazers: 'error'}));
     }
@@ -79,7 +79,7 @@
         asyncData: getGazers,
 
         computed: {
-            version() {
+            version() {
                 return pack.version;
             }
         },
@@ -88,9 +88,9 @@
 
             getGazers().then(data => {
                 this.stargazers = data.stargazers;
-            })
+            });
 
         }
-    }
+    };
 
 </script>

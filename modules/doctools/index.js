@@ -1,10 +1,8 @@
-const fs = require('fs');
+/* eslint-env node*/
 const _ = require('lodash');
 const path = require('path');
-const mkpath = require('mkpath');
 
 const {DocTools, HTMLExporter, Config} = require('yootheme-doctools');
-
 
 module.exports = function DocToolsModule (config) {
 
@@ -13,13 +11,12 @@ module.exports = function DocToolsModule (config) {
 
     this.writtenFiles = [];
 
-
     const writeJSON = data => {
         const publicResources = this.htmlExporter.config.resources(this.doctools, data);
 
-        const nameMap = _.reduce(publicResources,(map,res) => {
-           map[res.resource] = {name: res.name};
-           return map;
+        const nameMap = _.reduce(publicResources, (map, res) => {
+            map[res.resource] = {name: res.name};
+            return map;
         }, {});
 
         const rootPackage = data.resources[data.rootPackage];
@@ -33,7 +30,7 @@ module.exports = function DocToolsModule (config) {
 
             this.writtenFiles.push(dest);
 
-        })
+        });
 
         this.doctools.writeExport('_globals.json', {
             resources: nameMap,
@@ -42,20 +39,22 @@ module.exports = function DocToolsModule (config) {
             repo: rootPackage && rootPackage.packageJson && rootPackage.packageJson.repository,
             routeMap: data.routeMap,
             types: data.types
-        })
+        });
         config.onWrite && config.onWrite(this.doctools, data);
-    }
+    };
 
     this.nuxt.hook('generate:before', generator => {
 
         return this.doctools.analyze().then(app => {
 
             const postProcess = config.postProcess;
-            const data =  this.doctools.get();
-            if(config.mode === 'flatten') {
+            const data = this.doctools.get();
+            if (config.mode === 'flatten') {
 
                 this.htmlExporter.config.postProcess = function(...args) {
                     const html = postProcess(...args);
+
+                    this.writtenFiles = this.htmlExporter.renderHTML(this.doctools, data, path.join(this.config.srcDir, 'pages', dir));
                     return `<template>${html}</template>` + (config.component ?
                         `<script>
                         import Base from '${config.component}';
@@ -63,9 +62,7 @@ module.exports = function DocToolsModule (config) {
                             extends: Base
                         };
                         </script>` : '');
-                    }
-
-                    this.writtenFiles = this.htmlExporter.renderHTML(this.doctools, data, path.join(this.config.srcDir, 'pages', dir ) );
+                };
 
             } else {
 
@@ -78,7 +75,6 @@ module.exports = function DocToolsModule (config) {
             return app;
 
         });
-
 
     });
 
@@ -95,7 +91,7 @@ module.exports = function DocToolsModule (config) {
             routes.push({route: `${dir}/${route}`});
         });
 
-    })
+    });
 
     this.nuxt.hook('ready', nuxt => {
 
@@ -164,14 +160,16 @@ module.exports = function DocToolsModule (config) {
 
         if (routes.some(route => {
 
-            if(route.path === dir) {
-                docToolsRoute.path = '*'
+            if (route.path === dir) {
+                docToolsRoute.path = '*';
                 route.children = [
                     docToolsRoute
-                ]
+                ];
                 return true;
             }
-        })) {} else {
+        })) {
+            //
+        } else {
 
             routes.push(docToolsRoute);
 
