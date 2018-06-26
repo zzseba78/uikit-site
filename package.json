@@ -24,6 +24,7 @@
     "symlink-dir": "^1.1.2",
     "nuxt": "npm:nuxt-edge",
     "raw-loader": "^0.5.1",
+    "uikit-ssr": "dasdeck/uikit-ssr",
     "uikit": "uikit/uikit#feature/doctools"
   }
 }

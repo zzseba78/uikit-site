@@ -1,17 +1,24 @@
 import Vue from 'vue';
 
-import 'yootheme-doctools/packages/uikit-ssr';
+import UIkit from 'uikit-ssr';
 
 import {Registry} from 'yootheme-doctools/exports.es.js'; //UIkit
 import UIkitRunner from '../lib/UIkitRunner';
-
-
-Registry.runners['uikit'] = new UIkitRunner;
 
 import config from '../config.js';
 
 import Navbar from '~/components/Navbar.vue';
 import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
+
+Registry.runners['uikit'] = new UIkitRunner;
+
+if (typeof window !== 'undefined') {
+    window.UIkit = UIkit;
+}
+
+if (typeof global !== 'undefined') {
+    global.UIkit = UIkit;
+}
 
 Vue.component('Navbar', Navbar);
 Vue.component('DocumentationSidebar', DocumentationSidebar);
