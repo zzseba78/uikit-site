@@ -30,6 +30,7 @@ npm manifest:
     "devDependencies": {
       "@nuxtjs/google-analytics": "^2.0.2",
       "copy-text-to-clipboard": "^1.0.4",
+      "got": "^8.3.1",
       "highlight.js": "^9.12.0",
       "less": "^2.7.2",
       "less-loader": "^4.1.0",
@@ -40,11 +41,7 @@ npm manifest:
       "raw-loader": "^0.5.1",
       "symlink-dir": "^1.1.2",
       "uikit": "uikit/uikit#feature/doctools",
-      "uikit-ssr": "dasdeck/uikit-ssr",
       "yootheme-doctools": "dasdeck/doctools#master"
-    },
-    "dependencies": {
-      "got": "^8.3.1"
     }
   }
 

@@ -24,6 +24,7 @@ export default {
 				config.externals = [];
 				config.resolve.alias['uikit-util'] = empty;
 				config.resolve.alias['uikit$'] = empty;
+				config.resolve.alias['electron'] = empty;
 
 			}
 
