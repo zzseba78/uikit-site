@@ -24,13 +24,4 @@
 
 </template>
 
-<script>
-export default {
-    // head() {
-    //     debugger;
-    // }
-}
-</script>
-
-
 <style src="~/less/theme.less" lang="less"></style>

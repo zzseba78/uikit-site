@@ -1,3 +1,5 @@
+import {$$, attr} from 'uikit-util';
+
 export default {
     inject: ['$headlineCollector'],
 
@@ -10,8 +12,8 @@ export default {
     methods: {
 
         getHeadLines() {
-            return UIkit.util.$$('h2 a[href^="#"]', this.$el).reduce((ids, el) => {
-                ids[el.innerText] = UIkit.util.attr(el, 'href').substr(1);
+            return $$('h2 a[href^="#"]', this.$el).reduce((ids, el) => {
+                ids[el.innerText] = attr(el, 'href').substr(1);
                 return ids;
             }, {});
         },

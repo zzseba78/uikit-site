@@ -1,8 +1,11 @@
+/* eslint-env node */
+
 import Vue from 'vue';
 
-import UIkit from 'uikit-ssr';
+import UIkit from 'uikit';
+import {$$, attr, camelize} from 'uikit-util';
 
-import {Registry} from 'yootheme-doctools/exports.es.js'; //UIkit
+import {Registry} from 'yootheme-doctools/exports.es.js';
 import UIkitRunner from '../lib/UIkitRunner';
 
 import config from '../config.js';
@@ -11,14 +14,6 @@ import Navbar from '~/components/Navbar.vue';
 import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
 
 Registry.runners['uikit'] = new UIkitRunner;
-
-if (typeof window !== 'undefined') {
-    window.UIkit = UIkit;
-}
-
-if (typeof global !== 'undefined') {
-    global.UIkit = UIkit;
-}
 
 Vue.component('Navbar', Navbar);
 Vue.component('DocumentationSidebar', DocumentationSidebar);
@@ -48,8 +43,7 @@ Vue.mixin({
                 <p>The following methods are available for the component:</p>`,
 
                 '<h2>$functionName:</h2>':
-
-                `<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>`,
+                '<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>',
 
                 '<a href="$repoLink">edit in repo</a>': (vars) => {
                     return '<a href="$repoLink"><span uk="icon" icon="pencil" uk-tooltip="edit this resource">edit this resource</span></a>';
@@ -84,17 +78,18 @@ Vue.mixin({
             }
         },
 
-        attachUIKit() {
+        attachUIKit() {
 
             process.client && this.$nextTick(el => {
 
-                const uks = UIkit.util.$$('[uk]', this.$el);
+                const uks = $$('[uk]', this.$el);
 
                 uks.forEach(el => {
 
-                    const name = UIkit.util.attr(el, 'uk');
-                    const func = UIkit.util.camelize(name);
+                    const name = attr(el, 'uk');
+                    const func = camelize(name);
                     const comp = UIkit[func](el);
+
                     if (comp) {
                         comp.$reset && comp.$reset(); //reconnect
                     }

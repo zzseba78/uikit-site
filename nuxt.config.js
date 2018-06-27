@@ -1,5 +1,6 @@
 import doctoolsConf from './doctools.nuxt.config';
 
+const empty = require.resolve(__dirname + '/empty.js');
 export default {
 
 	build: {
@@ -9,10 +10,21 @@ export default {
 			config.module.rules[0].options.compilerOptions = {
 				preserveWhitespace: false
 			}
+
 			if (context.isClient) {
+
+				config.resolve.alias['got'] = empty;
 				config.externals = {
-					'uikit': 'UIkit'
+					'uikit': 'UIkit',
+					'uikit-util': 'UIkit.util',
 				}
+
+			} else {
+
+				config.externals = [];
+				config.resolve.alias['uikit-util'] = empty;
+				config.resolve.alias['uikit$'] = empty;
+
 			}
 
 		},
@@ -59,8 +71,8 @@ export default {
 			{rel: 'apple-touch-icon-precomposed', type: 'image/png', href: '/images/apple-touch-icon.png'}
 		],
 		script: [
-			{src: '/uikit/dist/js/uikit.min.js', defer: true},
-			{src: '/uikit/dist/js/uikit-icons.min.js', defer: true}
+			{src: '/uikit/dist/js/uikit.min.js'},
+			{src: '/uikit/dist/js/uikit-icons.min.js', defer: ''}
 		]
 	},
 

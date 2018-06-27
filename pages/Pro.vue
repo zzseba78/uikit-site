@@ -444,6 +444,8 @@
 
 
 <script>
+    import {modal} from 'uikit';
+    import {on} from 'uikit-util';
 
     export default {
 
@@ -453,7 +455,7 @@
 
         mounted() {
 
-            UIkit.util.on(this.$el, 'click', '[data-modal]', e => {
+            on(this.$el, 'click', '[data-modal]', e => {
 
                 var {iframe} = this.$refs;
 
@@ -467,7 +469,7 @@
                 }
 
                 iframe.src = '';
-                UIkit.modal(this.$refs.modal).show();
+                modal(this.$refs.modal).show();
 
                 requestAnimationFrame(() => iframe.src = el.href);
 

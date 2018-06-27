@@ -1,5 +1,6 @@
 import UIkitRunner from '../lib/UIkitRunner';
 import copyToCB from 'copy-text-to-clipboard';
+import {$, closest, hasClass} from 'uikit-util';
 
 function deIndent(code) {
     const lines = code.split('\n').filter(line => line.trim());
@@ -12,19 +13,19 @@ export default {
     methods: {
         click(e) {
 
-            const target = UIkit.util.closest(e.target, 'a');
+            const target = closest(e.target, 'a');
 
-            if (UIkit.util.hasClass(target, 'edit')) {
+            if (hasClass(target, 'edit')) {
 
-                const el = UIkit.util.closest(target, '.uikit-runner');
-                const code = UIkit.util.$('.code', el).innerHTML;
+                const el = closest(target, '.uikit-runner');
+                const code = $('.code', el).innerHTML;
 
                 UIkitRunner.edit(deIndent(code));
 
-            } else if (UIkit.util.hasClass(target, 'copy')) {
+            } else if (hasClass(target, 'copy')) {
 
-                const el = UIkit.util.closest(target, '.uikit-runner');
-                const code = UIkit.util.$('.code', el).innerHTML;
+                const el = closest(target, '.uikit-runner');
+                const code = $('.code', el).innerHTML;
                 copyToCB(deIndent(code));
 
             }
