@@ -13,6 +13,8 @@ import config from '../config.js';
 import Navbar from '~/components/Navbar.vue';
 import DocumentationSidebar from '~/components/DocumentationSidebar.vue';
 
+import {upperFirst} from 'lodash-es';
+
 Registry.runners['uikit'] = new UIkitRunner;
 
 Vue.component('Navbar', Navbar);
@@ -27,6 +29,8 @@ Vue.mixin({
 
         $language() {
             return {
+                '<h4>$name</h4>': '',
+
                 '<h2>props:</h2>':
 
                 `<h2 id="component-options" class="uk-h3 tm-heading-fragment"><a href="#component-options">Component options</a></h2>
@@ -43,11 +47,11 @@ Vue.mixin({
                 <p>The following methods are available for the component:</p>`,
 
                 '<h2>$functionName:</h2>':
-                '<h4 id="toggle" class="uk-h5 tm-heading-fragment"><a href="#toggle">$functionName</a></h4>',
+                vars => `<h4 id="$functionName" class="uk-h5 tm-heading-fragment"><a href="#$functionName">${upperFirst(vars.functionName)}</a></h4>`,
 
-                '<a href="$repoLink">edit in repo</a>': (vars) => {
-                    return '<a href="$repoLink"><span uk="icon" icon="pencil" uk-tooltip="edit this resource">edit this resource</span></a>';
-                }
+                '<a href="$repoLink">edit in repo</a>':
+                '<a href="$repoLink"><span uk="icon" icon="pencil" uk-tooltip="edit this resource">edit this resource</span></a>'
+
             };
         }
     },
@@ -65,7 +69,7 @@ Vue.mixin({
 
         $t(text, vars) {
 
-            text = this.$language[text] || text;
+            text = text in this.$language ? this.$language[text] : text;
 
             if (typeof text === 'function') {
                 text = text(vars);
