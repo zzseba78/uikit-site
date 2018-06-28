@@ -1,4 +1,5 @@
 import doctoolsConf from './doctools.nuxt.config';
+const serveStatic = require('serve-static')
 
 const empty = require.resolve(__dirname + '/empty.js');
 export default {
@@ -35,6 +36,11 @@ export default {
 		analyze: true
 
 	},
+
+	serverMiddleware: [{
+		path: '/testImages',
+		handler: serveStatic(__dirname + '/node_modules/uikit/tests/images')
+	}],
 
 	loading: {
 		color: 'white'
@@ -75,10 +81,6 @@ export default {
 			{src: '/uikit/dist/js/uikit.min.js'},
 			{src: '/uikit/dist/js/uikit-icons.min.js', defer: ''}
 		]
-	},
-
-	// css: [
-	// 	'~/less/theme.less'
-	// ]
+	}
 
 }

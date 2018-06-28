@@ -16,7 +16,7 @@ highlight.registerLanguage('scss', scss);
 
 export default {
 
-    path: '/documentation',
+    path: '/Documentation',
 
     component: __dirname + '/components/Page.vue',
 
