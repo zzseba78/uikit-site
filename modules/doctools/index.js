@@ -118,7 +118,7 @@ module.exports = function DocToolsModule (config) {
                 return _.mapValues(data.routeMap, res => data.resources[res]);
             },
 
-            ..._.pick(config, ['routeMap', 'highlight', 'markdown', 'postProcess'])
+            ..._.pick(config, ['routeMap', 'highlight', 'markdown', 'postProcess', 'markdownPreprocess'])
 
         });
 

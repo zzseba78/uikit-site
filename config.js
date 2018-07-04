@@ -1,4 +1,4 @@
-import components from './components.json';
+import components from './.doctools/_export/_components.json';
 import menu from'./intro.json';
 import {invert} from 'lodash-es';
 
