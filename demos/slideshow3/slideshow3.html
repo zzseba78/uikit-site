@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Slideshow 3 - UIkit demo</title>
+        <link rel="stylesheet" href="../../css/theme.css" />
+        <link rel="stylesheet" href="./theme/slideshow2.css"/>
+        <script src="../../assets/uikit/dist/js/uikit.min.js"></script>
+        <script src="../../assets/uikit/dist/js/uikit-icons.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Lato|Montserrat" rel="stylesheet">
+
+
+    </head>
+    <body>
+        <div class="uk-position-relative uk-visible-toggle" uk-slideshow="autoplay: false; animation: pull">
+            <ul class="uk-slideshow-items" uk-height-viewport="min height: 300">
+                
+                <li>
+                </li>
+
+                <li>
+                </li>
+
+                <li>
+                </li>
+
+                <li>
+                </li>
+
+            </ul>
+            <div>
+            <a class="uk-slidenav-large uk-position-center-left uk-flex uk-light uk-auto-margin-vertical uk-margin-left-remove uk-height-viewport tm-background-muted" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            </div>
+            <a class="uk-slidenav-large uk-position-center-right uk-flex uk-light uk-auto-margin-vertical uk-margin-right-remove uk-height-viewport tm-background-muted" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        </div>
+        <div class="uk-card uk-card-light uk-width-auto uk-position-top-right">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <a href="../" class="uk-navbar-item uk-logo uk-padding-remove" style="color: white;">
+                            <img uk-svg="" src="https://getuikit.com/images/uikit-logo.svg" class="uk-margin-small-right" hidden="true"> 
+                            <svg width="28" height="34" viewBox="0 0 28 34" xmlns="http://www.w3.org/2000/svg" class="uk-margin-small-right uk-svg">
+                                <polygon fill="#fff" points="19.1,4.1 13.75,1 8.17,4.45 13.6,7.44 "></polygon>
+                                <path fill="#fff" d="M21.67,5.43l-5.53,3.34l6.26,3.63v9.52l-8.44,4.76L5.6,21.93v-7.38L0,11.7v13.51l13.75,8.08L28,25.21V9.07 L21.67,5.43z"></path>
+                            </svg> 
+                        </a>
+                    </div>    
+                    <div class="uk-width-expand uk-margin-remove">
+                        <h1 class="uk-margin-remove uk-light">
+                        Slideshow
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body uk-padding-remove">
+                <div class="uk-margin-remove uk-grid-small uk-flex-middle" uk-grid>
+                    <div>
+                        <button class="button uk-button uk-button-default uk-icon"> 
+                        Download
+                        </button>
+                    </div>
+                    <div>
+                        <button class="button uk-button uk-button-default uk-icon"> 
+                        GitHub
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div href="#toggle-animation" uk-toggle="target: #toggle-animation; animation: uk-animation-fade" class="uk-card-footer">
+                <a class="uk-button uk-button-text" type="button">
+                    <span class="uk-margin-small-right" uk-icon="plus"></span>
+                    Settings
+                </a>
+                <div id="toggle-animation" class="uk-card uk-card-light uk-card-body uk-margin-small" hidden>
+                    dsfs
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

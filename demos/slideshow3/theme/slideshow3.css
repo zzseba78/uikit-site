@@ -1,0 +1,226 @@
+.uk-heading-primary, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+                font-family: 'Inconsolata', monospace ;
+            }
+
+            html, p{
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .uk-light {
+                color: #fff;
+            }
+
+            .uk-card-light{
+                border: solid 1px #fff;
+            }
+
+            .uk-button-default{
+                color: #fff;
+            }
+
+            .uk-button-default:hover{
+                color: #fff;
+                background-color: #999;
+                border-color: #999;
+            }
+
+            .uk-button-text{
+                color: #fff;
+                border-color: #999;
+            }
+
+            .uk-button-text:hover{
+                color: #fff;
+            }
+
+            .uk-button-text:before{
+                border-color: #999;
+            }
+
+            .uk-heading-hero{
+                font-family: 'Inconsolata', monospace;
+                color: #fff;
+                font-weight: 800;
+            }
+
+            .tm-background-muted{
+                background-color: #ffffff3d;
+            }
+
+            .uk-heading-primary{
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .tm-section-title {
+                /* `writing-mode` has to be on the parent element to fix the width in Safari */
+                -webkit-writing-mode: vertical-lr;
+                writing-mode: vertical-lr;
+            }
+
+            .tm-section-title > * {
+                /* `writing-mode` has to be on the element which is rotated in IE 11 */
+                -ms-writing-mode: tb-lr;
+                /* Fix height in Edge and IE 11 */
+                display: inline-block;
+            }
+
+            /* `writing-mode` has to be on the element which is rotated in Edge */
+            @supports (-ms-ime-align: auto) {
+
+                .tm-section-title { writing-mode: inherit; }
+                .tm-section-title > * { writing-mode: vertical-lr; }
+
+            }
+
+
+            /*
+             * Dash
+             */
+
+            .tm-section-title > ::before {
+                content: "";
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                height: 15px;
+                width: 1px;
+                background-color: currentColor;
+            }
+
+            /*
+             * Utilit
+             */
+
+            .tm-rotate-180 {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            .tm-panel-box{
+                height: 80%;
+                width: 50%;
+            }
+
+            .tm-panel-box-large{
+                height: 80%;
+                width: 70%;
+            }
+
+            .tm-panel{
+                height: 55%;
+                width: 60%;
+                right: 0%;
+                bottom: 0%;
+                opacity:.5;
+                position: absolute;
+            }
+
+            .tm-panel-large{
+                height: 100%;
+                width: 90%;
+                right: 0%;
+                bottom: 0%;
+                position: absolute;
+            }
+
+            .tm-panel-box-top-left {
+                top: 0;
+                left:0;
+                position: absolute;
+            }
+
+            .tm-panel-box-top-right {
+                top:0;
+                right:0;
+                position: absolute;
+            }
+
+            .tm-panel-box-bottom-left {
+                bottom:0;
+                left: 0;
+                position: absolute;
+            }
+
+            .tm-panel-box-bottom-right {
+                bottom:0:
+                right:0;
+                position: absolute;
+            }
+
+            .tm-panel-box-center-horizontal {
+                top: 50%;
+                left: 50%;
+                height:50%;
+                width:100%;
+                transform: translate(-50%, -50%);
+                /* 1 */
+                display: table;
+                /* 2 */
+                width: -moz-max-content;
+                max-width: 100%;
+                box-sizing: border-box;
+                position: absolute;
+            }
+
+            .tm-panel-box-center-vertical {
+                top: 50%;
+                left: 50%;
+                width::50%; 
+                height:100%;
+                transform: translate(-50%, -50%);
+                /* 1 */
+                display: table;
+                /* 2 */
+                box-sizing: border-box;
+                position: absolute;
+            }
+
+            .tm-panel-box-center-large {
+                top: 50%;
+                left: 50%;
+                height:70%;
+                width:60%;
+                transform: translate(-50%, -50%);
+                /* 1 */
+                display: table;
+                /* 2 */
+                box-sizing: border-box;
+                position: absolute;
+            }
+
+            .tm-panel-box-center-small {
+                top: 50%;
+                left: 50%;
+                height:80%;
+                width: 35%;
+                transform: translate(-50%, -50%);
+                /* 1 */
+                display: table;
+                /* 2 */
+                box-sizing: border-box;
+                position: absolute;
+            }
+
+            .tm-panel-box-center-xsmall {
+                top: 50%;
+                left: 50%;
+                height:35%;
+                width: 35%;
+                transform: translate(-50%, -50%);
+                /* 1 */
+                display: table;
+                /* 2 */
+                box-sizing: border-box;
+                position: absolute;
+            }
+
+            .tm-image-cover-2{
+                background-color:#ee00ff; 
+                opacity: .3;
+            }
+
+            .tm-image-cover-1{
+                background-color:#0035ff; 
+                opacity: .3;
+            }
