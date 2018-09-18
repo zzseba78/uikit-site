@@ -1,9 +1,9 @@
             .uk-heading-primary, .uk-heading-hero, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
-                font-family: 'Source Serif Pro', serif;
+                font-family: 'Kanit', sans-serif;
             }
 
             .uk-card h1, .uk-card .button{
-                font-family: 'Montserrat', sans-serif !important;
+                font-family: 'Montserrat', sans-serif;
             }
 
             html, p{
@@ -42,16 +42,21 @@
             }
 
             .uk-heading-hero{
-                color: #fff;
-                font-weight: 500;
+                color: #1E87F0;
+                font-weight: 900;
             }
+
+            @media (min-width: 1200px){
+            .uk-heading-hero{
+                font-size: 11rem;
+            }}
 
             .tm-background-muted{
                 background-color: #00000088 ;
             }
 
             .uk-heading-primary{
-                font-weight: 600;
+                font-weight: 800;
                 color: #fff;
             }
 
@@ -115,6 +120,7 @@
                 width: 60%;
                 right: 0%;
                 bottom: 0%;
+                opacity:.5;
                 position: absolute;
             }
 
@@ -151,10 +157,9 @@
             }
 
             .tm-panel-box-bottom-right {
-                margin:;
                 width:50%;
                 height:50%;
-                bottom:0:
+                bottom:0;
                 right:0;
                 position: absolute;
             }
@@ -190,8 +195,9 @@
             .tm-panel-box-center-large {
                 top: 50%;
                 left: 50%;
-                height:70%;
-                width:60%;
+                height:fit-content;
+                width:90%;
+                max-width: 1500px;
                 transform: translate(-50%, -50%);
                 /* 1 */
                 display: table;
@@ -235,3 +241,11 @@
                 background-color:#0035ff; 
                 opacity: .3;
             }
+
+            .tm-background-transparent{
+                background-color: transparent;
+            }
+
+            .tm-background-dark {
+                background-color: #000;
+            
