@@ -42,7 +42,7 @@
             }
 
             .uk-heading-hero{
-                color: #fffd00;
+                color: #ffca00;
                 font-weight: 900;
             }
 
@@ -256,4 +256,12 @@
             .tm-nav-button :hover p, .tm-nav-button:hover{
                 background-color: #FFFD00;
                 color: #1e87f0;
+            }
+
+            .tm-grid-cell{
+                margin-bottom: 15px;
+            }
+
+            .tm-filter-grayscale {
+                filter: grayscale(100%)
             }
