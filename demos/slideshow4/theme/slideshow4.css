@@ -232,14 +232,17 @@
                 position: absolute;
             }
 
+            .tm-cover{
+                height:100%;
+                width:100%;
+            }
+
             .tm-image-cover-2{
-                background-color:#ee00ff; 
-                opacity: .3;
+                background-color:#FFFD00;
             }
 
             .tm-image-cover-1{
-                background-color:#0035ff; 
-                opacity: .3;
+                background-color:#1e87f0; 
             }
 
             .tm-background-transparent{
@@ -248,4 +251,9 @@
 
             .tm-background-dark {
                 background-color: #000;
-            
+            }
+
+            .tm-nav-button :hover p, .tm-nav-button:hover{
+                background-color: #FFFD00;
+                color: #1e87f0;
+            }
