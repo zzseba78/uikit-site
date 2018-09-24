@@ -42,7 +42,7 @@
             }
 
             .uk-heading-hero{
-                color: #ffca00;
+                color: #ffdd00;
                 font-weight: 900;
             }
 
@@ -264,4 +264,16 @@
 
             .tm-filter-grayscale {
                 filter: grayscale(100%)
+            }
+
+            .tm-font-size-18{
+                font-size:18px;
+            }
+
+            .tm-button-1{
+                color:#FFDD02;
+                font-size:35px;
+                background-color:#1E87F0;
+                border-width: 0px;
+                font-weight:600;
             }
