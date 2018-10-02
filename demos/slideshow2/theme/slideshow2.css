@@ -111,9 +111,6 @@
             .tm-color-overlay{
                 height: 40%;
                 width: 30%;
-                left: 50%;
-                top: 50%;
-                opacity: .5;
                 position: absolute;
             }
 /*
