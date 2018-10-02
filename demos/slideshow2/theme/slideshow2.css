@@ -4,6 +4,7 @@
 
             html, p{
                 font-family: 'Montserrat', sans-serif;
+                /*font-size: 17px;*/
             }
 
             .uk-light {
@@ -216,10 +217,10 @@
 
             .tm-image-cover-2{
                 background-color:#ee00ff; 
-                opacity: .3;
+                opacity: .4;
             }
 
             .tm-image-cover-1{
-                background-color:#0035ff; 
-                opacity: .3;
+                background-color:#0226af; 
+                opacity: .4;
             }
