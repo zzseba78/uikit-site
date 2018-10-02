@@ -1,0 +1,89 @@
+            html, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+                font-family:'Montserrat', sans-serif ;
+            }
+
+            .tm-section-title {
+                /* `writing-mode` has to be on the parent element to fix the width in Safari */
+                -webkit-writing-mode: vertical-lr;
+                writing-mode: vertical-lr;
+            }
+
+            .tm-section-title > * {
+                /* `writing-mode` has to be on the element which is rotated in IE 11 */
+                -ms-writing-mode: tb-lr;
+                /* Fix height in Edge and IE 11 */
+                display: inline-block;
+            }
+
+            /* `writing-mode` has to be on the element which is rotated in Edge */
+            @supports (-ms-ime-align: auto) {
+
+                .tm-section-title { writing-mode: inherit; }
+                .tm-section-title > * { writing-mode: vertical-lr; }
+            }
+
+            /*
+             * Dash
+             */
+
+            .tm-section-title > ::before {
+                content: "";
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                height: 15px;
+                width: 1px;
+                background-color: currentColor;
+            }
+
+            /*
+             * Utilit
+             */
+
+            .tm-rotate-180 {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            .uk-light {
+                color: #fff;
+            }
+
+            .uk-primary {
+                color: #ffc000;
+            }
+
+            .uk-card-light{
+                border: solid 1px #fff;
+            }
+            .uk-heading-hero{
+                font-family: 'Anton', sans-serif;
+                color: #ffc000;
+            }
+
+            .uk-button-default{
+                color: #fff;
+            }
+
+            .uk-button-default:hover{
+                color: #fff;
+                background-color: #ffc000;
+                border-color: #ffc000;
+            }
+
+            .uk-button-text{
+                color: #fff;
+                border-color: #ffc000;
+            }
+
+            .uk-button-text:hover{
+                color: #fff;
+            }
+
+            .uk-button-text:before{
+                border-color: #ffc000;
+            }
+
+            a:hover, .uk-link:hover{
+                color: #ffc000;
+            }
