@@ -242,7 +242,7 @@
             }
 
             .tm-image-cover-1{
-                background-color:#1e87f0; 
+                background-color:#000; 
             }
 
             .tm-background-transparent{
@@ -276,4 +276,10 @@
                 background-color:#1E87F0;
                 border-width: 0px;
                 font-weight:600;
+            }
+
+            .tm-button-1:hover{
+                color:#1E87F0;
+                background-color:#FFDD02;
+                cursor: pointer
             }
