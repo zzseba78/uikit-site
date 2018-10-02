@@ -1,0 +1,70 @@
+.uk-heading-primary, .uk-heading-hero, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kanit', sans-serif;
+}
+
+.uk-card h1, .uk-card .button{
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, p{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.uk-light {
+    color: #fff;
+}
+
+.uk-card-light{
+    border: solid 1px #fff;
+}
+
+.uk-button-default{
+    color: #fff;
+}
+
+.uk-button-default:hover{
+    color: #fff;
+    background-color: #999;
+    border-color: #999;
+}
+
+.uk-button-text{
+    color: #fff;
+    border-color: #999;
+}
+
+.uk-button-text:hover{
+    color: #fff;
+}
+
+.uk-button-text:before{
+    border-color: #999;
+}
+
+.uk-heading-hero{
+    color: #111;
+    font-weight: 600;
+}
+
+@media (min-width: 1200px){
+.uk-heading-hero{
+    font-size: 7.8rem;
+}}
+
+.tm-background-muted{
+    background-color: #00000088 ;
+}
+
+.uk-heading-primary{
+    font-weight: 800;
+    color: #111;
+}
+
+.uk-slider-items li{
+    max-width:600px;
+    overflow: hidden;
+    max-height: 700px;
+}
+.uk-slider-items li img{
+    width:100%;
+}
