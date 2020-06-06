@@ -3117,7 +3117,7 @@ scrollIntoView(element [, options])
 ```javascript
 var element = util.$('#example');
 
-util.scrollIntoView(element, { duration: 1000, offset: 0 });
+util.scrollIntoView(element, { offset: 0 });
 ```
 
 ## Selectors
